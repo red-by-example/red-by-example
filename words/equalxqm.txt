@@ -1,0 +1,7 @@
+The word $$equal?$$ returns $$true$$ if two values are equal.  
+
+This is the functional form of the infix word $$=$$. Look 
+there for more details.
+.pre
+red>> equal? [1 2 3] [1 2 3]
+== true

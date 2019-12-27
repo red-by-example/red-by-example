@@ -1,0 +1,25 @@
+.dcs
+USAGE:
+     MOD a b
+
+DESCRIPTION: 
+     Compute a nonnegative remainder of A divided by B. 
+     MOD is a function! value.
+
+ARGUMENTS:
+     a            [number! char! pair! tuple! vector! time!] 
+     b            [number! char! pair! tuple! vector! time!] "Must be nonzero."
+
+RETURNS:
+     [number! char! pair! tuple! vector! time!]
+.dce
+
+See also $$modulo$$
+
+.box mod
+>> mod 7 3       ;-- integer  -  divides 2 times
+== 1
+>> mod -7 3      ;-- negative  -  divides -3 times, mod must be non-negative
+== 2
+>> mod 7.5 2.1   ;-- float  -  divides 3 times
+== 1.2

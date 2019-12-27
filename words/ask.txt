@@ -1,0 +1,12 @@
+Displays a prompt and gets the value that the user types at STDIN.
+
+Has 1 parameter, a $$string!$$
+
+The resulting string value of $$ask$$ can be used in an expression
+.pre
+answer: ask "What is your name?"
+##What is your name?Carl##
+== "Carl"
+
+answer
+== "Carl"

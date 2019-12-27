@@ -1,0 +1,11 @@
+The word $$does$$ defines a function with no arguments or 
+local variables. 
+.pre
+welcome: does [
+  print "Welcome"
+  print "to Red"
+]
+
+welcome
+##Welcome##
+##to Red##

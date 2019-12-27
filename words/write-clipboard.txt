@@ -1,0 +1,16 @@
+.dcs
+USAGE:
+     WRITE-CLIPBOARD data
+
+DESCRIPTION: 
+     Write content to the system clipboard. 
+     WRITE-CLIPBOARD is a routine! value.
+
+ARGUMENTS:
+     data         [string!] 
+.dce
+.box write-clipboard
+>> write-clipboard "Hello!!"
+== true
+>> read-clipboard
+== "Hello!!"

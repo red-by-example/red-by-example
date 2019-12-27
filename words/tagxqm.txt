@@ -1,0 +1,16 @@
+This function returns $$true$$ if its argument is an $$tag!$$  $$datatype!$$, 
+otherwise $$false$$.
+
+Arguments
+
+Its single argument can be $$anytype!$$.
+
+.pre
+.box explore tag?
+>> t: <x y>
+== <x y>
+>> tag? t
+== true
+>> tag? "<a b>"
+== false
+

@@ -1,0 +1,36 @@
+The infix word $$//$$ is the nonnegative remainder oparator,
+that returns what is left over when the first argument is divided 
+by the second.
+
+Has two arguments of type:
+    $$number!$$ $$char!$$ $$pair!$$ $$tuple!$$ $$vector!$$
+
+There is also a functional version, named $$remainder$$.
+
+If the first argument is positive, then the remainder is positive.
+
+If the first argument is negative, then the remainder is also positive,
+as in -5 $$//$$ 4, which results in 3.
+
+If the first argument is zero, then the remainder is also zero.
+
+If the second argument is zero, a run-time error occurs.
+.pre
+red>> 5 // 4
+== 1
+red>> 5 // 5
+== 0
+red>> 5 // 6
+== 5
+red>> -5 // 4
+== 3
+red>> 10 // 3.3
+== 0.1000000000000005
+red>> 5x10 // 4
+*** Internal error: reserved for future use (or not yet implemented)
+*** Where: >
+red>> remainder 5x10 4
+== 1x2
+red>> make vector![5 5 10] // 4
+*** Script error: % does not allow block for its value1 argument
+*** Where: %

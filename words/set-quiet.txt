@@ -1,0 +1,13 @@
+.dcs
+USAGE:
+     SET-QUIET word value
+
+DESCRIPTION: 
+     Set an object's field to a value without triggering object's events. 
+     SET-QUIET is a routine! value.
+
+ARGUMENTS:
+     word         [any-type!] 
+     value        [any-type!] 
+.dce
+.aad

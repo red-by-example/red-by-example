@@ -1,0 +1,33 @@
+The word $$break$$ breaks out of a loop.
+
+Refinements:
+   /return : forces the loop function to $$return$$ the value following.
+.pre
+.box Normal example
+
+foreach number [1 2 4 8 16] [
+  if number > 8 [break]
+  print number
+]
+print "loop 1 teminated"
+##1##
+##2##
+##4##
+##8##
+##loop 1 teminated##
+
+.box Contreived example
+
+print foreach number [1 2 4 8 16] [
+         if number > 8 [break/return -999]
+         print number
+      ]
+print "loop 2 teminated"
+##1##
+##2##
+##4##
+##8##
+##-999##
+##loop 2 teminated##
+%%The foreach loop returns the value -999,%%
+%%which in turn is printed by "print"%%

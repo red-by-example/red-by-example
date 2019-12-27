@@ -1,0 +1,20 @@
+.dcs
+USAGE:
+     TO-PAREN value
+
+DESCRIPTION: 
+     Convert to paren! value. 
+     TO-PAREN is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to paren!
+See $$paren!$$
+.box to-paren with various types
+>> to-paren "ABC"
+== (ABC)
+>> to-paren [3 + 4]
+== (3 + 4)
+ 

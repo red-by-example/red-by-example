@@ -1,0 +1,71 @@
+word $$new-line$$ sets or clears the new-line markers within a $$block!$$ or $$paren!$$.  
+These markers are not considered when Red examines values, but do affect the displayed 
+format. The original $$series!$$ is modified.
+
+Arguments
+    1. position - a $$block!$$ or $$paren!$$, positioned to the required place.
+    2. value    - $$logic!$$.  Use $$true$$/$$on$$/$$yes$$ for newlines to be added.
+
+Refinements
+     /all   - set/clear marker to end of series.
+     /skip  - set/clear marker periodically to the end of the series.  
+              We must provide and $$integer!$$ skip size.
+.pre
+.box Show that series can contain new-lines
+red>> b1: [1 2 3 4 5 6]
+== [1 2 3 4 5 6]  %%No new-lines here%%
+
+red>> b2:[ 1 2    %%First new-line in series%%
+[       3 4       %%Second new-line in series%%
+[       5 6]
+== [1 2 
+    3 4 
+    5 6
+]
+
+red>> b2
+== [1 2 
+    3 4 
+    5 6
+]
+
+red>> b1 = b2
+== true           %%Equal despite new-lines difference%%
+
+.box Manipulate series with new-lines
+red>> b: [1 2 3 4 5 6]
+== [1 2 3 4 5 6]
+
+red>> new-line next next b on
+== [
+    3 4 5 6       %%Returns the series beginning with the new new-line%%
+]
+red>> b
+== [1 2           %%Now the new-line becomes visible%%
+    3 4 5 6
+]
+
+.box The /all refinement
+red>> new-line/all b off
+== [1 2 3 4 5 6]  %%All new-lines removed%%
+
+red>> new-line/all b on
+== [              %%Now new-lines everywhere%%
+    1 
+    2 
+    3 
+    4 
+    5 
+    6
+]
+
+red>> new-line/all b off
+== [1 2 3 4 5 6]  %%All new-lines removed%%
+
+.box The /skip refinement
+red>> new-line/all/skip b on 2
+== [
+    1 2 
+    3 4 
+    5 6
+]

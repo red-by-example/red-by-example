@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     OFFSET? series1 series2
+
+DESCRIPTION: 
+     Returns the offset between two series positions. 
+     OFFSET? is a function! value.
+
+ARGUMENTS:
+     series1      [series!] 
+     series2      [series!] 
+.dce
+.box offset?
+>> s: "the big cat"    ;-- nb   "c" is 9th char
+== "the big cat"
+>> s2: find s "cat"
+== "cat"
+>> offset? s s2
+== 8

@@ -1,0 +1,11 @@
+The word $$quit-return$$ stops evaluation and exits the program 
+with a given return code.
+
+The argument is the return code, an $$integer!$$.
+.pre
+data: 1234
+either data > 0
+  [quit-return 1]
+  [quit-return 0]
+%%This program returns 1 to the OS.  This is the program's return code.%%
+%%Ways of handling this depend on the particular OS.%%

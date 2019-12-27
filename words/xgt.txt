@@ -1,0 +1,29 @@
+The infix word $$>$$ loosely compares operands on its left and right side
+returns $$true$$ if the operand on the left is greater than the operand on
+the right. Otherwise returns $$false$$.
+
+Has 2 operands of any datatype
+
+Loose comparison means that:
+- the case of strings is ignored when comparing
+- same numeric values for different datatypes are considered equal
+.pre
+Examples
+
+2 > 3
+== false
+
+2 > 2.0
+== false
+
+22-03-2000 > 14-04-2012
+== false
+
+"ABC" > "abc"
+== false
+
+"abc" > "ABC"
+== false
+
+"abc" = "ABC"
+== true

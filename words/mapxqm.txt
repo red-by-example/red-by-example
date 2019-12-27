@@ -1,0 +1,64 @@
+The word $$map?$$ returns $$true$$ if its argument is a $$map!$$ $$datatype!$$, 
+otherwise false.
+
+This $$datatype!$$ provides a dictionary-like data structure, 
+storing key/value pairs.
+.pre
+%%Using a map literal%%
+red>> p: #(a: 3 b: 4 c: 5)
+== #(
+    a: 3
+    b: 4
+    c: 5
+)
+
+%%Use $$make$$ to create a map%%
+red>> users: make map! ["John23" "safe3" "DingSnooker" "mypasswd"]
+== #(
+    "John23" "safe3"
+    "DingSnooker" "mypasswd"
+)
+
+red>> map? users
+== true
+
+red>> ages: [1 1949 2 1980 3 1999]
+== [1 1949 2 1980 3 1999]
+
+red>> map? ages
+== false
+
+%%Extending a map with new keys/values:%%
+red>> x: make map! [1 "January" 2 "Februari" 3 "March"]
+== #(
+    1 "January"
+    2 "Februari"
+    3 "March"
+)
+
+red>> extend x [4 "April" 5 "May"]
+== #(
+    1 "January"
+    2 "Februari"
+    3 "March"
+    4 "April"...
+    
+red>> print mold x
+#(
+    1 "January"
+    2 "Februari"
+    3 "March"
+    4 "April"
+    5 "May"
+)
+
+%%Retrieving a value using a key.%%
+red>> x/1
+== "January"
+
+red>> x/5
+== "May"
+
+%%Out of range%%
+red>> x/7
+== none

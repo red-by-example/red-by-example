@@ -1,0 +1,30 @@
+A drop-down represents an edit field with a vertical list of text strings 
+displayed in a foldable frame. (i.e. a 'combo').   A vertical scrollbar 
+appears automatically if the content does not fit the frame.
+
+The default event handler is $$0on-enter$$.
+
+The  $$0drop-down$$, $$0drop-list$$, and $$0text-list$$ are related.
+
+A $$none$$ value for 'selection' is returned if no choice has been made.
+
+The associative-array possibility exists, as in $$0drop-list$$
+
+It is possible to preset the edit field, which might be used as an initial 
+selection, or a prompt.  
+
+Example in VID:
+
+  drop-down1: drop-down "Choose Code" data ["A1" "A2" "B1" "B2"]
+ 
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-choice-faces-red.html">
+http://www.red-by-example.org/vid-choice-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_drop_down"> 
+https://doc.red-lang.org/en/view.html#_drop_down</a>

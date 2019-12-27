@@ -1,0 +1,9 @@
+.dcs
+USAGE:
+     DUMP-REACTIONS 
+
+DESCRIPTION: 
+     Output all the current reactive relations for debugging purpose. 
+     DUMP-REACTIONS is a function! value.
+.dce
+.aad

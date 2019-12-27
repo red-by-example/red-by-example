@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     DISTANCE? A B
+
+DESCRIPTION: 
+     Returns the distance between the center of two faces. 
+     DISTANCE? is a function! value.
+
+ARGUMENTS:
+     A            [object!] "First face."
+     B            [object!] "Second face."
+
+RETURNS:
+     Distance between them.
+     [float!]
+.dce
+.aad

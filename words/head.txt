@@ -1,0 +1,33 @@
+The word $$head$$ resets the index of a $$series!$$ to its start.
+
+Note that you can use the word $$head?$$ to test if a $$series!$$ is at position 1.
+
+Note that you can use the word $$index?$$ to obtain the current index.
+
+.pre
+red>> x: [1 2 3 4 5 6 7]
+== [1 2 3 4 5 6 7]
+
+red>> index? x
+== 1
+
+red>> head? x
+== true
+
+red>> x: skip x 3
+== [4 5 6 7]
+
+red>> index? x
+== 4
+
+red>> head? x
+== false
+
+red>> x: head x
+== [1 2 3 4 5 6 7]
+
+red>> index? x
+== 1
+
+red>> head? x
+== true

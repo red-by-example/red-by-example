@@ -1,0 +1,18 @@
+The word $$to-red-file$$ converts a local file system path to Red's 
+standard machine independent path format. 
+
+The argument can be:
+    - a Red $$file!$$
+    - a $$string!$$.
+
+Note that a Red file path - preceded by % - cannot contain a colon (:)  
+     as used in Windows paths, though it can contain \.  
+     The string argument can contain a colon (:).
+.pre
+.box Convert a file containing backslashes
+red>> to-red-file %\data\notes.txt
+%/data/notes.txt
+
+.box Convert a Windows file in a string
+red>> to-red-file "C:\data\notes.txt"
+%/C/data/notes.txt

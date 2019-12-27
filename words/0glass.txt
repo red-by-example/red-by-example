@@ -1,0 +1,8 @@
+The VID dialect provides named colors.  Each color has a $$tuple!$$ value.  
+
+For example, here we create a $$0brown$$ text element:
+
+view [
+    text 100x50 brown " "
+]
+

@@ -1,0 +1,24 @@
+The infix word $$<=$$ loosely compares operands on its left and right side and
+returns $$true$$ if the operand on the left is smaller than or equal to the operand
+on the right. Otherwise returns $$false$$.
+
+Has 2 operands of any $$datatype!$$.
+
+Loose comparison means that:
+    - the case of strings is ignored when comparing
+    - same numeric values for different datatypes are considered equal
+.pre
+2 <= 3
+== true
+
+2 <= 2.0
+== true
+
+22-03-2000 <= 14-04-2012
+== true
+
+"ABC" <= "abc"
+== true
+
+"abc" <= "ABC"
+== true

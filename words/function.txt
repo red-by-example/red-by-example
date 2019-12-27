@@ -1,0 +1,364 @@
+The word $$function$$ is used to define functions. 
+
+Functions can accept arguments and return a result.  
+
+The general pattern of defining a function is:
+    my-function-name: function [spec] [
+        body i.e. code
+    ]
+
+In the spec part the following can be present:
+
+    - definition of arguments in the form:
+        name [type1 type2 ...]
+
+    - definition a possible return types:
+        return: [type1 type2 ...]
+
+    - /local followed by all variables that should be local to the 
+             $$function$$
+             See note below.
+
+
+    - /extern followed by all variables that should not be defined as
+              local. This means that these variables should be
+              available in global scope.  See note below.
+        
+Variables assigned using `set-word!` syntax (e.g. v: 123) in the body of
+ a function are automatically local to the function. If `set` is used instead, 
+the variable is NOT captured. The combination of those behaviours, 
+and the `/local` and `/extern` refinements, let you specify variable 
+locality that makes the intent clear in a variety of situations.
+
+Function with `set-word!` usage is the most common case, and will 
+be most familiar if you're coming to Red from another language. 
+ 
+If we try to pass wrong types to a function, a run-time message 
+occurs during interpretation, or at execution time if we compiled it; the 
+lack of a compilation error message concerning  invalid argument types 
+is due  to the flexible way that Red handles types.
+
+Returning from a function:
+
+    - exit      - return without avalue
+
+    - return    - return with a value
+.pre
+.box Shadowing a global variable
+add-up2: function [a b ] [
+    number: a + b      ;set-word syntax here, so local
+    print number %%Local%%
+]
+
+number: 20 %%Global%%
+
+red>> add-up2 3 5
+##8## %%Local%%
+
+red>> print number
+##20## %%Global%%
+
+.box Specify the type of the arguments
+show-bigger: function [
+  a[integer!]
+  b[integer!]
+][
+  either a > b [
+    print a
+  ][
+    print b
+  ]
+]
+
+red>> show-bigger 44 55
+55
+
+red>> show-bigger 4 + 5 10
+10
+
+red>> show-bigger 4
+*** Script error: show-bigger is missing its b argument
+*** Where: show-bigger
+
+red>> show-bigger "x" "y"
+*** Script error: show-bigger does not allow string! for its a argument
+*** Where: show-bigger
+
+.box Allow multiple types for an argument - Generic $$function$$s
+show-bigger: function [
+  a[integer! float!]
+  b[integer! float!]
+]
+
+.box Or use a type that has other types as its subclasses
+show-bigger: function [
+  a[number!]
+  b[number!]
+]
+
+.box Returning a value from a $$function$$ by default
+a-result: function[][
+  39
+  40 + 2 %%Last expression in a $$function$$ is the return value%%
+]
+
+red>> print a-result
+##42##
+
+.box Returning a value from a $$function$$ using $$return$$
+a-result: function[][
+  39
+  return 40 + 2
+]
+
+red>> print a-result
+##42##
+
+.box Using the $$return$$ed value in an expression
+bigger: function [
+  a[number!]
+  b[number!]
+][
+  either a > b [
+    a
+  ][
+    b
+  ]
+]
+
+red>> 2 + bigger 3 4
+6
+
+.box Sometimes we need parenthesis when calling a function
+red>> bigger (bigger 3 4) (bigger 5 6)
+6
+
+.box But most of the time it works without parenthesis
+red>> bigger bigger 4 5 6
+6
+
+.box Pass by value / by reference
+
+%%When we pass scalar types (i.e. single items, such  as a $$number!$$,%% 
+%%a $$char!$$, a $$pair!$$)  as arguments, a copy of their value is passed%%
+%%to the $$function!$$.%%  
+
+%%When we pass a $$series!$$ a reference is passed instead. The reason is%%
+%%that $$series!$$ can be quite large; copying them would cost too much.%%
+
+%%Passing by reference makes it possible to change the $$series!$$ from%%
+%%within a $$function!$$.%%
+
+%%Here an example - the $$series!$$ will be changed in global scope!%%
+
+my-append: function [data-block [block!] ][
+  append data-block -999
+]
+
+red>> numbers: [45 33 87 55]
+== [45 33 87 55]
+
+red>> my-append numbers
+== [45 33 87 55 -999]
+
+red>> numbers
+== [45 33 87 55 -999]
+
+.box A $$series!$$ local to a $$function!$$ - closing over a $$series!$$
+
+%%A local $$series!$$ when instantiated from a $$series!$$ without%%
+%%copying, will keep its value over function calls!%%
+%%Note that this also applies to $$string!$$s%%
+
+x-s: function[] [
+  xblock: []    %%The [] is modified each time calling the $$function!$$%%    
+  append xblock "X"
+  print mold xblock
+]
+
+red>> x-s
+##["X"]##
+
+red>> x-s
+##["X" "X"]##
+
+red>> x-s
+##["X" "X" "X"]##
+
+.box Avoid the previous situation by copying the $$series!$$ to initialize it
+x-s: function[] [
+  xblock: copy []   %%On each call we get a fresh new $$block!$$%%     
+  append xblock "X"
+  print mold xblock
+]
+
+red>> x-s
+["X"]
+
+red>> x-s
+["X"]
+
+red>> x-s
+["X"]
+
+.box Comments in $$function!$$ definitions
+bigger: function [                      
+  "return the bigger of 2 numbers"
+  arg1[number!] "first number argument"
+  arg2[number!] "second number argument"
+][
+  either arg1 > arg2 [
+    arg1
+  ][
+    arg2
+  ]
+]
+
+red>> help bigger
+##USAGE:##
+##    bigger arg1 arg2##
+##DESCRIPTION:##
+##     return the bigger of 2 numbers.## %%Our docstring%%
+##     bigger is of type: function!##
+##ARGUMENTS:##
+##     arg1  [number!] => first number argument.##
+##     arg2  [number!] => second number argument.##
+##REFINEMENTS:##
+
+.box Using refinements as options
+red>> a: [1 9 3 8 2 7 5 4 6]
+== [1 9 3 8 2 7 5 4 6]
+
+red>> sort a                %%No refinement%%    
+== [1 2 3 4 5 6 7 8 9]
+
+red>> a                     %%Note that $$sort$$ changes the $$series!$$%%
+== [1 2 3 4 5 6 7 8 9]
+
+red>> sort/reverse a        %%With /reverse refinement%%
+== [9 8 7 6 5 4 3 2 1]
+
+.box Using refinements needing an extra argument
+red>> sort/part a 4         %%/part refinement needs an extra argument%%
+== [6 7 8 9 5 4 3 2 1]
+
+red>> sort/reverse/part a 4 %%Combining these 2 refinements%%
+== [9 8 7 6 5 4 3 2 1]
+
+.box Using the /neg refinement as an option
+add-up3: function [a b /neg] [
+    temp: a + b
+    %%Note that a refinement is a boolean%%
+    if neg [
+        temp: temp * -1
+    ]
+    return temp
+]
+
+red>> add-up3 3 5
+8
+
+red>> add-up3/neg 3 5
+-8
+
+.box Using refinements /c and /d with extra arguments
+add-up4: function [a b /c cval /d dval] [
+    temp: a + b
+    %%Note that a refinement is a boolean%%    
+    if c [
+        temp: temp + cval
+    ]
+    if d [
+        temp: temp - dval
+    ]
+    return temp
+]
+
+red>> add-up4 3 5
+== 8
+
+red>> add-up4/c 3 5 3
+== 11
+
+red>> add-up4/d 3 5 3
+== 5
+
+red>> add-up4/c/d 3 5 4 5  %%Note that /c = 4 and /d = 5%%
+== 7
+
+red>> add-up4/d/c 3 5 4 5  %%Note that /c = 5 and /d = 4%%
+== 9
+
+.box Forward referencing a $$function!$$
+
+%%By default you should define your $$function!$$s at the top of your%%
+%%program and call them later on.%%
+
+%%However, this is not required if and only if the call is from within%%
+%%another $$function!$$%%
+
+show-all: function [] [
+  print "Powers of ten:"
+  display-powers              %%Works from inside a $$function!$$ body%%
+]
+
+display-powers: function[] [
+  print [10 1000 10000 100000]
+]
+
+red>> show-all
+##Powers of ten:##
+##10 1000 10000 100000##
+
+.box Assigning functions to variables - use a prefix colon
+red>> sorteren: :sort
+== make action! [[
+    {Sorts a series (modified); default sort or...
+
+red>> sorteren [2 5 3 1 4]
+== [1 2 3 4 5]
+
+red>> sorteren/reverse [2 5 3 1 4]
+== [5 4 3 2 1]
+
+.box Returning from a function without a result value
+
+void: function [] [
+    exit
+]
+
+red>> mold void
+== "unset"
+
+.box Returning a result value
+
+val: function [] [
+    return "My message"
+]
+
+red>> val
+== "My message"
+
+.box The /extern refinement
+
+test: function [
+    /extern var1 
+] [
+    var1: 11
+    var2: 22
+]
+
+red>> var1: 1
+== 1
+
+red>> var2: 2
+== 2
+
+red>> test
+== 22
+
+red>> var1
+== 11   %%Changed because of /extern - global scope%%
+
+red>> var2
+== 2    %%Shadowed - global scope not changed%%

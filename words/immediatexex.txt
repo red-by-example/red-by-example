@@ -1,0 +1,6 @@
+.dcs
+IMMEDIATE! is a typeset! value: make typeset! [datatype! none! logic! char!
+     integer! float! word! set-word! lit-word! get-word! refinement! issue!
+     typeset! pair! percent! tuple! time! handle! date!]
+.dce
+.aad

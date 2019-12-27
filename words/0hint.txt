@@ -1,0 +1,15 @@
+Displays a hint message if a $$0field$$ is empty, which disappears
+when  an entry is made.
+
+Argument
+
+a string!
+
+.pre
+view [
+    title "Demo Window"
+    b1: button "Hello"    
+    b2: button "Goodbye"  
+    return
+    t1: field hint "Enter name"   ;-- hint if nothing entered    
+]

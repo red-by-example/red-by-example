@@ -1,0 +1,107 @@
+Catches a throw from a block and returns its value. Note  that $$catch$$ 
+and throw are mainly intended for creating new control structures, and 
+are not the main exception-handling functions.  For this, look at $$attempt$$, 
+$$try$$, $$cause-error$$ $$error?$$, and $$error!$$.
+
+Arguments
+The single argument must be a $$block$$ to evaluate.
+
+Refinements
+     /name - Catches a named throw.  We supply a $$word$$ or $$block$$
+     of words, which are intended to match a named $$throw$$ or one of
+     several named throws.
+
+.pre
+.box This complete example shows various catch/throw possibilities.
+;It is rather artificial - we could get the same effect with
+;more 'either' instructions.
+;The example has a flavour of exception-handling, but in Red
+;we should really use 'try', 'error?' etc for proper exception-handling.
+;throw and catch are intended for building control-structures
+
+;a function for the examples.
+grade-a-mark: function [
+    "Convert a % mark to  a letter grade, with an un-named throw"
+    mark [integer!]] [
+    print ""
+    print ["In grade-a-mark, with " mark]
+    if mark > 100 [throw "special"]   ;value of the throw is  a string
+    print "about to grade the mark (assume always A for now)"
+    "A"
+]
+
+;Example with no catch - commented out ------------------------
+
+;  the code:   print grade-a-mark 102
+;would cause execution to halt, with this error:
+;  *** Throw Error: no catch for throw: "special"
+
+print ""
+print "Examples with catch and throw (un-named)-----------------"
+
+; catches our throw, but NOT arithmetic errors (e.g. zero-divide)
+print catch [grade-a-mark 103] ; prints:   too big
+
+;now, take some action after catching, using returnedresult
+if (catch [grade-a-mark 104]) = "special" [
+    print "caught a throw:  special"
+]
+
+print ""
+print "Examples with catch and throw using /name --------------"
+
+;a similar function, with 2 named throws
+grade-a-mark-named: function [
+    "Convert a % mark to  a letter grade - version 2 - 2 named throws"
+    mark [integer!]] [
+    print ""
+    print ["In grade-a-mark-named, with " mark]
+    ;throws with a 'word
+    if mark > 100 [throw/name mark 'special-one] ;throw has a name as well as a value
+    if mark < 0 [throw/name mark 'too-small]
+    [print "grade-a-mark-named: about to grade the mark (assume always A for now)"
+        "A"
+    ]
+]
+
+print "Catching any throw, displaying returned value"
+print catch [grade-a-mark-named 105]
+
+print "Now catching named throws via 'word argument for refinement"
+if (catch/name [grade-a-mark-named 106] 'special-one) [
+    print "caught a throw named 'special-one"
+]
+
+if (catch/name [grade-a-mark -3] 'too-small) [
+    print "caught a throw named 'too-small"
+]
+
+print ""
+print "Now catching a selection of named throws"
+;because the names are in a block, we don't need the '
+if (catch/name [grade-a-mark-named -4] [special-one too-small]) [
+    print "caught either 'special-one or 'too-small"
+]
+
+
+OUTPUT FROM THE ABOVE:
+---------------------
+
+Examples with catch and throw using /name --------------
+Catching any throw, displaying returned value
+
+In grade-a-mark-named, with  105
+105
+Now catching named throws via 'word argument for refinement
+
+In grade-a-mark-named, with  106
+caught a throw named 'special-one
+
+In grade-a-mark, with  -3
+about to grade the mark (assume always A for now)
+caught a throw named 'too-small
+
+Now catching a selection of named throws
+
+In grade-a-mark-named, with  -4
+caught either 'special-one or 'too-small

@@ -1,0 +1,65 @@
+Causes an immediate error, with the provided values.  Note that this is 
+not a $$throw$$, and cause-error does not co-operate with  $$throw$$ and 
+$$catch$$.  
+
+For other error/exception-handling words, look at the related entries for 
+$$attempt$$, $$try$$,  $$error?$$, and the $$error!$$ type.
+
+Arguments
+
+Here we show how to view the pre-defined Red errors, which can be used as 
+arguments.  The 3 arguments are:
+
+Argument 1: err-type - a $$word!$$
+    This is a general category of error.  A list of these can be obtained  
+    by typing the following at the Red console:   
+         words-of system/catalog/errors
+    
+which currently displays:
+    [throw note syntax script math access user internal]
+
+Argument 2: err-id  - a $$word!$$
+     The specific error id words in a type can be obtained by typing  e.g.:
+     ? system/catalog/errors/math
+which displays:
+  `system/catalog/errors/math` is an object! of value:
+     code             integer!  400
+     type             string!   Math Error
+     zero-divide      string!   attempt to divide by zero
+     overflow         string!   math or number overflow
+     positive         string!   positive number required
+
+
+Argument 3: args  - a $$block!$$
+     Some errors take no arguments, and we can supply an empty block. The 
+     zero-divide word above is such an error.  However, when we look in the 
+     script type, we see around 70 error words, including, for example:
+
+     no-value         block!    [:arg1 "has no value"]
+
+     which takes 1 argument.  We can supply any required arguments in a block.
+
+
+.pre
+.box Cause some errors.  (Abstract examples, no purpose to the errors)
+
+do-work: function [ ] [
+  sum: 0 
+  ;note the empty block for the 3rd argument:
+  cause-error 'math  'zero-divide []  
+]
+print do-work
+
+*** Math Error: attempt to divide by zero
+*** Where: do
+
+
+do-work: function [ ] [
+  sum: 0
+  ;note the 3rd argument - often a word, could be e.g. a string.
+  cause-error 'script 'no-value ['sum]  
+]
+print do-work
+
+*** Script Error: sum has no value
+*** Where: do

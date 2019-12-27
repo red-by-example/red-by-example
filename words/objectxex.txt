@@ -1,0 +1,226 @@
+Object Model
+------------
+ Red implements prototype-based objects. Creating new objects is done 
+ by cloning existing objects or the base object! value. During the creation 
+ process, existing field values can be modified and new fields can be added. 
+ It is a very simple and efficient model to encapsulate your Red code.  
+
+Object Creation
+---------------
+We create new objects by:
+
+    make object! &lt;specification block&gt;
+    
+There are also some shorter alternative syntaxes (just handy shortcuts):
+
+    $$object$$  &lt;specification block&gt;
+    $$context$$ &lt;specification block&gt;
+
+The specification block can contain any valid Red code. Words set at the root
+level of that block will be collected and will constitute the new object's fields.    
+  
+You can put any valid code into a specification block, and it will be evaluated 
+during the object construction, and only then. Here is an example.  Note that 
+"hello" is printed when we make the object, but not when we evaluate it:
+
+red&gt;&gt; obj: make object! [print "hello" a: 1 b: 2]
+hello
+== make object! [
+    a: 1
+    b: 2
+]
+
+;now use it
+red>> obj
+== make object! [
+    a: 1
+    b: 2
+]
+
+
+Nesting
+-------
+Objects can also be nested easily:
+    obj: object [
+        a: 123
+        b: object [
+            c: "hello"
+            d: object [
+                data: none
+            ]
+        ]
+    ]
+
+Another way to create an object is to use the $$copy$$ action which does not 
+require a specification block, so does just a simple cloning of the object. 
+Existing functions will be re-bound to the new object.
+
+Syntax:
+    copy &lt;object&gt;
+
+Object Access Paths
+-------------------
+
+In order to access object fields, the common path syntax is used (words 
+separated by a slash character). Each word (or expression) in a path is 
+evaluated in the context given by the left side of the path. Evaluation 
+of a word referring to a function will result in invoking the function, 
+with its optional refinements.
+
+Example:
+
+    book: object [
+        title: author: none
+        show: does [print [mold title "was written by" author]]
+    ]
+
+    book/title: "The Time Machine"
+    book/author: "H.G.Wells"
+    print book/title
+    book/show
+
+will output:
+ 
+    The Time Machine
+    "The Time Machine" was written by H.G.Wells
+
+SELF Reference
+--------------
+
+A special keyword named $$self$$ has been reserved when self-referencing 
+the object is required.
+
+Example:
+
+    book: object [
+        title: author: none
+        list-fields: does [words-of self]
+    ]
+    book/list-fields
+
+will output: 
+
+    [title author list-fields]
+
+
+Object inheritance
+------------------
+
+Though cloning produces exact replicas of the prototype object, it is also 
+possible to extend it in the process, using $$make$$ action.
+
+Syntax:
+    make &lt;prototype&gt; &lt;spec&gt;
+
+    &lt;prototype&gt; : object that will be cloned and extended
+    &lt;spec&gt;      : specification block
+
+Example:
+    a: object [value: 123]
+    
+    c: make a [
+        increment: does [value: value + 1]
+    ]
+    
+    print c/increment
+    print c/increment
+
+will output: 
+
+    124
+    125
+
+It is also possible to use another object as &lt;spec&gt; argument. In such 
+case, both objects are merged to form a new one. The second object takes 
+priority in case both objects share same field names.
+  
+Example:
+    a: object [
+        value: 123
+        show: does [print value]
+    ]
+    b: object [value: 99]
+    
+    c: make a b
+    c/show
+
+will output: 
+
+    99
+ 
+
+Extended Actions and Natives for Objects
+----------------------------------------
+
+You can use $$set$$ on an object to set all fields at the same time, and 
+$$get$$ on an object will return a block of all the fields values. 
+
+Example:
+
+    obj: object [a: 123 b: "hello"]
+    probe get obj
+    set obj none
+    ?? obj
+    set obj [hello 0]
+    ?? obj
+    probe :obj/a
+
+will output: 
+
+    [123 "hello"]
+    obj: make object! [
+        a: none
+        b: none
+    ]
+    obj: make object! [
+        a: 'hello
+        b: 0
+    ]
+    hello
+
+The $$find$$ function gives you a simple way to check for a field name in 
+an object. If found it will return $$true$$, else $$none$$.
+
+The $$select$$ action does the same check as $$find$$, but returns the field 
+value for matched word.
+    obj: object [a: 123]
+    probe find obj 'a
+    probe select obj 'a
+    probe find obj 'hello
+
+will output: 
+
+    true
+    123
+    none
+
+The $$in$$ word will allow you to bind a word to a target context:
+
+    a: 0
+    obj: object [a: 123]
+    probe a
+    probe get in obj 'a
+
+will output:
+
+    0
+    123
+
+The $$bind$$ function  is also available.
+
+Reflectors
+----------
+
+The reflective functions  $$words-of$$,  $$values-of$$,  $$body-of$$ can be 
+used to access an object's internal structure.
+
+
+These notes are heavily based on 
+<a href="http://www.red-lang.org/2014/12/050-objects-support.html">http://www.red-lang.org/2014/12/050-objects-support.html</a>
+
+
+
+
+
+
+ 

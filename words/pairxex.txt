@@ -1,0 +1,36 @@
+The $$datatype!$$ $$pair!$$ represents a $$scalar!$$ type containing 
+2 values.
+
+A pair looks like:
+   axb
+   
+Pairs can be used to represent points in Cartesian space. (Coordinates)
+
+The constituents of a $$pair!$$ can be retrieved as follows:
+    - retrieve  left value by either pairname/1 or pairname/x
+    - retrieve right value by either pairname/2 or pairname/y
+.pre
+.box Some examples
+red>> coord1: 10x20
+== 10x20
+
+red>> coord2: 100x100
+== 100x100
+
+red>> coord1 + coord2
+== 110x120
+
+red>> coord1 * coord2 
+== 1000x2000
+
+red>> coord1/x
+== 10
+
+red>> coord1/1
+== 10
+
+red>> coord2/y: 234
+== 234
+
+red>> coord2
+== 100x234

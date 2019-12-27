@@ -1,0 +1,21 @@
+The word $$path?$$ returns $$true$$ if its argument is a $$path!$$ type.
+Otherwise $$false$$.
+
+Its single argument can be of any type.
+
+There are several types of $$path!$$ related words:
+   $$path!$$ $$lit-path!$$ $$set-path!$$ $$get-path!$$
+
+To test if an argument is any of these types, use $$any-path?$$.  
+To restrict the test to $$path!$$ only, use $$path?$$
+
+For more details on the ways of interpreting a word (involving ' and :), 
+the reader should look at the entries on $$lit-word!$$ $$get-word!$$ and $$set-word!$$
+.pre
+.box With a get-path! type - false
+red>> path? first [:a/b/c]
+== false
+
+.box With a path! - true
+red>> path? first [a/b/c]
+== true

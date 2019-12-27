@@ -1,0 +1,32 @@
+Red has a notation which modifies how a word is evaluated.  The colon and 
+single quote mark ('tick') are used.  For example, for a word w, we have:
+
+     w:  - sets the word to  a value. Its type is $$set-word!$$
+     :w - gets the word's value, but does not evaluate it. Its type is 
+   $$get-word!$$
+     'w - treat the word as a symbol, with no evaluation.  Its type is 
+   $$lit-word!$$   (i.e. literal word).
+     w  - normal evaluation. If the word is a function, evaluate it.
+
+Note that : and ' are not functions.  Attaching them to  a word changes the 
+type of the word, and how it is used.
+
+We can use the $$set-word?$$ , $$get-word?$$,  $$lit-word?$$ functions to 
+test whether a word is one of these types.
+
+The $$set-word!$$ type sets a word to a value.  It is tempting for beginners 
+to assume that a colon is like an assignment operator in other languages, but 
+this is not the case.  It specifies the use of a set-word! type, which expects 
+a value.
+
+.pre
+.box Use a set-word! type
+;provide a value
+red>> a-word: 123
+
+;a-word set to 999, then w set to a-word's value, 999
+red>> w: a-word: 999
+
+;the type of an unevaluated set-word
+red>> type? first [ a: ]
+== set-word!

@@ -1,0 +1,24 @@
+Returns true if its argument is a $$set-word!$$ type, otherwise false.
+
+Its single argument can be of any type.
+
+.pre
+.box  A few types of argument
+red>> a-word: 123
+
+;just a normal word 
+red>> set-word? a-word
+== false
+
+;correct set-word! syntax, but its value is not a reference
+red>> set-word? a-word:
+*** Script Error: a-word: needs a value
+*** Where: a-word
+
+;prevent evaluation with first [block]
+red>> set-word? first [a-word:]
+== true
+
+;a get-word!
+red>> set-word? first [:a-word]
+== false

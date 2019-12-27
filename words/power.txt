@@ -1,0 +1,14 @@
+The word $$power$$ returns the value of a $$number!$$ raised to a given power (exponent).
+
+It is the functional version of the infix word $$**$$.
+
+It has 2 arguments: a base value and a power, both $$number!$$s.
+.pre
+red>> power 3.1 2
+== 9.61
+
+red>> power 100.9 0.5
+== 10.04489920307815
+
+red>> power 2 10
+== 1024

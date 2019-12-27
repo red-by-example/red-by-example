@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-STRING value
+
+DESCRIPTION: 
+     Convert to string! value. 
+     TO-STRING is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to string!
+See $$string!$$
+.box to-string with various types
+>> to-string 123
+== "123"
+>> to-string #"A"
+== "A"
+>> to-string [1 2 3]
+== "123"

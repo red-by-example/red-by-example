@@ -1,0 +1,13 @@
+.dcs
+USAGE:
+     SET-ENV var value
+
+DESCRIPTION: 
+     Sets the value of an operating system environment variable (for current process). 
+     SET-ENV is a native! value.
+
+ARGUMENTS:
+     var          [any-string! any-word!] "Variable to set."
+     value        [string! none!] "Value to set, or NONE to unset it."
+.dce
+.aad

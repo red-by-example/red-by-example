@@ -1,0 +1,4 @@
+Is a typeset!
+make typeset! [path! lit-path! set-path! get-path!]
+
+See $$any-path?$$

@@ -1,0 +1,30 @@
+This type represents a cursor which can be moved along a horizontal or 
+vertical axis.  The optional value  for the initial position can be a 
+percent, or a float between 0.0 and 1.0.
+
+Its default event is: $$0on-change$$
+
+Its current value is available in 'data'.
+
+The default orientation is horizontal, because the default size for 
+faces is wider than its height.  For a vertical slider, specify a 
+size that is taller than its width.
+
+Here is VID example where a slider's value is displayed in a $$text$$ 
+and used to control a $$0progress$$ bar.  Note the use of 'face' to 
+represent the current face.  We could also have written 'slider1'.
+
+    slider1:  slider 20x100 50% [    ;--vertical, initially at middle
+        mytext/text:  face/data  
+        progress1/data: face/data
+    ]
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-misc-faces-red.html">http://www.red-by-example.org/vid-misc-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_slider"> https://doc.red-lang.org/en/view.html#_slider</a>
+

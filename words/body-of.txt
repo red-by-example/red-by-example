@@ -1,0 +1,68 @@
+The word $$body-of$$ shows the body of a $$function!$$ type.
+
+This word is tightly related with the $$source$$ word.
+.pre
+red>> x: function [a b] [ a + b ]
+== func [a b][a + b]
+
+red>> source x
+x: func [a b][a + b]
+
+red>> body-of :x
+== [a + b]
+
+red>> source list-dir
+list-dir: func [
+    {Displays a list of files and directories from given folder or current one} 
+    dir [any-type!] "Folder to list" 
+    /col "Forces the display in a given number of columns" 
+    n [integer!] "Number of columns" 
+    /local list max-sz name
+][
+    unless value? 'dir [dir: %.] 
+    unless find [file! word! path!] type?/word :dir [
+        cause-error 'script 'expect-arg ['list-dir type? :dir 'dir]
+    ] 
+    list: read normalize-dir dir 
+    max-sz: either n [system/console/limit / n - n] [
+        n: max 1 system/console/limit / 22 
+        22 - n
+    ] 
+    while [not tail? list] [
+        loop n [
+            if max-sz <= length? name: list/1 [
+                name: append copy/part name max-sz - 4 "..."
+            ] 
+            prin tab 
+            prin pad form name max-sz 
+            prin " " 
+            if tail? list: next list [exit]
+        ] 
+        prin lf
+    ]
+]
+
+red>> print mold body-of :list-dir
+##[##
+##    unless value? 'dir [dir: %.]##
+##    unless find [file! word! path!] type?/word :dir [##
+##        cause-error 'script 'expect-arg ['list-dir type? :dir 'dir]##
+##    ]##
+##    list: read normalize-dir dir##
+##    max-sz: either n [system/console/limit / n - n] [##
+##        n: max 1 system/console/limit / 22##
+##        22 - n##
+##    ]##
+##    while [not tail? list] [##
+##        loop n [##
+##            if max-sz <= length? name: list/1 [##
+##                name: append copy/part name max-sz - 4 "..."##
+##            ]##
+##            prin tab##
+##            prin pad form name max-sz##
+##            prin " "##
+##            if tail? list: next list [exit]##
+##        ]##
+##        prin lf##
+##    ]##
+##]##

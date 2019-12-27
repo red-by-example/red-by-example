@@ -1,0 +1,32 @@
+The word $$to$$ converts a value to a specified $$datatype!$$.  
+Only specific conversions are allowed.
+
+Arguments:
+    type    -   a $$datatype!$$ name. Note that this name can be the result of an evaluation.
+    spec    -   the attributes of the new value.  Often, this is simply the value itself.
+.pre
+.box Do some simple conversions
+red>> to integer! 2.333
+2
+
+red>> to string! 234
+"234"
+
+red>> to integer! "23456"
+23456
+
+red>> to integer! "33" 
+== 33
+
+red>> to set-word! "foo"
+== foo:
+
+red>> to word! "bar"
+== bar
+
+.box Compute the new type
+red>> affect: true
+true
+
+red>> to either affect [float!] [string!] 567
+567.0

@@ -1,0 +1,19 @@
+The word $$split$$ breaks a $$string!$$ into pieces using the provided delimiters.   
+A $$block!$$ is returned containing the individual pieces.
+
+The arguments are:
+     a series       -   $$any-string!$$ - the string to be split.
+     a delimiter    -   $$string!$$ or $$char!$$ - the delimiter 
+                        Note that the $$char!$$ datatype has some common delimeters 
+                        predefined (such as 'newline', 'tab', 'space'. 'escape' etc.)
+.pre
+.box Split with a space
+red>> s1: "A few      words"
+== "A few      words"
+
+red>> split s1 " "
+== ["A" "few" "" "" "" "" "" "words"]
+
+.box Use the predefined constant "space"
+red>> split s1 space
+== ["A" "few" "" "" "" "" "" "words"]

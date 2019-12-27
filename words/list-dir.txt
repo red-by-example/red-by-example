@@ -1,0 +1,18 @@
+The word $$list-dir$$ shows a list of all files and directories within the
+directory given as its argument.
+
+Refinements:
+    /col    -   displays in n columns instead of the default 4
+.pre
+.box Show contents of current directory
+red>> list-dir %/e/src
+    8th/                  go/                   python/               red/
+    spiderbasic/      
+
+red>> list-dir/col %/e/src 3
+    8th/                  go/                   python/                                
+    red/                  spiderbasic/                           
+red>> list-dir/col %/e/src 2
+    8th/                  go/                                                         
+    python/               red/                                                        
+    spiderbasic/    

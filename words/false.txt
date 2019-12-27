@@ -1,0 +1,5 @@
+The word $$false$$ represents the boolean value $$false$$. 
+Is of datatype $$logic!$$
+.pre
+1 = 2
+== false

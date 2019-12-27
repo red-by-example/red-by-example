@@ -1,0 +1,35 @@
+This type represents a vertical list of text strings, displayed in a 
+foldable frame. A vertical scrollbar appears automatically if the content 
+does not fit the frame.
+
+The default event handler is $$0on-change$$
+
+The  $$0drop-down$$, $$0drop-list$$, and $$0text-list$$ are related.
+A $$none$$ value for 'selection' is returned if no choice has been made.
+
+A $$0drop-down$$ is similar, but it provides an additional edit field (a 
+'combo').
+
+The drop-list only displays strings, though the 'data' values can include 
+other types. This can give an associative-array effect.  For example, to 
+find the postage cost of a letter, we can use this in VID:
+
+postal-drop-list: drop-list data["Basic" 33 "2nd-class" 40 "Priority" 99]
+
+Only the 3 strings are displayed.
+
+Multiplying the selected position by 2 would take us to the integer cost 
+item.
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-choice-faces-red.html">
+http://www.red-by-example.org/vid-choice-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_drop_list"> 
+https://doc.red-lang.org/en/view.html#_drop_list</a>
+ 

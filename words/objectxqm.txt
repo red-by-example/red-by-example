@@ -1,0 +1,26 @@
+The word $$object?$$ returns $$true$$ if its argument is an $$object!$$.
+
+The single argument can be of any type.
+.pre
+%%$$make$$ an $$object$$ - a pretend square box%%
+red>> box: make object! [
+[      size: 10
+[      show: function [] [
+[        print ["Showing size =" size "from within the box!"]
+[      ]
+[    ]
+== make object! [
+    size: 10
+    show: func [][
+        print ["...
+        
+%%Is this an object?%%        
+red>> object? box
+== true
+
+%%Definitely not an object%%
+red>> amounts: [2 3 4]
+== [2 3 4]
+
+red>> object? amounts
+== false

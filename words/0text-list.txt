@@ -1,0 +1,37 @@
+
+This type represents a vertical list of text strings, displayed in a 
+fixed frame. A vertical scrollbar appears automatically if the content 
+does not fit the frame. 
+
+The  $$0drop-down$$, $$0drop-list$$, and $$0text-list$$ are related.
+The default event-handler is $$0on-change$$ 
+
+'selected' provides the position of the selection.  This is -1 if no 
+selection exists.  
+
+In VID:
+
+   days-text-list1: text-list pink  90x110  data [ 
+       "Monday" "Tuesday" "Wednesday" "Thursday"
+   ]  
+
+We can choose to preset an initial selection like this:
+
+  days-text-list: text-list pink  90x110 select 2  ;-- 2 refers to 
+"Tuesday"
+     data [  
+          "Monday" "Tuesday" "Wednesday" "Thursday"
+     ]  
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-choice-faces-red.html">
+http://www.red-by-example.org/vid-choice-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_text_list"> 
+https://doc.red-lang.org/en/view.html#_text_list</a>
+ 

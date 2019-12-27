@@ -1,0 +1,39 @@
+Collect in a new block all the values passed to the 'keep' function from 
+the body block. We often use collect and keep in $$parse$$.
+
+Argument
+
+A  body $$block!$$ to evaluate.
+
+Refinements
+
+     /into - Insert into a buffer instead (returns position after insert). 
+             We supply a $$series!$$, which will be modified.
+
+.pre
+;create a block, with no keeps
+red>> b: [4 3 * 3 (3 * 10) (5 * 100)]
+
+;nothing to collect
+red>> collect b
+== []
+
+;now use keep
+red>> b: [keep 4 3 * 3 keep (3 * 10) (5 * 100)]
+
+;note the 'kept' items
+red>> collect b
+== [4 30]
+
+; try the /into refinement
+; buf for /into
+red>> buf: ["item 1"]
+
+red>> b
+== [keep 4 3 * 3 keep (3 * 10) (5 * 100)]
+red>> collect/into b buf
+== ["item 1" 4 30]
+
+;note value of buf
+red>> buf
+== ["item 1" 4 30]

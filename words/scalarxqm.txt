@@ -1,0 +1,18 @@
+Returns $$true$$ if the value is any type of $$scalar!$$. 
+
+Arguments
+
+One, which can be $$any-type!$$ 
+
+Examples
+
+.box Explore several types
+>> scalar? "abc"   ;-- a string is a series type, not scalar
+== false
+
+>> scalar? 24
+== true
+>> scalar? 2.3
+== true
+>> scalar? 20x30
+== true

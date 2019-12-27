@@ -1,0 +1,20 @@
+.dcs
+USAGE:
+     LIT-PATH? value
+
+DESCRIPTION: 
+     Returns true if the value is this type. 
+     LIT-PATH? is a function! value.
+
+ARGUMENTS:
+     value        [any-type!] 
+.dce
+.box lit-path
+>> p: 'a/b/c           ;-- a lit-path
+== a/b/c               ;-- evaluates to  a path
+>> type? p
+== path!
+>> p: first ['a/b/c]   ;-- no evaluation
+== 'a/b/c
+>> type? p
+== lit-path!

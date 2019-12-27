@@ -1,0 +1,25 @@
+.dcs
+USAGE:
+     TO-INTEGER value
+
+DESCRIPTION: 
+     Convert to integer! value. 
+     TO-INTEGER is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to integer!
+See $$integer!$$
+.box to-integer with various types
+>> to-integer 2.3
+== 2
+>> to-integer 2.9
+== 2
+>> to-integer #"A"       ;-- char!
+== 65
+>> to-integer "ABC"      ;-- error in string!
+*** Script Error: cannot MAKE/TO integer! from: "ABC"
+>> to-integer "123"      ;-- allowed string!
+== 123

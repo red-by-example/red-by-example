@@ -1,0 +1,13 @@
+The word $$lesser?$$ returns $$true$$ if the first argumjent is 
+less than the second argument, otherwise $$false$$.  
+
+It is the functional equivalent of the infix word $$<$$.
+.pre
+red>> lesser? 33 44
+== true
+
+red>> lesser? [8 5 2] [ 7 5 2]
+== false
+
+red>> lesser? [6 5 2] [ 7 5 2]
+== true

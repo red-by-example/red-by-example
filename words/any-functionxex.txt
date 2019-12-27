@@ -1,0 +1,1 @@
+ANY-FUNCTION! is a typeset! value: make typeset! [native! action! op! function! routine!]

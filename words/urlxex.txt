@@ -1,0 +1,23 @@
+The $$datatype!$$ $$url!$$ (Uniform Resource Locator) lets us 
+access web pages, images, files, ftp, email, and other protocols. 
+
+It is a $$series!$$ similar to a string, and values take the pattern:
+    protocol://path
+For example:
+    http://www.red-lang.org/p/about.html
+
+A $$url!$$ can be used with a variety of words, such as $$do$$, $$load$$, 
+$$read$$, $$write$$ and $$save$$. 
+.pre
+.box Create a URL, read the file
+red>> web-file: http://www.red-lang.org/p/about.html
+== http://www.red-lang.org/p/about.html
+
+red>> type? web-file
+== url!
+
+red>> read web-file
+%% Output suppressed%%
+
+red>> print read web-file
+%% Output suppressed%%

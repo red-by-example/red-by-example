@@ -1,0 +1,19 @@
+The word $$pair?$$ returns $$true$$ if its argument is of $$datatype!$$ $$pair!$$.
+
+The argument can be of any type.
+%%Integer%%
+red>> pair?  123
+== false
+
+%%Tuple%%
+red>> pair? 1.2.33
+== false
+
+%%Pair%%
+red>> pair? 22x33
+== true
+
+%%Result of adding 2 pairs%%
+red>> pair? 22x33 + 1x1
+== true
+

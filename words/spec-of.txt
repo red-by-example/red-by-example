@@ -1,0 +1,5 @@
+Returns the spec of a value that supports reflection. 
+
+Arguments
+A value of a type that supports reflection.
+

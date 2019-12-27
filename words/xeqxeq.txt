@@ -1,0 +1,21 @@
+The infix word $$==$$ strictly compares operands on its left and right side and
+returns $$true$$ if the operand on the left is strictly equal to the operand on the
+right. Otherwise returns $$false$$.
+
+Has 2 operands of any $$datatype!$$.
+
+The comparison is "strict", which means that:
+    - numeric operands are not equal if they have a different datatype
+    - string operands are not equal if their case differs
+.pre
+2 == 3
+== false
+
+2 == 2.0
+== false
+
+22-03-2000 == 14-04-2012
+== false
+
+"ABC" == "abc"
+== false

@@ -1,0 +1,18 @@
+The word $$last$$ returns the last value in a $$series!$$.  
+If the $$series!$$ is empty, $$none$$ is returned.
+
+Its single argument is a $$series!$$.  
+Note that a $$string!$$ is a series of $$char!$$.
+.pre
+red>> last ["cat" "dog" "bird"]
+== "bird"
+
+red>> last [33 44]
+== 44
+
+red>> last []
+== none
+
+red>> last "abcd"
+== #"d"
+

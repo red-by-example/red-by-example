@@ -1,0 +1,19 @@
+The word $$zero?$$ returns $$true$$ if its argument is zero; 
+otherwise $$false$$.
+
+Has one argument: a $$number!$$ or a $$pair!$$.
+.pre
+zero? 3
+== false
+
+zero? 3.1
+== false
+
+zero? 0
+== true
+
+zero? 2x0
+== false
+
+zero? 0x0
+== true

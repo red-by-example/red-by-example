@@ -1,0 +1,25 @@
+The word $$dir?$$ returns $$true$$ if the supplied name is a valid file $$path!$$, 
+otherwise returns $$false$$. 
+
+A valid file $$path!$$ must have a trailing /.
+
+NOTE $$dir?$$ does not look in the file system at all. It only tells you if the
+     $$path!$$ is a valid directory $$path!$$ with a trailing slash!
+
+Has 1 parameter, which must be a valid file $$path!$$.
+.pre
+%%Non-existent directory%%
+%%Returns false because trailing / is missing%%
+dir? %/c/rubbish
+== false
+%%Returns true because trailing / is present%%
+dir? %/c/rubbish/
+== true
+
+%%Existing directory%%
+%%Returns false because trailing / is missing%%
+dir? %/c/windows
+== false
+%%Returns true because trailing / is present%%
+dir? %/c/windows/
+== true

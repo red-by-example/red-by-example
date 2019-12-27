@@ -1,0 +1,3 @@
+A pre-defined char! value.
+
+See $$char!$$

@@ -1,0 +1,15 @@
+The word $$any-list!$$ is a typeset! of value: [$$block!$$ $$paren!$$ $$hash!$$].
+
+We can test if any item is an any-list! with the $$any-list?$$ function
+.pre
+red>> any-list!
+== make typeset! [block! paren! hash!]
+
+red>> a: [1 2 3]
+== [1 2 3]
+
+red>> any-list? a
+== true
+
+red>> any-list? 3
+== false

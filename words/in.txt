@@ -1,0 +1,21 @@
+The word $$in$$ fetches a word from an object.
+
+2 arguments:
+    1. an $$object!$$ to be accessed
+    2. the word to be fetched - a $$word!$$, $$block!$$, or $$paren!$$
+.pre
+.box Use in on a-point
+red>> a-point: make object! [xval: 10 yval: 20]
+== make object! [
+    xval: 10
+    yval: 20
+]
+
+red>> in a-point 'xval
+== xval                      %%Existing member of object%%
+
+red>> in a-point 'xxval
+== none                      %%Not existing member of object%%%
+
+red>> get in a-point 'xval
+== 10                        %%Value of member%%

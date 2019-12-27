@@ -1,0 +1,52 @@
+The word $$read$$ reads and returns data from a $$file!$$.  
+
+The argument must be a $$file!$$ type.
+
+Refinements:
+    /binary -   reads, and preserves contents exactly
+    /lines  -   reads lines of text, placing them in a $$block!$$ of $$string!$$s.
+    /info   -   
+    /part
+    /as
+    /seek
+.pre
+%%The following example was executed on Windows, using a text file created with%%
+%%Notepad, and placed in the same folder as the program. The file contains 2 lines:%%
+
+%%LINE1%%
+%%LINE2%%
+
+%%Inside the file, the end of each line is marked by a CRLF pair.%%
+%%However, when Red reads the data as text, it presents the data to us with only%%
+%%the LF character at the end, just as on Linux.%%
+
+%%1) read a file as strings%%
+
+text: read %read-data.txt
+
+print length? text    %%12 characters%%
+##12##
+
+prin text             %%Displays all the lines.  No extra newline%%
+##LINE1##
+##LINE2##
+
+%%2) read a file as binary%%
+
+bin: read/binary %read-data.txt
+
+print length? bin     %%14 bytes%%
+##14##
+
+print bin             %%In hex format%%
+###{4C494E45310D0A4C494E45320D0A}##
+
+%%3) read individual lines (strings)%%
+
+text: read/lines %read-data.txt
+
+print length? pick text 1   %%Length is 5 - no LF%%
+##5##
+
+print pick text 2           %%Print second line%%
+##LINE##

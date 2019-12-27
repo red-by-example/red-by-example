@@ -1,0 +1,55 @@
+The word $$back$$ moves the index of a $$series!$$ 1 position towards
+the $$head$$ (= the start) of the $$series!$$.
+
+When a $$series!$$ index is already at $$head$$ position, $$back$$ won't
+change the index; it stays at $$head$$.
+
+The opposite of $$back$$ is $$next$$.
+.pre
+red>> ser: [1 2 3]
+== [1 2 3]
+
+red>> head? ser
+== true
+
+red>> index? ser
+== 1
+
+red>> back ser
+== [1 2 3]
+
+red>> ser: back ser
+== [1 2 3]
+
+red>> head? ser
+== true
+
+red>> index? ser
+== 1
+
+red>> ser: tail ser
+== []
+
+red>> index? ser
+== 4
+
+red>> ser: back ser
+== [3]
+
+red>> index? ser
+== 3
+
+red>> ser: back ser
+== [2 3]
+
+red>> index? ser
+== 2
+
+red>> ser: back ser
+== [1 2 3]
+
+red>> index? ser
+== 1
+
+red>> head? ser
+== true

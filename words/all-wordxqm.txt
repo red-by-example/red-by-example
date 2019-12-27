@@ -1,0 +1,14 @@
+$$all-word?$$ returns $$true$$ if its argument is any $$all-word!$$ type.
+
+It has no refinements.
+
+Examples
+.box  Try block, word, and /refinement
+>> all-word? [1 2]
+== false
+>> all-word? 'find
+== true
+>> all-word? first [find]
+== true
+>> all-word? /ref
+== true

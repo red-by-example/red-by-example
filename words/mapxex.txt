@@ -1,0 +1,72 @@
+The $$datatype!$$ $$map!$$ represents a $$series!$$ type.
+
+This datatype provides a dictionary-like data structure, to make it 
+easy to store key/value pairs while providing very fast lookups. 
+
+Note that a $$map!$$ is NOT a $$series!$$, so does not have the 
+concept of offset or positions.
+
+A $$map!$$ can have a wide range of types for its keys and values.
+
+Entering a $$map!$$ in literal format:
+    #(key1: val1  key2: val2 ... key3: val3)
+    
+Note that select and put are case-insensitive about keys. 
+     To make them case-sensitive, use the case refinement, as in select/case.
+.pre     
+.box Create 2 users with their respective passwords in a $$map!$$
+red>> users: make map! ["John23" "safe3" "DingSnooker" "mypasswd"]
+== #(
+    "John23" "safe3"
+    "DingSnooker" "mypasswd"
+)
+
+red>> print users
+##"John23" "safe3"##
+##"DingSnooker" "mypasswd"##
+
+.box Retrieve passwords
+red>> print select users "john23"   %%Note: case insensitive!%%
+##safe3##
+
+red>> print select users "mr-x"
+##none##                            %%Not found in the $$map!$$%%
+
+.box Add a new user/password
+red>> put users "JaneUK" "magicpass"
+== "magicpass"
+
+red>> print users
+##"John23" "safe3"##
+##"DingSnooker" "mypasswd"##
+##"JaneUK" "magicpass"##
+
+.box Change a password for an existing user
+red>> put users "John23" "mygoodPass"
+== "mygoodPass"
+
+red>> print users
+##"John23" "mygoodPass"##
+##"DingSnooker" "mypasswd"##
+##"JaneUK" "magicpass"##
+
+.box Delete a user
+red>> put users "John23" none
+== none
+
+red>> print users
+##"DingSnooker" "mypasswd"##
+##"JaneUK" "magicpass"##
+
+.box How many users left?
+red>> print length? users
+##2##
+
+.box Select a user by his key
+red>> users: make map! ["John23" "safe3" "DingSnooker" "mypasswd"]
+== #(
+    "John23" "safe3"
+    "DingSnooker" "mypasswd"
+)
+red>> select users "John23"
+== "safe3"

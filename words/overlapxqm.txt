@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     OVERLAP? A B
+
+DESCRIPTION: 
+     Return TRUE if the two faces bounding boxes are overlapping. 
+     OVERLAP? is a function! value.
+
+ARGUMENTS:
+     A            [object!] "First face."
+     B            [object!] "Second face."
+
+RETURNS:
+     TRUE if overlapping.
+     [logic!]
+.dce
+.aad

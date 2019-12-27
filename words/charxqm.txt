@@ -1,0 +1,12 @@
+The $$char?$$ word returns $$true$$ if the value is a $$char!$$ type. 
+.pre
+red>> char? 33
+== false
+%%33 is a number and thus not a char!%%
+
+red>> char? #"A"
+== true
+
+red>> char? "AB"
+== false
+%%"AB" is a string, which is a series type%%

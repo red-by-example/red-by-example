@@ -1,0 +1,37 @@
+The word $$logic?$$ returns $$true$$ if its argument is of 
+the $$logic!$$ $$datatype!$$, otherwise $$false$$.
+
+its argument can be on any type.
+.pre
+red>> open: true
+== true
+
+red>> logic? open
+== true
+
+red>> large: false
+== false
+
+%%It is true that 'false' is a logic! type.%%
+red>> logic? large
+== true
+
+%%Expressions resulting in a $$logic!$$ result%%
+red>> logic?  3 > 2
+== true
+
+red>> logic? 3 + 2
+== false
+
+%%$$yes$$, $$no$$, $$on$$ and $$off$$ are also $$logic!$$%%
+red>> logic? yes
+== true
+
+red>> logic? no
+== true
+
+red>> logic? on
+== true
+
+red>> logic? off
+== true

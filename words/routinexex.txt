@@ -1,0 +1,14 @@
+The $$datatype!$$ $$routine!$$ is used to link up to external code.  
+
+Once a library has been loaded, it is possible to create a $$routine!$$ 
+type to access the external function from Red.  
+
+You can use $$make$$ to create a new, named $$routine!$$.
+.pre
+.box Use $$make$$ to create a $$routine!$$
+
+%%red-routine-name: make routine! specs library-name func-id%%
+
+.box Docs to be extended by red-by-example team ...
+
+

@@ -1,0 +1,125 @@
+The $$bitset!$$ datatype provides  an array of bits that is used to store 
+boolean values. It is often used with $$Parse$$, letting us represent 
+arbitrary sets of characters across the whole Unicode range, that can be 
+matched against an input character in a single operation.
+
+In order to create a bitset, you need to provide one or several characters 
+as a base specification. They can be provided in different forms: codepoint 
+$$integer!$$ values, $$char!$$ values, $$string!$$ values, a range, or a 
+group of previous elements.
+
+The bitset! indexing starts at zero.  It is not a series! type.
+
+Bitsets expand at the right as needed, to provide enough storage for additions.
+
+A $$charset!$$ shortcut function is provided for convenience, and is shown 
+below.
+
+We create a new bitset! with make, and its argument must be one of: 
+
+     $$char!$$, $$integer!$$, $$string!$$ or $$block!$$
+
+.pre
+.box Create some bitsets
+; an empty bitset with places at least for 16 bits
+;note the 4 hex digits displayed
+red>> b-demo: make bitset! 16
+== make bitset! #{0000}
+
+; a bitset - space for at least 17 bits. Size is rounded to upper byte bound.
+red>> b-demo2: make bitset! 17
+== make bitset! #{000000}
+
+; create a bitset with bit 65 set 
+red>> b-demo: make bitset! #"A"  (16 x 0000 bits, then a 0100)
+== make bitset! #{000000000000000040}
+
+; create a bitset with bits 104 and 105 set
+red>> a-set: make bitset! "hi"
+== make bitset! #{00000000000000000000000000C0}
+
+; create and set bits using different values, representations
+red>> make bitset! [120 "hello" #"A"]
+== make bitset! #{00000000000000004000000004890080}
+
+; create a bitset using ranges of values
+red>> bits-09-az:     make bitset! [#"0" - #"9" #"a" - #"z"]
+== make bitset! #{000000000000FFC0000000007FFFFFE0}
+; Ranges are defined using two values (char! or integer! allowed)
+;  we them separate by a dash word.
+
+.box A shortcut charset function is also provided for practical usage,
+;   so you can write:
+red>> hex-set: charset "ABCDEF"
+== make bitset! #{00000000000000007E}
+
+red>> set-demo: charset [120 "hello" #"A"]
+== make bitset! #{00000000000000004000000004890080}
+
+red>> hyphen-demo: charset [120 "hello" #"A"]
+== make bitset! #{00000000000000004000000004890080}
+
+.box Auto-sizing.  We start with "A", and add a "Z" at the right
+red>>  b-set: make bitset! "A"
+== make bitset! #{000000000000000040}
+red>> append b-set "Z"
+== make bitset! #{000000000000000040000020}
+
+; now we append a "-".  Note that it goes in its proper place,
+;   not at the rightmost end
+red>> append b-set "-"
+== make bitset! #{000000000004000040000020}
+; note that append modifies the original bitset
+ 
+.box Reading and writing single bits. The path notation can be used
+; make a bitset
+red>> a-set: make bitset! "ABCDEFG"
+== make bitset! #{00000000000000007F}
+
+;do some work on the "A" entry
+red>> position: to integer! #"A"
+== 65
+
+;look for "A" - true, it is there?  Yes.
+red>> a-set/:position
+== true
+
+;remove it
+red>> a-set/:position: false
+== false
+; look at the set, to prove it
+red>> a-set
+== make bitset! #{00000000000000003F}
+
+;remove it (no difference, it was not there anyway)
+red>> remove/part a-set position
+== make bitset! #{00000000000000003F}
+
+; now remove "B", leaving us with CDEFG - 5 bits, in the 1F below
+red>> remove/part a-set #"B"
+== make bitset! #{00000000000000001F}
+
+.box The set functions can also be used:
+;   union, difference, unique, intersect
+
+; make 2 bitsets to work with
+red>> chars: make bitset! "ABCDEFGH"
+== make bitset! #{00000000000000007F80}
+
+red>> more-chars: make bitset! "123ABCDEFGHxyz"
+== make bitset! #{00000000000070007F800000000000E0}
+
+; find the difference between them - note that 7F8 is missing in result
+red>> difference chars more-chars
+== make bitset! #{000000000000700000000000000000E0}
+
+.box The complement function inverts every bit
+red>> a-set: make bitset! "ABCD"
+== make bitset! #{000000000000000078}
+
+red>> opposite: complement a-set
+== make bitset! [not #{000000000000000078}]
+
+; The original set is unaltered
+red>> a-set
+== make bitset! #{000000000000000078}

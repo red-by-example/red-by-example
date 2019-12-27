@@ -1,0 +1,3 @@
+A handle! datatype will be used in the future for opaque OS handles for
+graphical objects.
+.aad

@@ -1,0 +1,26 @@
+A paren! is a $$series!$$ of items enclosed in parentheses ( ).  It is 
+evaluated when it is encountered, and a result is returned.
+
+In Red, infix operators have no priority, and paren! types can sometimes add 
+clarity.
+
+.pre
+.box Work with infix operators
+red>> (1 + 2)
+== 3
+
+red>> 3 + ((4 + 5) * (2 + 3))
+== 48
+
+.box Preventing evaluation with e.g.  [ ]
+red>> first [(2 + 3)]
+== (2 + 3)
+
+;a paren! is a series!
+red>> first first [(2 + 3)]
+== 2
+
+;here 2 + 3 is evaluated first, so first tries to work on 5
+red>> first (2 + 3)
+*** Script Error: first does not allow integer! for its s argument
+*** Where: first

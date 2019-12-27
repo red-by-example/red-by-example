@@ -1,0 +1,5 @@
+Unsets the value of a word in its current context. 
+
+Its single argument can be a $$word!$$ or $$block!$$ of words.
+
+.aad

@@ -1,0 +1,40 @@
+The word $$take$$ removes and returns one or more elements of a $$series!$$. 
+
+Using $$append$$ with $$take$$ and its /tail refinement lets us use a $$series!$$ 
+as a stack or queue.
+
+Arguments
+    The single argument is a $$series!$$ or $$none!$$
+
+Refinements
+     /part -    specifies a length or end position.  
+                Supply a length (a $$number!$$) or a position in a $$series!$$
+     /deep -    copy nested series values.
+     /last -    take from from the tail end.
+.pre
+.box Examples of take, and some refinements
+red>> s: [11 22 33 44 55]
+
+red>> take s
+== 11
+
+red>> s
+== [22 33 44 55]
+
+red>> s: [11 22 33 44 55]
+== [11 22 33 44 55]
+
+red>> take/last s
+== 55
+
+red>> s
+== [11 22 33 44]
+
+red>> s: [11 22 33 44 55]
+== [11 22 33 44 55]
+
+red>> take/part s 3
+== [11 22 33]
+
+red>> s
+== [44 55]

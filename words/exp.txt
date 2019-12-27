@@ -1,0 +1,12 @@
+The word $$exp$$ raises E (the natural number) to the power supplied.
+
+Has one $$number!$$ parameter.
+.pre
+x: exp 0
+== 1.0
+
+x: exp 1
+== 2.71828182845905
+
+exp -1
+== 0.367879441171442

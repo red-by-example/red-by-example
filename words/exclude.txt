@@ -1,0 +1,24 @@
+The word $$exclude$$ returns a new value, which is the first 
+argument where elements of the second argument are excluded.  
+
+With strings, difference in case is not significant.
+
+The argument types can be: 
+    $$block!$$ $$hash!$$ $$string!$$ $$bitset!$$ $$typeset!$$
+
+Refinements:
+    /case - use case sensitive comparison.
+    /skip - treat the $$series!$$ as fixed size records.  
+            Specify the size as an $$integer!$$.
+.pre
+red>> exclude [1 2 3 4 5 6] [2 4 6]
+== [1 3 5]
+%%Exclude evens%%
+
+red>> exclude "The Great Wall Of China" "aeiou"
+== "Th GrWlfCn"
+%%Exclude vowels, ignoring case%%
+
+red>> exclude/case "The Great Wall Of China" "aeiou"
+== "Th GrtWlOfCn"
+%%Exclude vowels, regarding case - note the letter "O"%%

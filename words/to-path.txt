@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     TO-PATH value
+
+DESCRIPTION: 
+     Convert to path! value. 
+     TO-PATH is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to path!
+See $$path!$$
+.box to-path with various types
+>> to-path [a b c]
+== a/b/c
+>> to-path "aa bb cc"
+== aa/bb/cc

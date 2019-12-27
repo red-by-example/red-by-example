@@ -1,0 +1,30 @@
+A refinement! $$datatype!$$ indicates a variation in the use of, or 
+extension in the meaning of, a $$function!$$, $$object!$$, $$file!$$, $$url!$$, or 
+$$path!$$.  The exact usage of a refinement varies.  For example, 
+$$function$$ refinements can be written so they require additional 
+arguments.  We might also use several refinements at once.    Refinements 
+start with a /, followed by a valid Red word.  Below, we use the 
+$$refinement?$$ function to examine some possibilities.
+
+.pre
+.box try refinement?
+red>> refinement? /part
+== true
+red>> refinement? /45
+== true
+red>> refinement? /:b      ; this is a set-word! type
+== false
+
+.box refinement with function. The 3 is the argument of /part
+red>> s: [8 7 6 5 4 3 2]
+red>> sort/part s 3
+== [6 7 8 5 4 3 2]     ; Only the first 3 items were sorted
+
+.box refinement with an object
+red>> print system/version
+== 0.6.1
+
+.box refinement as a path to  a block element
+red>> b: [11 22 33 44]
+red>> b/2
+== 22

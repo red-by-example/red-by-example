@@ -1,0 +1,26 @@
+The word $$shift-right$$ performs a right-shift operation.
+
+A single $$shift-right$$ divides by 2.
+
+It has 2 arguments:
+    - an $$integer!$$ value to be shifted
+    - an $$integer!$$ stating how many places to shift
+
+Note that the infix $$<<$$ $$>>$$ $$>>>$$ operators provide 
+     similar facilities.
+.pre
+.box Normal shift
+red>> shift-right 16 2
+== 4
+
+.box Negative sign (left most bit) will be preserved
+to-hex -2147483648
+== #80000000    %%#80 is binary 1000 0000%%
+
+red>> shift-right -2147483648 1
+== -1073741824
+
+red>> to-hex -1073741824
+== #C0000000    %%#C0 is binary 1100 0000%%    
+
+

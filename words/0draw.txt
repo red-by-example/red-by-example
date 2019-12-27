@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     DRAW image cmd
+
+DESCRIPTION: 
+     Draws scalable vector graphics to an image. 
+     DRAW is a function! value.
+
+ARGUMENTS:
+     image        [image! pair!] "Image or size for an image."
+     cmd          [block!] "Draw commands."
+
+REFINEMENTS:
+     /transparent => Make a transparent image, if pair! spec is used.
+
+RETURNS:
+     [image!]
+.dce
+.aad

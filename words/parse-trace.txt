@@ -1,0 +1,27 @@
+.dcs
+USAGE:
+     PARSE-TRACE input rules
+
+DESCRIPTION: 
+     Wrapper for parse/trace using the default event processor. 
+     PARSE-TRACE is a function! value.
+
+ARGUMENTS:
+     input        [series!] 
+     rules        [block!] 
+
+REFINEMENTS:
+     /case        => Uses case-sensitive comparison.
+     /part        => Limit to a length or position.
+        limit        [integer!] 
+
+RETURNS:
+     [logic! block!]
+.dce
+
+The same as $$parse$$ but produces trace information.
+
+See the Red-by-example notes,at:
+<a href="http://www.red-by-example.org/parse.html">
+http://www.red-by-example.org/parse.html </a>
+

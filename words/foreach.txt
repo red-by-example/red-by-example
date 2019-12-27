@@ -1,0 +1,45 @@
+The word $$foreach$$ evaluates its body (a $$block!$$) for each value in a $$series!$$.
+
+A variable (or $$block!$$ of variables) must be provided, and $$foreach$$ will take
+each value in the $$series!$$ as the iteration proceeds.
+
+The arguments are:
+    1. a variable or $$block!$$ of variables.
+    2. a $$series!$$, e.g. $$block!$$, $$vector!$$, $$string!$$ etc
+    3. a $$block!$$ - the body, executed for each iteration
+.pre
+foreach country ["China" "Vietnam"  "Thailand"] [
+  print country
+]
+##China##
+##Vietnam##
+##Thailand##
+%%Assigns the values in the block in turn to the variable "country"%%
+
+country-series: ["China" "Vietnam" "Thailand"]
+foreach country country-series [
+   print country
+]
+##China##
+##Vietnam##
+##Thailand##
+%%Instead of using a literal block, you can also use a variable holding a block.%%
+
+foreach character "Red" [
+   print character
+]
+##R##
+##e##
+##d##
+%%Prints in turn each cgaracter of the string specified.%%
+
+capital-series: ["China" "Beijing" "USA" "Washington" "UK" "London"]
+foreach [country city] capital-series [
+   prin country
+   prin " - capital is - "
+   print city
+]
+##China - capital is - Beijing##
+##USA - capital is - Washington##
+##UK - capital is - London##
+%%The prin function prints without outputting a newline.%%

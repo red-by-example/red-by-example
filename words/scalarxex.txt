@@ -1,0 +1,3 @@
+$$scalar!$$ is a typeset! value:
+    make typeset! [char! integer! float! pair! percent! tuple! time! date!]
+ 

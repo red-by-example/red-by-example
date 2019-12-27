@@ -1,0 +1,13 @@
+The word $$strict-equal?$$ returns $$true$$ if two values are equal
+and are of the same $$datatype!$$, otherwise returns $$false$$.
+
+When comparing strings lowercase is considered not equal to uppercase.
+.pre
+red>> strict-equal? 12 12.0
+== false
+
+red>> strict-equal? "abc" "abc"
+== true
+
+red>> strict-equal? "abC" "ABC"
+== false

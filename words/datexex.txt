@@ -1,0 +1,56 @@
+Values of the $$date!$$ represent calendar dates, relying on the Gregorian 
+calendar. A date value can also contain optional time and timezone information. 
+Time in dates is expressed in 24-hour format (including optional time zone 
+information).
+
+There are a number of date input formats (literals), and we can also construct 
+dates with $$make$$.  Calculations  can be performed with dates.  The current
+ date and time can be obtained with $$now$$.
+
+Path accessors (such as /day, /time ) are available to pick out parts of a date
+
+There are lots of options, and the full documentation is at: 
+<a href="https://doc.red-lang.org/en/date.html"> https://doc.red-lang.org/en/date.html</a>
+
+Examples
+
+.box Some of the date literal formats, plus an incorrect one.
+>> d: 23-Oct-2042
+== 23-Oct-2042
+>> d: 3-July-2021
+== 3-Jul-2021
+>> d: 29-February-2017            ;-- not leap year
+*** Script Error: cannot MAKE/TO date! from: [day month year]
+*** Where: do
+*** Stack: load 
+
+.box Some path accessors
+>> appointment: 3/May/2017/6:00:00   ;-- date with time
+== 3-May-2017/6:00:00
+>> appointment/month
+== 5
+>> appointment/hour
+== 6
+
+.box Make a date!
+>> any-day: 23
+>> month: 2
+>> d: make date![any-day month 2017]
+== 23-Feb-2017
+
+.box Date arithmetic
+>> d: now                        ;-- today's date
+== 10-Sep-2017/16:20:04+01:00
+>> d + 23:00                     ;-- add 23 hours
+== 11-Sep-2017/15:20:04+01:00
+
+.box Date comparison, with e.g.  < and >
+>> today: now
+== 10-Sep-2017/11:25:24+01:00
+>> later: today + 48:00
+== 12-Sep-2017/11:25:24+01:00
+>> later < today      ;-- as expected
+== false
+>> later > today      ;-- as expected
+== true
+

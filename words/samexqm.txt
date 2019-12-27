@@ -1,0 +1,27 @@
+The word $$same?$$ returns $$true$$ if the arguments refer to 
+identical objects, otherwise $$false$$. 
+
+For example, $$true$$ would be returned if two strings are the 
+same string (that is: they occupy the same memory location). 
+
+The two arguments can be of any type.
+.pre
+.box Same string, but in differnet memory locations
+red>> a: "fish"
+ "fish"
+
+red>> b: "fish"
+"fish"
+
+red>> same? a b
+false
+
+.box Same string and same memory location
+red>> a: "meat"
+"meat"
+
+red>> b: a
+"meat"
+
+red>> same? a b
+true

@@ -1,0 +1,23 @@
+The word $$any$$ evaluates each expression in a $$block!$$ in turn and returns
+the first resulting value that is not falsey. 
+
+If all resulting values are falsey it returns $$none$$.
+
+Has 1 parameter, a $$block!$$
+
+The resulting value of $$any$$ can be used in the $$if$$ or $$either$$ words, 
+where $$any$$ functions like a short-circuit $$or$$.
+.pre
+any [none false 1 false]
+== 1
+%%none -> none (is falsey, so evaluation continues)%%
+%%false -> false (is falsey, so evaluation continues)%%
+%%1 == 1%%
+%%Returns 1 immediately because a non falsey value (1) is detected%%
+
+any [2 = 3 4 = 5 2 + 2 = 4 5 - 3 = 1]
+== true
+%%2 = 3 == false (is falsey, so evaluation continues)%%
+%%4 = 5 == false (is falsey, so evaluation continues)%%
+%%2 + 2 = 4 == true%%
+%%Returns true immediately because a non falsey value (true) is detected%%

@@ -1,0 +1,22 @@
+The word $$lowercase$$ converts a string of characters to lower-case. 
+ 
+The single argument can be a $$string!$$ or a $$char!$$.
+
+Refinements:
+    /part   -   limits to a given length or position.
+
+NOTE: this is a destructive operation. When applying it to a variable,
+      the variable will be changed!
+      
+See also $$uppercase$$.      
+.pre
+.box Try lowercase on char and string
+red>> lowercase #"A"
+== #"a"
+
+red>> lowercase "ABCD EFGH ijk"
+== "abcd efgh ijk"
+
+.box Use /part to specify first 2 chars only
+red>> lowercase/part "ABCD EFGH ijk" 2
+== "abCD EFGH ijk"

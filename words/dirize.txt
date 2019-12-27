@@ -1,0 +1,17 @@
+The word $$dirize$$ turns its argument into a valid directory.
+
+The argument can be of $$file!$$ $$string!$$ $$url!$$.
+
+Effectively $$dirize$$ only appends a trailing / if needed.
+.pre
+red>> dirize "/e/src"
+== "/e/src/"            %%Note trailing / appended%%
+
+red>> dirize %/e/src
+== %/e/src/             %%Note trailing / appended%%
+
+red>> dirize %/e/src/
+== %/e/src/             %%Nothing happened - directory was already valid%%
+
+red>> dirize %.
+== %./                  %%Note trailing / appended%%

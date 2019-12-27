@@ -1,0 +1,7 @@
+The value $$no$$ can be used as the boolean value $$false$$.
+.pre
+red>> no
+== false
+
+red>> not no
+== true

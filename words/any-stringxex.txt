@@ -1,0 +1,4 @@
+Is a typeset! 
+make typeset! [string! file! url! tag! email!] 
+
+See $$any-string?$$

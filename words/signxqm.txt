@@ -1,0 +1,14 @@
+docstart
+USAGE:
+     SIGN? number
+
+DESCRIPTION: 
+     Returns sign of N as 1, 0, or -1 (to use as a multiplier). 
+     SIGN? is a native! value.
+
+ARGUMENTS:
+     number       [number! time!] 
+.docend
+.pre
+>> sign? 33.5
+== 1

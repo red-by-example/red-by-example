@@ -1,0 +1,34 @@
+The word $$now$$ returns the current date and time.
+
+Refinements allow the selection of, for example, only the date (as a $$date!$$ type), 
+or only the time (as a $$time!$$ type).
+
+There are no arguments
+
+Refinements
+     /year    - Returns year only.  $$integer!$$
+     /month   - Returns month only.  $$integer!$$
+     /day     - Returns day of the month only.  $$integer!$$
+     /time    - Returns time only.  $$time!$$
+     /zone    - Returns time zone offset from UCT (GMT) only.  $$time!$$
+     /date    - Returns date only.  $$date!$$
+     /weekday - Returns day of the week as $$integer!$$ (Monday is day 1).
+     /yearday - Returns day of the year (Julian).  $$integer!$$
+     /precise - High precision time.  $$date!$$
+     /utc     - Universal time (no zone). $$date!$$
+
+Examples
+
+.box No refinements (NB executed on 10 September 2017, in UK)
+>> d: now
+== 10-Sep-2017/10:41:58+01:00
+>> type? d
+== date!
+.box Some refinements
+>> now/time
+== 10:42:57
+>> now/year
+== 2017
+>> now/date
+== 10-Sep-2017
+

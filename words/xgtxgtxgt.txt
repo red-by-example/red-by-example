@@ -1,0 +1,34 @@
+The word $$>>>$$ shifts its first argument (an $$integer!$$) to the right
+by the number of bits in its second argument (also an $$integer!$$).
+
+This is a shift which ignores the sign.
+.pre
+red>> to-hex 6
+== #00000006
+
+red>> to-hex 6 >>> 1
+== #00000003
+
+red>> to-hex 6 >>> 2
+== #00000001
+
+red>> to-hex 6 >>> 3
+== #00000000
+
+red>> to-hex 6 >>> 4
+== #00000000
+
+red>> to-hex -6
+== #FFFFFFFA
+
+red>> to-hex -6 >>> 1
+== #7FFFFFFD
+
+red>> to-hex -6 >>> 2
+== #3FFFFFFE
+
+red>> to-hex -6 >>> 3
+== #1FFFFFFF
+
+red>> to-hex -6 >>> 4
+== #0FFFFFFF

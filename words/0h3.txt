@@ -1,0 +1,20 @@
+The VID dialect has some defined styles (shortcuts).  The styles h1 h2 h3 
+h4 h5 display text of a pre-defined size. The largest is h1. We have:
+
+$$0h1$$             - a text preset to font-size 32
+$$0h2$$             - a text preset to font-size 26
+$$0h3$$             - a text preset to font-size 22
+$$0h4$$             - a text preset to font-size 17
+$$0h5$$             - a text preset to font-size 13
+
+Here is an example:
+
+h1 "Biggest Text Heading"
+message: h3 "Medium-sized yellow heading..." yellow
+
+<a href="http://www.red-by-example.org/vid-text-faces-red.html">
+http://www.red-by-example.org/vid-text-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>

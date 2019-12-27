@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     TO-FILE value
+
+DESCRIPTION: 
+     Convert to file! value. 
+     TO-FILE is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to file!
+See $$file!$$
+.box to-file
+>> f: "my-name.txt"
+== "my-name.txt"
+>> to-file f
+== %my-name.txt

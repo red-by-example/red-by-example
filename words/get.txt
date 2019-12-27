@@ -1,0 +1,65 @@
+The word $$get$$ returns the value a word refers to.  
+Use $$in$$ to get a word value inside an $$object!$$ 
+
+Arguments
+    The single argument is a $$word!$$ or a $$path!$$.
+
+Refinements
+     /any   - If word has no value, return UNSET rather than causing an error.
+     /case  - Use case-sensitive comparison (path only).
+.pre
+.box Using a word (w) with get
+red>> w: 123
+== 123
+
+red>> get 'w         %%Use ' (quote) to prevent evaluation of w%%
+== 123
+
+red>> get first [w]  %%Use [ ] to prevent evaluation of w%%
+== 123
+
+red>> get w          %%w does not contain the name of an existing variable%%
+*** Script Error: get does not allow integer! for its word argument
+*** Where: get
+
+.box Using a word (w) with get which contains a variable name
+red>> x: 12
+== 12
+
+red>> w: 'x
+== x
+
+red>> get w
+== 12
+
+.box Using get with a path
+red>> b: [11 22 33 44 55]
+== [11 22 33 44 55]
+
+red>> place: 3
+== 3
+
+red>> get first [b/:place]
+== 33
+
+red>> get 'b/:place
+== 33 
+
+.box Using get indirect with a path
+red>> x: 12
+== 12
+
+red>> b: [11 22 x 44 55]
+== [11 22 x 44 55]
+
+red>> get first [b/:place]
+== x
+
+red>> get 'b/:place
+== x
+
+red>> get get first [b/:place]
+== 12
+
+red>> get get 'b/:place
+== 12

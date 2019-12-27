@@ -1,0 +1,32 @@
+The word $$alter$$ appends/removes a value to/from a $$series!$$.
+The value can be of any type.
+
+If the value does NOT exist in the $$series!$$ it is appended, and $$true$$ is returned.
+The original $$series!$$ is modified.
+
+If the value does exist, it is removed, and $$false$$ is returned.
+
+Note that $$find$$ can be used to search a value in a $$series!$$.
+
+There are no refinements.
+.pre
+red>> a: ["cat" "dog"]
+== ["cat" "dog"]
+
+red>> alter a "fish"
+== true
+
+red>> a
+== ["cat" "dog" "fish"]
+
+red>> alter a "fish"
+== false
+
+red>> a
+== ["cat" "dog"]
+
+red>> find a "dog"
+== ["dog"]
+
+red>> find a "fish"
+== none

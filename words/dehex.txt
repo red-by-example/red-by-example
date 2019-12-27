@@ -1,0 +1,14 @@
+The word $$dehex$$ converts URL-style hex encoded (%xx) strings 
+into characters. The argument can be a $$string!$$ or a $$file!$$.
+.pre
+red>> dehex "%41BC"                     
+== "ABC"
+%%41 is hex for A%%
+
+red>> dehex "www.search.com/for%20this"
+== "www.search.com/for this"
+%%Hex 20 is space%%
+
+red>> dehex %my%20file.txt
+== "my file.txt"
+%%file! type%%

@@ -1,0 +1,769 @@
+.hdr 1. PARSE IN RED
+
+.hoc 1.1. About The Parse Dialect
+
+The 'parse'  facility of Red  helps us to  build  mini-languages (DSLs 
+- domain-specific languages). It lets us specify syntax, and also provides 
+a simpler alternative to regular expressions when processing strings.  
+Parse is built-in to Red, so we can use it as part of a larger Red  program.
+
+Here is an example showing how simple and lightweight it can be: we have a 
+2-character string, which should contain a product code of the form "A", 
+"B" or "C" followed by either "1", "2", or "3", such as "A2" or "C3".  The 
+following code does the validation, and Parse returns false if the string 
+is incorrect:
+
+product: "C3"
+parse/case product [["A" | "B" | "C"] ["1" | "2" | "3" ]] ;-- '|' means 'or'
+
+The input to Parse is a series (the data we are processing in some way) and 
+a set of grammar rules.
+
+The rules are similar to BNF specifications, but can also contain Red code 
+and commands to copy and skip through the input.
+
+Though Parse has things in common with compiler-compilers, it has no 
+built-in facilities for e.g. symbol-table handling.  It is  simpler to use, 
+however.  In fact, major parts of Red are themselves created with Parse, 
+such as Draw and Vid.
+
+In these notes, I will look at string and block input series, though 
+any $$series!$$ types are allowed, except $$image!$$ and $$vector!$$.
+
+If your input format has nothing to do with Red (e.g. HTML files, exported 
+spreadsheets, strings from  a data-entry form, etc.) then you will use 
+string input to Parse.  For some tasks, there might be lots of low-level 
+rules, such as stating that an integer consists of several digits, or that 
+a series of  spaces separates items.
+
+On the other hand, the really interesting stuff is to build a DSL to be
+used within Red.  If your input is blocks of Red, then Parse works at a 
+higher level.  It knows that spaces separate items, and that 03:10:15 is a 
+time, for example.  In fact most of the literal types are recognised.  This 
+is normally the approach used to build a DSL. 
+
+Red is heavily based on REBOL of course, and Red's Parse has extra features 
+over REBOL 2's version.  REBOL users please note that the string-split 
+feature in REBOL 2 has been moved from Parse into a separate $$split$$ 
+function, and that parse in Red is the same as parse/all in REBOL.
+
+
+For more information on Parse:
+
+Introducing Parse, by Nenad Rakocevic.
+<a href="http://www.red-lang.org/2013/11/041-introducing-parse.html">
+http://www.red-lang.org/2013/11/041-introducing-parse.html</a>
+
+The Parse chapter, from the REBOL 2  documentation:
+<a href="http://www.rebol.com/docs/core23/rebolcore-15.html">
+http://www.rebol.com/docs/core23/rebolcore-15.html</a>
+
+.top
+.hoc 1.2. Parsing - An Introduction
+
+The syntax rules for programming languages are often specified in some kind 
+of BNF.  
+Basically, we need to create  rules which express:
+
+** sequence: one item is followed by another item.
+
+**  choice: an item can be a selection from several things.
+
+** repetition:  an item can be made from  a repetition of items.  Sometimes 
+ it is helpful to be able to express 'one or more of' and 'zero or more of'.
+
+** sub-rules.  It is convenient to express sub-rules, breaking up complex 
+ syntax into manageable chunks.  Sometimes it is useful to use recursive 
+ rules for nested input.
+
+Here is how these concepts occur in a fragment of a BASIC-style language:
+
+    if a&lt;b then c=42
+    print "values ", a, b+2, c
+
+Informally, we can say:
+
+** A program consists of any number of statements.
+
+** An 'if-statement' is a sequence of "if", a condition, "then", and a 
+ statement.
+
+** A 'print-statement' is a sequence.  It starts with the word "print", and 
+ is followed by any number of items, with a "," between them.  Each item is 
+ a selection from a quoted string and a numeric expression.
+
+We would probably write sub-rules (sometimes called 'classes' in 
+syntax-analysis) for a statement, a print-statement, an if-statement, a 
+numeric-expression etc.  This simplifies things for humans, and allows 
+re-use for commonly-occurring items.
+
+Now we will look at some Parse examples.
+
+  
+.top
+.hoc 1.3. Getting Started
+
+Here is a tiny Red program which uses Parse:
+
+    Red [ "Parsing"]
+    parse-rules: ["move-" "north"]   ;-- sequence
+    input: "move-north"
+    print parse input parse-rules    ;-- prints true
+
+    input: "move-south"
+    print parse input parse-rules    ;-- prints false
+
+It begins with Red[ ], like all Red programs.  We will omit this in the 
+following code fragments.
+
+Parse is a function which returns $$true$$ if its input matches the rules, 
+otherwise $$false$$.    
+
+If we wanted to allow any direction, we could write a sub-rule.  We choose 
+a name for it (using Red's rules for naming), and use  [   |   |   |   ....  
+] for a choice:
+
+    parse-rules: ["move-" direction]
+    direction: ["north" | "south" | "east" | "west"]  ;-- choice
+    input: "move-south"
+    print parse input parse-rules   ;-- true
+
+Note that string-matching is case-insensitive.  For case-sensitive 
+matching, use the /case refinement.
+
+We could have written the above as:
+
+    parse-rules: ["move-" ["north" | "south" | "east" | "west"]]
+    input: "move-south"
+    print parse input parse-rules 
+
+but a sub-rule provides  manageable chunks for humans.
+
+With string input, spaces and newlines have no special significance.  For 
+example, if we want a space to be a separator, we must say so in the 
+rules.  With block input, things are different - this is covered later.
+
+.top
+.hoc 1.4. Sequence, selection, repetition: Some, Any, |
+
+Whether the input is a string or a block, the action of these words is 
+identical.  To specify a sequence, we write:
+
+    [item1  item2  item3  etc...]
+
+'Item' can be primitive thing, or can be a sub-rule.
+
+To specify a selection, we write:
+
+    [item1 | item2 | item3 | etc...]
+
+To specify repetition, we write:
+
+    [some[ item1 item2 item3 etc]]
+
+'some' requires at least one occurrence. 
+
+Note that we can write such rules as:
+
+    [some "A" "B"]
+
+but here, 'some' only applies to the first item, matching "AB"  "AAB" etc, 
+but not "ABAB". I will opt for always using [ ] for 'some', even if they 
+only enclose one item.
+
+We can also use 'any', which specifies zero or more repetitions, as in:
+
+    [any["A" "B"]]   ;-- e.g. "ABAB"  "AB"  ""
+
+'Some' and 'any' will terminate when they encounter  an item that does not 
+match, so in the case of some["A" "B"]
+
+** "ABABABC" input  -  'some' will match "AB" then "AB" etc. successfully, 
+ then terminate when it reaches "C"
+
+** "C" input  -  'some' will not match because there are no "AB"s .  If we 
+ used 'any', the match would succeed, terminating on "C".
+
+There are other convenient forms of rules, as in:
+
+[3 "A"]       - a count, matches "AAA" only.
+[1 3 "A"]     - a range, matches "A" or "AA"  or "AAA".
+[0 3 "A"]     - a range, but zero occurrences are matched, as in "".
+["A" | none]  - a selection, matching "A" or "".
+              - This lets us detect a missing "A" specifically.
+
+
+.top
+.hoc 1.5. Characters, Numbers, Names
+
+This is the relatively low-level (lexical analysis) area.  We can specify, 
+for example, than an integer is a series of digits (at least one).  We can 
+make use of $$charset!$$:
+
+    digit: charset "0123456789" ;-- any of these. (could also use  '-'
+    integer: [some digit]       ;-- one or more
+
+Charset! is often used for speed reasons.  We could also have used the 
+slower:
+
+    digit: [ "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" 
+]
+Here is how we can specify a typical variable name, which starts with a 
+letter, then has letters or digits following:
+
+letter: charset [#"A" - #"Z" #"a" - #"z"]  ;-- A to Z  and a to z
+alpha-numeric: [letter | digit]
+var-name: [letter [any [alpha-numeric]]]
+
+(We can use the set functions 'union',  'intersect' etc for higher speed).
+
+.top
+.hoc 1.6. Calculator Example With Strings
+
+Here is a toy example.  A calculation is made up of +, -, a memory (mem), 
+and  integers.  Some calculations:
+
+    +33-22
+    -44
+    +55+22-56+mem+1
+
+There are 2 types of statement: memory and display, as in
+
+    mem=+33+55
+    display mem+100
+
+There are no extra spaces, and a statement is followed by a newline.  Of 
+course, we can write such calculations in straight Red - this is merely an 
+example of parsing.  Here is one possible set of parse rules, followed by 
+some code in our tiny language:
+
+program: [some [statement] ]        ;-- at least one statement
+statement: [[mem-instruction | display-instruction] newline]
+mem-instruction: ["mem=" calculation]
+display-instruction: ["display" space calculation]
+calculation: [[some[pair]]] 
+pair: [operator primitive]          ;-- all primitives preceded by op
+operator: [ "+" | "-"] 
+primitive: [ num |"mem" ] ;-- e.g. 123, mem
+digit: charset "0123456789"
+num: [1 6 digit ]                   ;-- 1 to 6 digits in a num
+
+code: {mem=+3-4+1
+mem=+mem+1
+display -100-mem+101
+}
+
+either parse code program [
+    print "Checked OK"
+] [
+    print "Error"
+]
+
+Some points about the rules:
+
+** program: we used 'some'.  This disallows programs with no statements.  
+ If we wanted, we can specifically check this case using 'none', perhaps to 
+ display a targetted error message.  The rule would then be
+
+    program: [some [statement] | none ] 
+
+** statement: there are two types, either must be followed by a newline.  
+ Note that space and newline are pre-defined values in Red.
+
+** calculation: most of the work is done here.  The smallest legal 
+ calculation is e.g. +3.   A calculations consists of 'some' pairs, in which 
+ a pair is an operator (only '+' and '-' in this version) followed by a 
+ primitive item.
+
+** primitive:  either a 6-digit number, or the text "mem".  We are using 
+ string input here, and we allow a maximum of 6 digits.  But what about 
+ floating-point?  We could try to write the syntax for this, but a better 
+ approach would be to use block input, and let Red recognise the types it 
+ already knows about.  This is shown later. 
+
+** I could have used less rules, but personally I find the extra names 
+ improves clarity.
+
+.top
+.hoc 1.7. Inserting Red Code:  (  ) ,  Copy, Set
+
+We can insert Red code in our rules by enclosing it in parentheses.  For 
+example, if we modify our calculator 'num' rule to:
+
+    num: [1 6 digit (print "got num")]   
+
+we will see "got num" displayed 4 times with our input of
+
+in: {mem=+3+1234
+display -4+3-mem
+}
+
+Note that if the rule is entered, but no match happens, code at the end of 
+the rule is not executed.  At the console, for example:
+ 
+&lt;&lt; rule: [(print "A") "start" (print "B") ]  ;-- match "start"
+&lt;&lt; parse "start" rule       
+A
+B
+== true                 ;-- matches OK
+
+&lt;&lt; parse "st-art" rule
+A
+== false                ;-- no match, B not displayed
+
+Similarly, in a selection, if we have
+
+some-rule: ["begin" | "end"]
+
+and we add some code like this:
+
+some-rule: ["begin" | "end" (print "In some-rule") ]
+
+it will only be executed when "end" is matched.  To see the message in 
+either case, we should also put it immediately after "begin".
+
+Within (...) we can put any Red code, such as using variables and calling 
+functions.
+
+The 'copy' word can be used to access the matched text.  It is followed by 
+a variable name, and must directly precede a rule.  (i.e. don't put any 
+bracketed code between 'copy' and a rule.  Here is an example:
+
+    num: [copy number 1 6 digit (print[ "number: " number]) ]
+    digit: charset "0123456789"
+    parse "123" num
+
+The rule is '1 6 digit', and it is preceded by a copy.  We are free to 
+choose the variable name for copy.  When the rule succeeds (as it does 
+above)  the print is executed, showing  123.
+
+Here is another example:
+
+    operator: [copy  op "+" | copy op "-"]
+
+Note the copy in each selection.  Our 'op' variable can be referred to in 
+another rule.  Later we will use 'set', which is similar to 'copy'.
+
+There is also  a 'copy' in Red, but the Parse copy is different.
+
+Here is the same grammar, with 'copy' and parenthesised code used to 
+perform the execution:
+
+total: 0
+memory: 0
+use-num: func [] [
+    either op = "-" [;-- update the total   + or -
+        total: total - to integer! prim
+    ] [
+        total: total + to integer! prim
+    ]
+]
+
+program: [some [statement]]
+statement: [[mem-instruction | display-instruction] newline]
+mem-instruction: ["mem=" calculation (memory: total)] ;-- update memory
+display-instruction: 
+    ["display" space calculation (print ["display:  " total])]
+calculation: [(total: 0) [some [pair]]] ;-- initialise the calculation
+pair: [operator primitive]
+operator: [copy op "+" | copy op "-"] ;-- remember the op
+primitive: 
+    [copy prim num (use-num) | copy prim "mem" (prim: memory use-num)]
+digit: charset "0123456789"
+num: [1 6 digit]
+
+code: {mem=+3-4+1
+mem=+mem+1
+display -100-mem+101
+}
+print "Code:"
+print code
+
+either parse code program [
+    print "Checked OK"
+] [
+    print "Error"
+]
+
+and here is the output:
+
+    Code:
+    mem=+3-4+1
+    mem=+mem+1
+    display -100-mem+101
+    display:   0
+    Checked OK
+
+A function was used to do the addition or subtraction, but similar code 
+could have been embedded in the rules.
+
+Finally, we will put some calculator code in a file, and read it in. We 
+create a file named (for example) calc-code.txt, and put our code there, as 
+in:
+
+
+mem=+3-4+1
+mem=+mem+1
+display -100-mem+101
+
+Now we modify our program to read the file:
+
+    code: read %calc-code.txt    ;-- in Red, % identifies a file name
+    parse code program
+
+.top
+.hoc 1.8. Calculator With Block Type: Copy And Set
+
+The above calculator worked, but the use of 6-digit integers was 
+unrealstic.   Also, what if we wanted to change our calculator to work with 
+$$float!$$ or $$time!$$ types?  Their syntax is not simple.  In such 
+situations, we would use block input.   Here is some input for the block 
+version:
+
+code: [mem = + 4 - 4 + 1
+mem = + mem + 1
+display - 100 - mem + 101
+]
+
+We have to put spaces between items now.  In fact, the input code is now 
+quite close to Red, and  there are various ways of interpreting it.  
+However, we will continue with Parse, and compare  it to the string version 
+above.  Here is the Parse code:
+
+memory: 0
+total: 0
+use-num: func [] [
+    either op = '- [ 
+        total: total - prim
+    ] [
+        total: total + prim
+    ]  
+]
+     
+program: [some [statement]]
+statement: [[mem-instruction | display-instruction]]
+mem-instruction: ['mem '= calculation (memory: total)]
+display-instruction: ['display calculation (print ["display: " total])]
+calculation: [(total: 0) [some [pair]]]
+pair: [operator primitive]
+operator: [set op '+ | set op '- ]
+primitive: 
+    [set prim integer! (use-num) | set prim 'mem (prim: memory use-num)]
+
+The differences from the string version are:
+
+** we have removed references to space and newline.  We use the Red 
+ approach of spaces separating items.
+
+** the 'primitive' rule now uses the Red $$integer!$$ type.  All literal 
+ types (e.g. $$pair!$$, $$time!$$, $$float!$$ etc can be similarly matched.  
+ We can use $$any-type!$$ to match any item in the input.
+
+** to match a word - such as mem, we use 'mem.  Word matching is 
+ case-insensitive.
+
+** we used 'set' rather than 'copy'.  In the above, the 'copy' variable is 
+ made into  a series type, even if it holds a single item, whereas the type 
+ of the 'set' variable is what we want here (i.e $$integer!$$ in the 
+ 'primitive' match).
+
+Strictly, the value of 'copy' is the collection of matched items, whereas 
+'set' uses the first matched item.  Here are two examples
+
+    parse "Stuff---" ["Stuff" copy d some "-" (print [type? d d])]
+    parse "Stuff---"  ["Stuff" set d some "-" (print [type? d d])]
+
+In the first example, 'copy' contains the whole match "---" as a string, 
+and in the second, 'set' contains the first matched item as the character 
+#"-".
+
+Here are some copy/set examples using blocks:
+
+parse [Stuff 12 34] ['Stuff copy matched some integer!
+   (print [type? matched matched])]
+parse [Stuff 12 34] ['Stuff set matched some integer!
+   (print [type? matched matched])]
+
+The output is:
+
+block 12 34 
+integer 12
+
+We can also read data from a file into a block with $$load$$, and use it 
+directly in Parse, as in:
+
+    parse   load %block-in.txt program
+
+Where block-in.txt holds:
+
+mem = + 4 - 4 + 1
+mem = + mem + 1
+display - 100 - mem + 101 - 2222
+
+.top
+.hoc 1.9. Literal Types In String Input
+
+Parse rules used with strings cannot contain type names ($$pair!$$, 
+$$integer!$$, $$float!$$ etc). However, some literal values (not type 
+names) can be used.  These are $$url!$$, $$email!$$, and $$tag!$$.  Tag 
+values are the most common, as they are useful in HTML processing.  Here 
+are some examples.  They are all 'true':
+
+    print parse "Stuff&gt;atag&lt;" ["Stuff" &gt;atag&lt;]
+    print parse "Stuffhttp://me.com" ["Stuff" http://me.com]
+    print parse "Stuffme@super.org" ["Stuff" me@super.org]
+
+Note the reduction of quotes in the rules, though we could also use:
+
+    print parse "Stuff&gt;atag&lt;" ["Stuff" "&gt;atag&lt;"]
+ 
+.top
+.hoc 2.1. Keywords inside/outside Parentheses
+
+We have seen that rules can contain Red code in parentheses, and also 
+commands - such as 'copy' outside parentheses.  There are a number of other 
+commands (keywords) that belong to Parse.  Sometimes they have the same 
+name as Red words, but they belong to Parse, and in general they have a 
+different meaning.  You have seen 'copy', 'set', 'some', 'any', etc and now 
+we will look at others.  Many of them allow us to manipulate the input 
+series.
+
+A full list is available in:
+Introducing Parse, by Nenad Rakocevic.
+<a 
+href="http://www.red-lang.org/2013/11/041-introducing-parse.html">http://www.
+red-lang.org/2013/11/041-introducing-parse.html</a>
+
+.top
+.hoc 2.2. Skipping Input: Skip, To, Thru
+
+These words let us move through the input.  
+
+'Skip'  - this skips one item in the input series.  For example:
+
+    rule: ["a" skip "b"]
+    print parse "axb" rule        ;-- true
+
+Above, the rule states:
+    - match an "a"
+    - skip over any character
+    - match a "b"
+
+Using the above rule with different data:
+
+    print parse "axc" rule       ;-- false - no b
+    print parse "axxb" rule      ;-- false - no a after first x
+
+Here is a block input example, which matches an integer, skips the next 
+item (an integer here), then matches a string.  Parse returns 'true':
+
+    print parse [123 456 "Hello"] [integer! skip string! ]
+
+Now some more 'skip' examples, all true, using a range:
+
+    print parse "axxxb" ["a" 1 3 skip "b"]   ;-- a, do 3 skips, b
+    print parse "xxxa" [3 skip  "a"]         ;-- 3, skips, a
+
+The 'thru' facility skips up to  a specified item, as in:
+
+    parse "axxxbc" ["a" thru "b" "c"] ;--true: a, skip to b inclusive, c
+
+In the above, 'b' is also skipped, and matching continues after it.
+
+Note that this also works for multi-character strings in rules, as in:
+
+    parse "axxxxxbeec" ["a" thru "bee" "c"]  ;-- skips to bee, matches c 
+
+and from the start, here using a sub-rule:
+
+    animal: ["black " "cat"]
+    parse "whatever---black cat" [thru animal]        ;-- true
+
+Alongside 'thru' there is the similar 'to', which does not include the item 
+which ends the skip.  In the following example, the first 'b' is detected 
+but is not part of the skip.  The second 'b' in the rule will match it:
+
+ parse "axxxxxb" ["a" to "b" "b" ]    ;--  up to b, not including it.
+
+Here is an example which copies the title of a web page:
+
+html-code: "&gt;html&lt; &gt;title&lt;My Great Page&gt;/title&lt; Contents 
+here... &gt;/html&lt;"
+parse html-code [thru &gt;title&lt; copy the-title  to &gt;/title&lt;]
+print ["Title is: " the-title]    ;-- prints:   My Great Page
+
+We used the tag type in the rule, but could have used e.g. 
+"&gt;title&lt;".  Note the use  of  'to'.  If we used 'thru', then the 
+result is:  
+
+My Great Page&gt;/title&lt; 
+
+ .top
+.hoc 2.3. Using Variable:
+
+We can  create a variable, and set its value.  This is a Parse feature.  
+Here are some examples.  First we look at getting a position in the series:
+
+parse "ABCDEFG" [thru "D" place: (print place) ]     ;-- EFG printed
+
+We created the 'place:' variable.  Here, we skip to "D", including it.  
+Then, 'place' becomes a reference to the current input position.  Here, 
+this is from "E" to the end.
+	
+Here is an example which finds the positions of items between START and 
+STOP.  It uses the $$index?$$ series function to get a numeric position 
+from the reference to the series.
+
+    parse [A B START C D E STOP F G] [
+        thru 'START pos1: to 'STOP pos2: 
+           (print [index? pos1 "-" (index? pos2) - 1 ])  ;-- prints 4 - 6
+    ]    
+
+If we display the two positions as references without using $$index?$$, we 
+would get:
+
+    C D E STOP F G - STOP F G
+
+Here is another example of finding positions, this time in HTML text.  We 
+are interested in &gt;h1&lt; items.
+
+page: {&gt;html&lt; &gt;title&lt; My Great Page&gt;/title&lt;
+&gt;h1&lt; Big Heading A&lt;&gt;/h1&lt;&gt;p&lt;Stuff in  A &gt;/p&lt;
+&gt;h1&lt; Big Heading B&lt;&gt;/h1&lt;&gt;p&lt;Stuff in  B &gt;/p&lt;
+&gt;/html&lt;
+    }
+
+;-- positions of text in  an h1
+parse page [ any [thru &gt;h1&lt; h1-at: (print ["h1 at: " index? h1-at])]]
+;-- position of the &gt; in &gt;h1&lt;
+parse page [ any [to "&gt;h1" h1-at: thru "&lt;" (print ["h1 at: " index? 
+h1-at])]]
+
+The first example uses an unquoted tag in the rule, and 'thru' includes the 
+whole tag.
+
+The second example uses a quoted string to find "&gt;h1", notes the 
+position, then moves to the closing "&lt;".  
+
+Note that if we try to do the second example with 'to', as in:
+
+    any[ to &gt;h1&lt; ...]
+
+Then parse gets stuck, repeatedly finding the same &gt;h1&lt;.
+
+.top
+.hoc 2.4. Using :Variable
+
+Here we look at modifying the input series.  This example finds the start 
+and end of the page's title text, and uses these references to modify the 
+input series:
+
+    parse page [thru &lt;title&gt; begin: to &lt;/title&gt; ending:
+        (change/part begin "A Better Title" ending) 
+    ]
+ 
+
+.top
+.hoc 2.5. Using a Variable
+
+We have looked at the use of ':word' and  'word:'.  If we use a word 
+without a colon, its value is looked up and used, as in:
+
+    a-word: 3
+    print parse "xxxa" [a-word skip  "a"]      ;-- true
+
+We could use this approach for counts, match-values etc.
+
+.top
+.hoc 2.5. Remove, Insert, Change
+
+These Parse keywords modify the input series.  They can be more convenient 
+than using Red code in parentheses.
+
+We can remove the matched input, as in:
+
+    inp: "XXX-------"
+    parse inp [any "X" remove any "-"]           ;
+    print inp          ;-- prints XXX
+
+We can insert an item (e.g. a string, a block) at current input position.  
+Scanning continues past the insertion.
+
+    inp: "XXX-------"
+    parse inp [any "X" insert "ABC" any "-"]           ;
+    print inp           ;-- prints XXXABCabc-------
+
+We can change the match input to  a given value:
+
+    inp: [12 "a string" "b string" 22 44]  ;-- unordered strings,  integers
+    parse inp [some[string! |  change integer! "NUMBER" ]]
+    print inp
+    print ""
+
+The output is:
+
+   NUMBER a string b string NUMBER NUMBER
+
+.top
+.hoc 2.6. Collect And Keep
+
+Parse has its own $$collect$$ and $$keep$$ functions, similar to those in Red. 
+Here we parse a block of various types of item, and keep only the 
+integers.  Keep can be used several times.  Note that we match an integer 
+before the more general $$any-type!$$.  There is also  a 'pick' option for 
+'keep', which allows control over the storing of the selection.
+
+    in: [12 3x44 "a string" 13  a-word 14]
+    ;-- prints 12 13 14
+    print parse in [collect[some[ keep integer! | any-type!]]] 
+The 'collect' function returns a block via Parse, i.e. the normal Parse 
+$$logic!$$ result is not returned.
+
+
+.top
+.hoc 2.7. Parse into/ahead (nested blocks)
+
+Programming languages usually have some way of delimiting nested code, such
+as curly-brackets in C++, Java.  It is possible that your DSL might need nested
+items.  We can make use of Red's square brackets for this.  Here is an example of
+a nested structure. We can make the parser go into nested blocks with 'into'.
+
+First we look 'ahead' to see if the next item is a block.
+
+    ;-- a series of:    integers or nested integers
+    list: [22 33 [44 [55] 66] 77]
+
+    nested-rule: [ any[ item ]]
+    item: [copy num integer! (print num)
+           | ahead block! (print "got a block")
+             into nested-rule (print "out of block")]
+    parse list nested-rule
+
+The output is:
+
+    33
+    got a block
+    44
+    got a block
+    55
+    out of block
+    66
+    out of block
+    77 
+
+.top
+.hoc 3.1. Debugging - parse-trace
+
+To look into how your rules are working, you can insert printing to provide 
+a trace, as in:
+
+    primitive: [ num | "mem" ]               ;-- original rule
+    ;-- with prints
+    primitive: [num (print "got num") | "mem" (print "got mem")]
+
+You can also use the 'parse-trace' wrapper for Parse, as in:
+
+    parse-trace some-input  a-rule
+
+This displays a detailed trace of the parse process.
+

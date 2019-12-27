@@ -1,0 +1,25 @@
+.dcs
+USAGE:
+     TO-GET-PATH value
+
+DESCRIPTION: 
+     Convert to get-path! value. 
+     TO-GET-PATH is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to get-path!
+See $$get-path!$$
+.box to-get-path
+>> g: [aa bb cc]
+== [aa bb cc]
+>> to-get-path g
+== :aa/bb/cc
+
+>> g: "aa bb cc"
+== "aa bb cc"
+>> to-get-path g
+== :aa/bb/cc
+ 

@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-REFINEMENT value
+
+DESCRIPTION: 
+     Convert to refinement! value. 
+     TO-REFINEMENT is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to refinement!
+See $$refinement!$$
+.box to-refinement 
+>> r: /abcd
+== /abcd
+>> r: to-refinement r
+== /abcd
+>> type? r
+== refinement!

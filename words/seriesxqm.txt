@@ -1,0 +1,35 @@
+word $$series?$$ returns $$true$$ if its argument is a
+$$series!$$, otherwise $$false$$.
+
+The argument can be of any type.
+
+The $$series!$$ type includes: 
+    $$block!$$  
+    $$paren!$$  
+    $$string!$$  
+    $$file!$$  
+    $$url!$$  
+    $$path!$$  
+    $$lit-path!$$  
+    $$set-path!$$  
+    $$get-path!$$  
+    $$vector!$$  
+    $$hash!$$  
+    $$binary!$$  
+    $$image!$$
+.pre
+.box A $$block!$$
+red>> series? [1 "text"]
+true
+
+.box A $$tuple!$$
+red>> series? 12.33.12
+false
+
+.box A $$string!$$
+red>> series? "ABC"
+true
+
+.box A $$float!$$
+red>> series? 12.34
+false

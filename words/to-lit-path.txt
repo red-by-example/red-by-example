@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     TO-LIT-PATH value
+
+DESCRIPTION: 
+     Convert to lit-path! value. 
+     TO-LIT-PATH is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to lit-path!
+See $$lit-path!$$
+.box lit-path
+>> to-lit-path [aa bb cc]
+== 'aa/bb/cc

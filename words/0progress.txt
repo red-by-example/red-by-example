@@ -1,0 +1,25 @@
+This type represents a horizontal or vertical progress bar.
+
+The default orientation is horizontal, because the default size for faces
+is wider than its height.  For a vertical slider, specify a size that is 
+taller than its width.
+
+The optional value for the initial position can be a percent, or a float 
+between 0.0 and 1.0. 
+
+The default event is $$0on-change$$
+
+Its current value is available in 'data'.
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-misc-faces-red.html">
+http://www.red-by-example.org/vid-misc-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_progress"> 
+https://doc.red-lang.org/en/view.html#_progress</a>
+

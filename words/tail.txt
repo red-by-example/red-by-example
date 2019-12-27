@@ -1,0 +1,24 @@
+The word $$tail$$ can be used to set a $$series!$$ index right
+after the last item in the $$series!$$.
+
+The word $$tail?$$ can be used to test if a $$series!$$ is at $$tail$$.
+
+The word $$index?$$ can be used to obtain the current index.
+.pre
+red>> x: [1 2 3 4 5]
+== [1 2 3 4 5]
+
+red>> head? x
+== true
+
+red>> index? x
+== 1
+
+red>> x: tail x
+== []
+
+red>> tail? x
+== true
+
+red>> index? x
+== 6             %%Note that the index is one beyond the last element!%%

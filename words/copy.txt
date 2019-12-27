@@ -1,0 +1,72 @@
+The word $$copy$$ returns a copy of a $$series!$$ or $$bitset!$$.
+
+The word $$copy$$ does not work on single items such as: 
+    $$integer!$$ $$float!$$ $$char!$$ etc.
+For these, we can simply use the colon (get word).
+
+It has one argument of an appropriate type.
+
+For (potentially large) $$series!$$, Red works with references 
+(pointers to $$series!$$) rather than directly with the contents.
+
+Refinements
+   /part  - limit the length of the result, 
+            where  length is a $$number!$$ or $$series!$$
+   /deep  - copy nested values also
+   /types - copy only specific types of non-scalar values.
+.pre
+red>> b: [1 2 3 4]
+== [1 2 3 4]
+%%Create variable b which points to a new block%%
+
+red>> b2: b
+== [1 2 3 4]
+%%Assign variable b2 to point to the same block that b points to.%%
+
+red>> b/2: -999
+== -999
+%%Modify the block that b points to at position 2.%%
+
+red>> b
+== [1 -999 3 4]
+%%As expected b now points to the changed block%%
+
+red>> b2
+== [1 -999 3 4]
+%%Because b2 points to the same block you see the same change there also!%%
+
+red>> b: [1 2 3 4]
+== [1 2 3 4]
+%%Create variable b which points to a new block.%%
+
+red>> b2: copy b
+== [1 2 3 4]
+%%Create variable b2 which points to a copy of the block b points to.%%
+
+red>> b/2: -999
+== -999
+%%Show that the block that b points to has changed%%
+
+red>> b2
+== [1 2 3 4]
+%%Because of the copy the block b2 points to is not modified this time.%%
+
+red>> s: "a string"
+== "a string"
+%%Create variable s pointing to a string.%%
+
+red>> s2: copy s
+== "a string"
+%%Create variable s2 pointing to a copy of the string that s points to.%%
+
+red>> a: [22 33 "name" [44 1.34]]
+== [22 33 "name" [44 1.34]]
+%%Create variable a that points to a new block.%%
+
+red>> b: copy a
+== [22 33 "name" [44 1.34]]
+%%Create variable b and point it to a new copy to the block that a points to.%%
+
+red>> b: copy/part a 2
+== [22 33]
+%%Only the first 2 items of a are copied!%%

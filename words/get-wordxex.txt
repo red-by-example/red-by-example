@@ -1,0 +1,27 @@
+The $$datatype!$$ $$get-word!$$ is the way in which Red gets values from a variable.
+
+The $$get-word!$$ type gets the value of a word (which is quite normal thus 
+far) but does not evaluate the value. For that we use a colon in front of  
+a variable.
+
+For many simple data types, the result is the value. For special $$datatype!$$s
+like functions, we need to use the get-word notation.
+.pre
+.box Use $$get-word!$$ type
+red>> w: 123
+== 123
+
+red>> w
+== 123
+
+red>> :w
+== 123                            %%For normal variable same as evaluating it%%
+
+red>> f: func [] [print "Hi!"]
+== func [][print "Hi!"]
+
+red>> f                           %%Evaluate the function%%
+Hi!
+
+red>> :f                          %%Use the get-word - retrieve the definition of f%%
+== func [][print "Hi!"]

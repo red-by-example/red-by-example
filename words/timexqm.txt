@@ -1,0 +1,24 @@
+The word $$time?$$ returns $$true$$ if the value is a $$time!$$, 
+otherwise $$false$$.
+
+Arguments
+    Has one argument, which can be of any type.
+.pre
+.box Show usage here
+red>> time? 3:15
+== true
+
+red>> type? 3:15
+== time!
+
+red>> time? 3.15
+== false
+
+red>> type? 3.15
+== float!
+
+red>> t: 3:45
+== 3:45:00.0
+
+red>> time? t
+== true

@@ -1,0 +1,61 @@
+The word $$append$$ inserts value(s) at the end of a $$series!$$ 
+and returns the head of the series. The original series is changed.
+
+Arguments:
+	1. the series to be extended can be any series a $$bitmap!$$ or a $$map!$$
+	2. the value to be appended can be $$any-type!$$
+
+Refinements
+     /part - limit the number of values inserted. (a $$number!$$ or a series index)
+     /only - insert block types as single values (overrides /part).
+     /dup  - duplicate the inserted values.  Provide a $$number!$$
+.pre
+.box Append to a $$block!$$
+red>> a-block: [1 2 3 "four" 5]
+== [1 2 3 "four" 5]
+
+red>> append a-block 6
+== [1 2 3 "four" 5 6]
+
+red>> append a-block [7 8 "nine" [10 11]]
+== [1 2 3 "four" 5 6 7 8 "nine" [10 11]]
+
+.box Append to a $$string!$$
+red>> a-string: "ABCD"
+== "ABCD"
+
+red>> append a-string "123"
+== "ABCD123"
+
+red>> append a-string [6 5 4]
+== "ABCD123654"               %%see what happens here?%%
+
+.box /part refinement
+red>> series-1: [1 2 3 4 5 6]
+== [1 2 3 4 5 6]
+
+red>> series-2: [100 200 300 400 500]
+== [100 200 300 400 500]
+
+red>> append/part series-1 series-2 3
+== [1 2 3 4 5 6 100 200 300]  %%only 3 items appended%%
+
+.box /only refinement 
+red>> series-1: [1 2 3 4 5 6]
+== [1 2 3 4 5 6]
+
+red>> series-2: [100 200 300 400 500]
+== [100 200 300 400 500]
+
+red>> append/only series-1 series-2
+== [1 2 3 4 5 6 [100 200 300 400 500]]  %%appended as a comnplete block%%
+
+.box /dup refinement - note duplicated values at end
+red>> series-1: [1 2 3 4 5 6]
+== [1 2 3 4 5 6]
+
+red>> series-2: [100 200]
+== [100 200]
+
+red>> append/dup series-1 series-2 3
+== [1 2 3 4 5 6 100 200 100 200 100 200]

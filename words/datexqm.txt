@@ -1,0 +1,18 @@
+.dcs
+USAGE:
+     DATE? value
+
+DESCRIPTION: 
+     Returns true if the value is this type. 
+     DATE? is a function! value.
+
+ARGUMENTS:
+     value        [any-type!] 
+.dce
+
+.box date?
+>> d: 3-May-2019
+>> date? d
+== true
+>> date? "30-May-2019"
+== false

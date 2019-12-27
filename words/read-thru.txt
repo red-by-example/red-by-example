@@ -1,0 +1,16 @@
+.dcs
+USAGE:
+     READ-THRU url
+
+DESCRIPTION: 
+     Reads a remote file through local disk cache. 
+     READ-THRU is a function! value.
+
+ARGUMENTS:
+     url          [url!] "Remote file address."
+
+REFINEMENTS:
+     /update      => Force a cache update.
+     /binary      => Use binary mode.
+.dce
+.aad

@@ -1,0 +1,13 @@
+The word $$cosine$$ returns the trigonometric cosine.
+
+Has 1 parameter, a ##number!## (representing an angle).
+
+Refinements:
+    /radians : expects the input angle in radians;
+               without refinement expects the input angle in degrees.
+.pre
+cosine 90
+== 0.0
+
+cosine/radians pi
+== -1.0

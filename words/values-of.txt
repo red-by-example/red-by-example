@@ -1,0 +1,21 @@
+Returns the list of values of a value that supports reflection. 
+
+Arguments
+
+A value of a type that supports reflection.
+
+.pre
+.box values-of, with map and object
+;with a map
+red>> m: make map![a 1 b 2]
+== #(
+    a: 1
+    b: 2
+)
+red>> values-of m
+== [1 2]
+
+;with an object
+red>> place: make object! [ x-pos: 100 y-pos: 200 ]
+red>> values-of place
+== [100 200]

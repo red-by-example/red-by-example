@@ -1,0 +1,86 @@
+The word $$select$$ finds a value in a $$series!$$ and if succesful returns 
+the element right after the element found. Returns $$none$$ if the search fails.
+
+Select is similar to the $$find$$ function. 
+
+The 2 arguments are:
+    a series    -   of type $$series!$$  $$any-object!$$  $$map!$$  $$none!$$
+    a value     -   of any type 
+
+Refinements
+    /part       - Limit the length (a $$number!$$) of the search or a $$series!$$ reference.
+    /only       - Treat a series search value as a single value.
+    /case       - Perform a case-sensitive search.
+    /any        - Use * and ? wildcards in string searches.
+    /with       - Use custom wildcards * or ?.
+    /skip       - Treat the series as fixed size records.  Requires an $$integer!$$ size.
+    /last       - Find the last occurrence of value (from the $$tail$$).
+    /reverse    - Find the last occurrence of value (from the current index).
+
+.pre
+.box Select a month, return item following it
+red>> months: ["Mar" 31 "April" 30 "May" 31]
+== ["Mar" 31 "April" 30 "May" 31]
+
+red>> select Months "April"
+== 30
+
+red>> select Months 30
+== "May"                     %%Beware that select can match any element!%%
+
+.box Select a character in a $$string!$$ (after D)
+red>> str: "ABCDEFGH"
+== "ABCDEFGH"
+
+red>> select str "D"
+== #"E"                      %%Because E follows the found element D%%
+
+.box /pairs - do a normal select, then use /pairs
+red>> pairs: [44 4 3 33 4 55]
+== [44 4 3 33 4 55]
+
+red>> select pairs 4
+== 3                         %%Because 3 follows the found element 4%%
+
+.box Select only matches the first element in a skip group
+red>> select/skip pairs 4 2
+== 55
+
+.box Search form the tail
+red>> animal: "The black cat"
+== "The black cat"
+
+red>> select/last animal "a"
+== #"t"
+
+.box Using the /only refinement
+red>> blk: [11 12 13 [22 33 44] 15]
+== [11 12 13 [22 33 44] 15]
+
+red>> select blk 13
+== [22 33 44]
+ 
+red>> select blk [22 33 44]
+== none             %%Not found, because we searched for a $$series!$$%%
+ 
+red>> select/only blk [22 33 44]
+15 
+
+red>> select/only blk [22 33 44]
+== 15               %%Success! With /only we can search for a $$series!$$%%
+
+.box Search backwards from a position with the /reverse refinement
+red>> words: "a-few-words"
+== "a-few-words"
+ 
+red>> current: find/last words "-"
+"-words"
+
+red>> current: find/last words "-"
+== "-words"
+
+red>> index? current
+== 6
+
+red>> select/reverse current "-"
+== #"f"

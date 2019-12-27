@@ -1,0 +1,16 @@
+.dcs
+USAGE:
+     TO-NONE value
+
+DESCRIPTION: 
+     Convert to none! value. 
+     TO-NONE is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+.aad
+
+Equivalent to using:    to none!
+See $$none!$$
+ 

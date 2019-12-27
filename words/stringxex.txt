@@ -1,0 +1,13 @@
+The $$datatype!$$ $$string!$$ represents a $$series!$$ type containing $$char!$$.
+For string functions (such as substring etc), we use the series functions, <a href="./series.html"> here</a>.
+.cmt needs escape info etc
+.aad
+.pre
+.box Some examples
+red>> str: "abcdefg"
+== "abcdefg"
+;Using { } allows a string to spread over several lines - spaces and newlines are significant
+red>> s: { a two-line
+    string}
+red>> str/3
+== #"c"    %%Representation of a single character in Red%%

@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     ANY-BLOCK? value
+
+DESCRIPTION: 
+     Returns true if the value is any type of any-block. 
+     ANY-BLOCK? is a function! value.
+
+ARGUMENTS:
+     value        [any-type!] 
+.dce
+
+.box any-block? Examples 
+>> any-block? [1 2]
+== true
+>> any-block? "234"
+== false
+>> any-block? first [ (1 2 3)]
+== true

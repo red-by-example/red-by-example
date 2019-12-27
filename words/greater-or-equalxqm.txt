@@ -1,0 +1,5 @@
+The word $$greater-or-equal?$$ is the functional form of the $$>=$$
+infix word.
+.pre
+red>> greater-or-equal? 44 33
+== true

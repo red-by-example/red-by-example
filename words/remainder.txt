@@ -1,0 +1,38 @@
+The word $$remainder$$ returns the rest of dividing the first by the second value.
+
+Has 2 arguments of type:
+    $$number!$$ $$char!$$ $$pair!$$ $$tuple!$$ $$vector!$$
+
+It is the functional version of the infix word $$//$$.
+
+If the first argument is positive, then the remainder is positive.
+
+If the first argument is negative, then the remainder is negative,
+as in remainder -5 4, which results in -1.
+
+If the first argument is zero, then the remainder is also zero.
+
+If the second argument is zero, a run-time error occurs.
+.pre
+red>> remainder 5 4
+== 1
+
+red>> remainder 5 5
+== 0
+
+red>> remainder 5 6
+== 5
+%%5 divided by 6 gives zero%%
+%%with remainder of 5%%
+
+red>> remainder -5 4
+== -1
+
+red>> remainder 10 3.3
+== 0.1000000000000005
+
+red>> remainder 5x10 4
+== 1x2
+
+red>> remainder make vector![5 5 10] 4
+== make vector! [1 1 2]

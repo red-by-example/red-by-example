@@ -1,0 +1,17 @@
+The word $$forever$$ evaluates a $$block!$$ body repeatedly (= forever).
+The word $$break$$ can be used to exit the loop if required.
+.pre
+forever [
+   r: random 10
+   print r
+   if r > 5 [break]
+]
+##3##
+##7##
+%%This ends when r gets a value higher than 5%%
+
+forever [
+   print "hi"
+]
+##"hi"##
+%%The line above will be printed eternally ...%%

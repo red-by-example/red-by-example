@@ -1,0 +1,40 @@
+The word $$pick$$ takes the nth value of a $$series!$$, where n is the second argument
+.pre
+.box Using a $$block!$$ of numbers
+red>> x: [1 2 3 4 5 6 7 8]
+== [1 2 3 4 5 6 7 8]
+
+red>> y: pick x 4
+== 4
+
+red>> x
+== [1 2 3 4 5 6 7 8]
+
+red>> y
+== 4
+
+.box Using a $$string!$$
+red>> s: "abcdefghijklmnopqrstuvwxyz"
+== "abcdefghijklmnopqrstuvwxyz"
+
+red>> pick s 1
+== #"a"
+
+red>> pick s 26
+== #"z"
+
+red>> pick s 27
+== none                 %%Index out of range%%
+
+.box Using a $$block!$$ of $$string!$$s
+red>> p: ["abc" "def" "ghi" "jkl" "mno" "pqr" "stu"]
+== ["abc" "def" "ghi" "jkl" "mno" "pqr" "stu"]
+
+red>> pick p 1
+== "abc"
+
+red>> pick p 4
+== "jkl"
+
+red>> pick p -1
+== none                 %%Index out of range%%

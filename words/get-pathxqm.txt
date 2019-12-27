@@ -1,0 +1,20 @@
+The word $$get-path?$$ returns $$true$$ if its argument is a $$get-path!$$,
+otherwise $$false$$.
+
+Its single argument can be any type.
+.pre
+.box Use get-path? on various types; must start with colon :
+red>> b: [11 22 33]
+== [11 22 33]
+
+red>> n: 2
+== 2
+
+red>> get-path? b/n
+== false
+
+red>> get-path? first [:b/:n]
+== true
+
+red>> get-path? first [b/n]
+== false

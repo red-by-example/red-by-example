@@ -1,0 +1,10 @@
+The word $$any-function?$$ returns $$true$$ if its argument is a $$any-function!$$.
+
+It has no refinements.
+.pre
+red>> any-function? a
+== false
+
+red>> any-function? :find
+== true
+%%The colon (:) gets the definition, not the value of a function%%

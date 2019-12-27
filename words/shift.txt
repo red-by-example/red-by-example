@@ -1,0 +1,66 @@
+The word $$shift$$ performs an arithmetical bit shift operation, 
+preserving the sign.  
+
+By default it shifts to the right, but left shifting is also possible.
+
+A single right $$shift$$ divides by 2.
+A single left $$shift$$ multiplies by 2.
+
+Also logical shifting is possible.
+
+It has 2 arguments:
+    - an $$integer!$$ to be shifted
+    - an $$integer!$$ stating how many places to shift
+    
+Note: the infix $$<<$$ $$>>$$ $$>>>$$ operators provide similar facilities.
+
+Refinements
+     /left      -   shift bits to the left instead of to the right
+     /logical   -   use logical shift (unsigned, fill with zeroes)
+.pre
+.box Right-shift a positive number
+red>> shift 64 2
+== 16
+
+red>> to-hex 64
+== #00000040
+
+red>> to-hex 16
+== #00000010
+
+.box Right-shift a negative number, preserving sign
+red>> shift -1 4
+== -1
+
+red>> to-hex -1
+== #FFFFFFFF     %%Left most bit stays 1 (= negative)%%
+
+.box Left-shift a positive number
+red>> shift/left 64 2
+== 256
+
+red>> to-hex 64
+== #00000040
+
+red>> to-hex 256
+== #00000100
+
+.box Left-shift a negative number, preserving sign
+red>> shift/left -1 4
+== -16
+
+red>> to-hex -1
+== #FFFFFFFF
+
+red>> to-hex -16
+== #FFFFFFF0
+
+.box Logical right-shift, no sign preservation
+red>> shift/logical -1 4
+== 268435455
+
+red>> to-hex -1
+== #FFFFFFFF
+
+red>> to-hex 268435455
+== #0FFFFFFF

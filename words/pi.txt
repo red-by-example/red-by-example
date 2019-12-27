@@ -1,0 +1,9 @@
+The word $$pi$$ is a mathematical constant.
+
+It can be roughly approached by dividing 22 by 7.
+.pre
+red>> ? pi
+pi is a float! of value: 3.141592653589793
+
+red>> 22.0 / 7
+== 3.142857142857143

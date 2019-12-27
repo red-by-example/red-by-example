@@ -1,0 +1,28 @@
+The word $$shift-logical$$ performs a logical right shift. 
+The sign is not preserved.
+
+It has 2 arguments:
+    - an $$integer!$$ value to be shifted
+    - an $$integer!$$ stating how many bitss to shift
+
+Note that the infix $$<<$$  $$>>$$  $$>>>$$ operators provide similar facilities.
+.pre
+.box Shift (right) by 2 bits
+red>> to-hex 64
+== #00000040      %%Last byte = binary 0100 0000%%
+
+red>> shift-logical 64 2
+== 16
+
+red>> to-hex shift-logical 64 2
+== #00000010      %%Last byte = binary 0001 0000%%
+
+.box Shift (right) by 1 bit - note zero entering at the left
+red>> to-hex -1
+== #FFFFFFFF      %%First byte = binary 1111 1111%%
+
+red>> shift-logical -1 1
+== 2147483647
+
+red>> to-hex shift-logical -1 1
+== #7FFFFFFF      %%First byte = binary 0111 1111%%

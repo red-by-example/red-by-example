@@ -1,0 +1,36 @@
+Removes one or more values from a $$series!$$.  
+A block is evaluated for each element, and the element is removed
+if the block is $$true$$.  The original series is modified.
+
+Arguments
+
+word - a $$word!$$ or $$block!$$ of words to set.  
+       These are used in the evaluation.  They are not local.
+
+data - a $$series!$$, which includes $$string!$$
+
+body - a $$block!$$ to be evaluated.
+
+.pre
+;remove-each, with only one 'word' argument
+;make a series s to work with
+red>> s: [3 6 "text" 12 15 "end"]
+
+;remove each string element
+red>> remove-each this-item s [string? this-item]
+;note the modified series
+red>> s
+== [3 6 12 15]
+
+;remove each item > 6
+red>> remove-each this-item s [this-item > 6]
+;note modified series
+red>> s
+== [3 6]
+
+;a string of characters - remove all spaces
+red>> text: "a few words with spaces"
+red>> remove-each ch text [ch = #" "]
+;check the result
+red>> text
+== "afewwordswithspaces"

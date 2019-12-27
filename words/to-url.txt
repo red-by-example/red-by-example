@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     TO-URL value
+
+DESCRIPTION: 
+     Convert to url! value. 
+     TO-URL is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to url!
+See $$url!$$
+.box to-url
+>> to-url [aa bb cc]
+== aa://bb/cc

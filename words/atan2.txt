@@ -1,0 +1,9 @@
+The word $$atan2$$ ($$arctangent$$) has 2 arguments x and y.
+It returns the angle of the point y/x in radians, when measured counterclockwise
+from a circle's x axis (where 0, 0  represents the center of the circle).
+
+The return value is between -$$pi$$ and +$$pi$$.
+.pre
+red>> atan2 1 1
+== 0.7853981633974483
+%%45 degrees%%

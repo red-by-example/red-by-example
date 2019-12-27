@@ -1,0 +1,18 @@
+Waits for a duration in seconds. or specified $$time!$$. It can also wait for ports.  
+
+Arguments
+
+The single argument can be a $$number!$$, $$block!$$, $$time!$$, $$none!$$.
+
+Refinements
+
+     /all - Returns all events in a block.
+
+.pre
+.box simple wait for 20 seconds
+red>> now/time
+== 13:34:56
+red>> wait 20  ;wait happens here
+== none
+red>> now/time
+== 13:35:21

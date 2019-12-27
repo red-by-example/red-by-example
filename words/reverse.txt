@@ -1,0 +1,83 @@
+The word $$reverse$$ reverses the order of elements in its argument.  
+The argument will be changed.  Returns at the same position in the argument.
+
+The argument can be a:  
+    $$series!$$  
+    $$pair!$$  
+    $$tuple!$$
+
+Refinements
+     /part  -   limits to a given length or position ($$number!$$  $$series!$$)
+     
+Note:
+    - for $$series!$$ $$reverse$$ is destructive
+    - but not for $$tuple!$$ and $$pair!$$
+.pre
+.box Reverse a $$block!$$ $$series!$$
+red>> b: [1 2 3 4]
+== [1 2 3 4]
+
+red>> reverse b
+== [4 3 2 1]
+
+red>> b
+== [4 3 2 1]
+
+red>> s: "ABCD"
+== "ABCD"
+
+red>> reverse s
+== "DCBA"
+
+red>> s
+== "DCBA"
+
+.box Reverse a section of a $$string!$$ $$series!$$
+red>> words: "The black cat"
+== "The black cat"
+
+red>> reverse find words "cat"
+== "tac"
+
+red>> words
+== "The black tac"
+
+.box Use refinement /part - reverse first 3
+red>> s: "abcdefg"
+== "abcdefg"
+
+red>> reverse/part s 3
+== "cbadefg"
+
+red>> s
+== "cbadefg"
+
+.box Reverse all values before value 50
+red>> b: [10 20 30 40 50 60 70]
+== [10 20 30 40 50 60 70]
+
+red>> reverse/part b find b 50
+== [40 30 20 10 50 60 70]
+
+red>> b
+== [40 30 20 10 50 60 70]
+
+.box Reverse a tuple - note unchanged value of t afterwards!
+red>> t: 11.22.33.44.55
+== 11.22.33.44.55
+
+red>> reverse t
+== 55.44.33.22.11
+
+red>> t
+== 11.22.33.44.55
+
+.box Reverse a pair - note unchanged value of p afterwards!
+red>> p: 100x200
+== 100x200
+
+red>> reverse p
+== 200x100
+
+red>> p
+== 100x200

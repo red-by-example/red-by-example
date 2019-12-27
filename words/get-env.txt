@@ -1,0 +1,12 @@
+word $$get-env$$ returns the value of an OS environment variable of the
+current process, as a $$string1$$.  
+
+To get all environment variables/values, use $$list-env$$.
+
+Arguments
+    The single argument can be any string or any word.
+    NOTE: the case of the argument is not relevant!
+.pre
+.box  Get the value of the "USERPROFILE" environment variable
+red>> get-env "USERPROFILE"    %%On Windows here%% 
+== "C:\Users\Mike"

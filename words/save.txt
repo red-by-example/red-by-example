@@ -1,0 +1,62 @@
+The word $$save$$ is used to save Red code to a $$file!$$, $$url!$$, 
+$$binary!$$ or $$string!$$. 
+
+The $$load$$ word is intended for reading back items created with $$save$$.
+Note that $$write$$ is intended for storing data, not code.
+
+Red uses brackets [ ]  { }  and quotes " " etc. to enclose data items.  
+The items might or might not be code. In a sense they become code when 
+we instruct Red to interpret them. Because of this, $$save$$ can be 
+used to save data as well as code. In fact, there is no difference.
+Red has the same adagium as Lisp: %%Code = Data%%.
+
+The word $$save$$ has 2 arguments:
+    where to save   -   one of 
+                        $$file!$$ $$url!$$ $$binary!$$ $$string!$$ $$none!$$
+    value           -   the value(s) to save
+
+Refinements:
+     /header    -   provide a Red header block (or output non-code datatypes).  
+                    This requires header-data (a $$block!$$) or an $$object!$$
+     /all       -   save in serialized format. (Not available yet)
+     /length    -   save the length of the script content in the header
+     /as        -   specify the format of data; use NONE to save as plain text;
+                    format [word! none!] => E.g. json, html, jpeg, png, redbin etc.
+.pre
+.box Save 2 lines of code in a file mydata.r
+red>> code: [
+[        print "Hello"
+[        print "Goodbye"
+[    ]
+== [
+    print "Hello" 
+    print "Goodbye"
+]
+
+red>> save %mydata.r code
+
+.box Load the just saved data back
+red>> load %mydata.r
+[print "Hello" 
+    print "Goodbye"
+]
+
+.box We can use do to interpret the code in the file
+red>> do %mydata.r
+##Hello##
+##Goodbye##
+
+red>> do code
+##Hello##
+##Goodbye##
+
+.box Save some structured data
+red>> data: [ [1 10] [2 20] 30]
+== [[1 10] [2 20] 30]
+
+red>> save %mydata.r data
+
+.box Load that data back
+red>> load %mydata.r
+== [[1 10] [2 20] 30]
+

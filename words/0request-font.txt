@@ -1,0 +1,30 @@
+Causes a dialog to appear asking the user to select a font, and returns
+a $$font!$$  $$object!$$, or  $$none$$ if no selection is made.   
+It works in  a Red GUI program, and also in a non-GUI console program.
+ 
+There are no arguments
+
+Refinements
+
+     /mono - Show monospaced font only.
+
+.pre
+.box request-font examples
+;display the dialog.  The Dayton font is selected by the user here
+red>> choice: request-font
+ 
+;note the result
+red>> print choice
+name: "Dayton"
+size: 11
+style: none
+angle: 0
+color: none
+anti-alias?: false
+shadow: none
+state: none
+parent: none
+
+;and it is an object
+red>> type? choice
+== object!

@@ -1,0 +1,53 @@
+The word $$load$$ returns a value or $$block!$$ of values from a file. 
+
+Text files and certain types of binary files can be handled.
+
+Its argument specifies the $$path!$$ to the data and can be:
+    $$file!$$ $$url!$$ $$string!$$ $$binary!$$
+
+Refinements:
+    /part   -   load a part of the data, where  the part length is 
+                $$integer!$$ or $$string!$$
+    /into   -   put results into an existing $$block!$$, instead 
+                of creating a new $$block!$$.  
+                We need then to provide a $$block!$$ to be used.
+    /as     -   specify the type of the data to be loaded; 
+                we need to specify either:
+                    - none  -> load data as code
+                    - word! -> e.g. json, html, jpeg, png, etc.
+    /header -   include Red header as a loaded value
+    /all    -   does not evaluate Red header
+.pre
+%%one-number.txt has one number in it.%%
+red>> load %one-number.txt
+== 234
+
+%%This file has 3 numbers, one per line.%%
+%%For more than 1 item, a block will be created.%%
+red>> load %three-numbers.txt
+== [234 567 789]
+
+%%Store the result of load.%%
+red>> some-numbers: load %three-numbers.txt
+== [234 567 789]
+
+red>> some-numbers
+== [234 567 789]
+
+red>> genres: load %music-types.txt
+== ["Blues" "Rock" "Jazz"]
+
+%%It is easy to put program code in a file%%
+%%and load it ...%%
+red>> prog: load %code-type.txt
+== [print "Hello from  a block of code in a file!"]
+
+%%Use do to execute the result of a load.%%
+red>> do prog
+Hello from  a block of code in a file!
+
+%%face.jpg contains an image, 216 x 216 pixels.%%
+%% (the console truncates long values to ... )%%
+red>> p: load %face.jpg
+== make image! [216x216 #{
+AFB3B6AFB3B6AFB3B6AFB3B6AEB2B5AEB2B5AEB...

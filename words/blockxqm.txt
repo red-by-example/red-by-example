@@ -1,0 +1,10 @@
+The word $$block?$$ returns $$true$$ if its parameter is a 
+valid $$block!$$ or $$false$$ otherwise.
+
+Has 1 parameter.
+.pre
+block? "test"
+== false
+
+block? [test 1 2 3]
+== true

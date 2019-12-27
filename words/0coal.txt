@@ -1,0 +1,9 @@
+The VID dialect word $$0coal$$ is a color that can be used for GUI elements.
+
+It is a $$tuple!$$ of value 64.64.64
+.pre
+view [
+    text 100x50 coal " "
+]
+
+||vid-coal.png||

@@ -1,0 +1,15 @@
+Converts a value to a $$time!$$.
+
+Arguments
+
+A single value.
+
+.pre
+>> to-time [11 22 33]
+== 11:22:33
+>> to-time [11 22 61]
+== 11:23:01
+>> to-time "12:24"
+== 12:24:00
+>> t1 + t2
+== 27:06:01

@@ -1,0 +1,34 @@
+The word $$word?$$ returns $$true$$ if its argument is a $$word!$$ type, 
+otherwise $$false$$.
+
+Its single argument can be of any type.
+.pre
+.box Try word? with various types
+red>> word? "abc"
+== false
+
+red>> word? 123
+== false
+
+red>> word? abc
+*** Script Error: abc has no value
+*** Where: word?
+
+'a word
+red>> word? 'abc
+== true
+
+red>> word? first [abc]
+== true
+
+red>> x: 3
+== 3
+
+red>> word? x
+== false
+
+red>> word? :x
+== false
+
+red>> word? first [x]
+== true

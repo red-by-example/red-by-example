@@ -1,0 +1,19 @@
+Converts a value to an $$email!$$ type.
+
+Arguments
+
+It takes a single value.
+
+.pre
+.box Do some conversions to email!
+
+; String
+>> to-email "a@b.c"
+== a@b.c
+
+; Block
+>> to-email [a @b.c]
+== a@b.c
+; and confirm the type
+>> type? to-email [a @b.c]
+== email!

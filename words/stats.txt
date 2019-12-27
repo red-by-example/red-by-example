@@ -1,0 +1,14 @@
+The word $$stats$$ returns interpreter statistics, including 
+memory management data.  
+
+Refinements
+     /show  -   not yet implemented
+     /info  -   more detailed data
+.pre
+.box Basic stats
+red>> stats
+== 86605824
+
+.box More detailed stats (Can be a large $$block!$$, hence the ...)
+red>> print mold stats/info
+== [[[9999 1 10000] [9999 1 10000] [9999 1 10000] [9999 1 10000] [...

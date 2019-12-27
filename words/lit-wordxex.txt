@@ -1,0 +1,14 @@
+The $$datatype!$$ $$lit-word!$$ is needed to get the literal value (the name) 
+of a word. 
+
+To get the lit-word of variable w, we use 'w.
+.pre
+.box Use a lit-word type
+red>> a-word: 123
+== 123
+
+red>> a-word
+== 123
+
+red>> 'a-word
+== a-word

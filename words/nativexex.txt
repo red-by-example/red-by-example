@@ -1,0 +1,5 @@
+Represents external functions that are written in Red/System code, not in Red.
+
+Type:
+    ? native!
+to get a list of them.

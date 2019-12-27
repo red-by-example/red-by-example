@@ -1,0 +1,13 @@
+The word $$datatype?$$ returns $$true$$ if its argument is a 
+$$datatype!$$ (e.g. $$integer!$$, $$char!$$ etc). 
+.pre
+Examples
+
+red>> datatype? 123
+== false
+
+red>> datatype? integer!
+== true
+
+red>> datatype? block!
+== true 

@@ -1,0 +1,16 @@
+The word $$vector?$$ returns $$true$$ if its argument is a $$vector!$$, otherwise $$false$$.
+
+Its single argument can be of any type.
+.pre
+.box Create a $$vector!$$ and a $$block!$$, then explore $$vector?$$
+red>> v-ages: make vector! [80 18 65]
+== make vector! [80 18 65]
+
+red>> vector? v-ages
+== true
+
+red>> a-block: [ 80 18 85]
+== [80 18 85]
+
+red>> vector? a-block
+== false

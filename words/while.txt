@@ -1,0 +1,38 @@
+The word $$while$$ has two arguments:
+ - a condition $$block!$$
+ - a body $$block!$$
+
+As long as the condition $$block!$$ returns $$true$$, the body $$block!$$
+will be evaluated.
+
+NOTE that in Red, a $$block!$$ can contain several evaluations; only the value
+     resulting from the final evaluation influences the $$while$$ condition.
+
+The word $$break$$ can be used to break out of the body $$block!$$.
+
+In the case where several conditions control the loop continuation, you might
+require short-circuit evaluation of the condition using $$all$$.
+
+When working with $$series!$$, you should investigate existing functions like
+$$first$$, rather than writing complex loops.
+.pre
+count: 1
+while [count <= 5] [
+   print count
+   count: count + 1
+]
+print "Done"
+print count
+##1##
+##2##
+##3##
+##4##
+##5##
+##Done##
+== 6
+
+while [all [ n < 10 still-ok] ] [
+         body       %%which might alter n and/or still-ok%%
+]
+%%Either condition going false will terminate the loop.%%
+%%The extra [ ] are because the condition must be inside a block.%%

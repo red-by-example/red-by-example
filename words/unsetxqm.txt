@@ -1,0 +1,17 @@
+Returns $$true$$ if its argument is of the $$unset!$$ type, otherwise $$false$$.  
+The $$value?$$ word is also useful in this area.
+
+Its single argument can be of any type.
+
+.pre
+.box unset? and value?
+; print does not return  a value
+red>> unset? print 22
+22
+== true
+
+; value? does not work with unset!
+red>> value? print 22
+22
+*** Script Error: value? does not allow unset! for its value argument
+*** Where: value?

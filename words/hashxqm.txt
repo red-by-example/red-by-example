@@ -1,0 +1,18 @@
+Returns $$true$$ if its argument is a $$hash!$$ type, otherwise $$false$$.
+
+Arguments
+
+One argument, of any type.
+
+.pre
+.box hash? with a hash! and a block!
+red>>  list: make hash! [a 123 "hello" b c 789]
+;yes,  a hash!
+red>> hash? list
+== true
+
+;b is a block
+red>> b: [1 2 3 4]
+== [1 2 3 4]
+red>> hash? b
+== false

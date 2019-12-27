@@ -1,0 +1,26 @@
+A field provides single-line data entry.   We can provide an initial text 
+value, and provide a different pixel width if the default width is 
+unsuitable. 
+
+The default event is $$0on-enter$$.
+
+We access the data entered with /text.
+
+VID Examples:
+
+    f1: field                         ;-- default size, empty
+    f2: field  "a field"              ;-- default size, shows "a field"
+    f3: field "Enter name here" 200   ;-- wider 
+    
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-text-faces-red.html">
+http://www.red-by-example.org/vid-text-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_field"> 
+https://doc.red-lang.org/en/view.html#_field</a>
+

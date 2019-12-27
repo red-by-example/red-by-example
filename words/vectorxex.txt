@@ -1,0 +1,51 @@
+The $$datatype!$$ $$vector!$$ represents a $$series!$$ type.
+
+A $$vector!$$ is a high-performance $$series!$$ of items.  
+The items in a $$vector!$$ must all have the same type (unlike a $$block!$$).
+
+The allowable item types are:
+    $$integer!$$ $$float!$$ $$char!$$ $$percent!$$
+Vectors of $$string!$$ are not allowed.
+
+To create a vector, we use $$make$$, as in:
+    v-ages: make vector! [80 18 65]
+
+At least one value must be given, to allow to determine the type.
+.pre
+.box First create a $$vector!$$ of $$integer!$$
+red>> v-ages: make vector! [80 18 65]
+== make vector! [80 18 65]
+
+red>> print v-ages
+##80 18 65##
+
+red>> print mold v-ages
+##make vector! [80 18 65]##
+
+.box Add a new item to that $$vector!$$
+red>> append v-ages 99
+== make vector! [80 18 65 99]
+
+red>> print v-ages
+##80 18 65 99##
+
+.box Obtain the length of it
+red>> print length? v-ages
+##4##
+
+.box Extract an item using path notation
+red>> print v-ages/2 
+##18##
+
+.box Return sub $$series!$$ starting with found item
+red>> find v-ages 18
+== make vector! [18 65 99]
+
+.box Loop through a $$vector!$$
+red>> grades: make vector![ #"A" #"B" #"F"]
+== make vector! [#"A" #"B" #"F"]
+
+red>> foreach grade grades [print grade]
+##A##
+##B##
+##F##

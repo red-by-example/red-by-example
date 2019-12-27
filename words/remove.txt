@@ -1,0 +1,76 @@
+The word $$remove$$ removes the first value(s) from a $$series!$$
+and returns the modified $$series!$$ from the removal point onwards.
+
+The single argument can be of type:  
+    $$series!$$  
+    $$bitset!$$ 
+    $$none!$$
+
+Refinements
+    /part   -   removes a number of values, or values up to the 
+                given index.
+                This refinement requires one of:
+                    $$number!$$  
+                    $$char!$$  
+                    $$series!$$
+
+Note that for a $$bitset!$$ argument, the /part refinement is required.
+
+Note that $$remove$$ is destructive. It changes the $$series!$$ involved!!
+.pre
+.box Setup 2 variables to be used in the examples
+red>> data: [22 11 44 66 10]
+== [22 11 44 66 10]
+
+red>> s: "abcdefg"
+== "abcdefg"
+
+.box Remove first item of a $$series!$$
+red>> remove data
+== [11 44 66 10]
+
+red>> data
+== [11 44 66 10]
+
+.box Remove first item of a $$string!$$ 
+red>> remove s
+== "bcdefg"
+
+red>> s
+== "bcdefg"
+
+.box Remove the first 2 items using /part
+red>> remove/part data 2
+== [66 10]
+
+red>> data
+== [66 10]
+
+red>> remove/part s 2
+== "defg"
+
+red>> s
+== "defg"
+
+.box Bitset (E.g. hex code for "A" is 65, so the 65th bit is set)
+red>> b: make bitset![#"A" #"N"]
+make bitset! #{00000000000000004002}
+
+red>> remove/part b #"N"
+make bitset! #{00000000000000004000}
+
+.box Use /part with a $$series!$$ index
+red>> nums: [1 2 3 4 5 6 7 8]
+== [1 2 3 4 5 6 7 8]
+
+red>> ref: skip nums 4
+== [5 6 7 8]
+
+red>> remove/part nums ref
+== [5 6 7 8]
+
+red>> nums
+== [5 6 7 8]
+
+red>> ref
+== []

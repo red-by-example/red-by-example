@@ -1,0 +1,18 @@
+The word $$tuple?$$ returns $$true$$ if its argument is a $$tuple!$$, 
+otherwise $$false$$.
+
+Its argument can be of any type.
+.pre
+.box Test a valid $$tuple!$$
+red>> t: 22.44.33
+22.44.33
+
+red>> tuple? t
+true
+
+.box Test an integer
+red>> n: 123
+123
+
+red>> tuple? n
+false

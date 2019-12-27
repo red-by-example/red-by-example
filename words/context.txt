@@ -1,0 +1,50 @@
+The word $$context$$ is a shorter form of $$make$$ $$object!$$.
+
+Using $$context$$ it is very easy to "hide" variables and functions from 
+the global naming scope.
+.pre
+.box Show that both forms are equal
+red>> x: context [a: 1 b: 2]
+== make object! [
+    a: 1
+    b: 2
+]
+
+red>> y: make object! [a: 1 b: 2]
+== make object! [
+    a: 1
+    b: 2
+]
+
+red>> x = y
+== true
+
+.box Reference fields in a $$context$$
+red>> x/a
+== 1
+
+red>> x/b
+== 2
+
+red>> y/a
+== 1
+
+red>> y/b
+== 2
+
+.box Use a function in a context
+red>> p: context [x: 5 y: 6 f: function [] [x + y]]
+== make object! [
+    x: 5
+    y: 6
+    f: func [][x + y]
+]
+
+red>> p/f        %%Uses the x and y in the scope of the context%%
+== 11            
+
+red>> p/x: 20    %%Update a field%%
+== 20
+
+red>> p/f
+== 26

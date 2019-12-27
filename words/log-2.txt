@@ -1,0 +1,9 @@
+The word $$log-2$$ returns the logarithm (base 2) of its argument.
+
+The argument can be a $$number!$$ (a $$float!$$ or an $$integer!$$)
+.pre
+red>> log-2 2.1
+== 1.070389327891398
+
+red>> log-2 32
+== 5.0

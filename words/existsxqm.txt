@@ -1,0 +1,8 @@
+The word $$exists?$$ returns $$true$$ if its argument is an existing $$path!$$
+or $$false$$ otherwise.
+.pre
+red>> exists? %/e/drunk
+== false
+
+red>> exists? %/e/src
+== true

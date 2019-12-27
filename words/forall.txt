@@ -1,0 +1,26 @@
+The word $$forall$$ evaluates its body, moving through the 
+provided $$series!$$ one position at a time.  
+
+Note that it does not use a single value from the $$series!$$ for each 
+repetition, as $$foreach$$ does. Instead, it increments the index position 
+of the $$series!$$.
+.pre
+numbers: [1 2 -4 8 -16]
+
+forall numbers [
+  print numbers
+]
+##1 2 -4 8 -16##
+##2 -4 8 -16##
+##-4 8 -16##
+##8 -16##
+##-16##
+
+forall numbers [
+  if (first numbers) >= 0 [
+    print first numbers
+  ]
+]
+##1##
+##2##
+##8##

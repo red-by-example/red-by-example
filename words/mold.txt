@@ -1,0 +1,40 @@
+The word $$mold$$ returns a Red-readable $$string!$$ representing a value.
+
+This means that, for example, values can be stored in files and re-input to
+a program when $$mold$$ed.
+
+Type information is included in the $$string!$$for example:
+     [ ] around a block,
+     #"" around a character
+     and { } around multi-line strings
+
+A single argument of any type is required
+
+Refinements
+    /only - Exclude outer brackets if value is a $$block!$$
+    /all  - Return value in loadable format
+    /flat - Exclude all indentation
+    /part - Limit the length of the result, where limit is an $$integer!$$
+.pre
+red>> print mold 12.34
+##12.34##
+
+red>> print mold "a string"
+##"a string"##
+
+red>> mold #"A"
+#"A"
+
+red>> print mold { The Great
+         Wall Of
+    China}
+##" The Great^/     Wall Of^/China"##
+
+red>> print mold [1 2 3]
+##[1 2 3]##
+
+red>> print mold/only [1 2 3]
+##1 2 3##
+
+red>> print mold/part [1 2 3 4 5] 3
+##[1##

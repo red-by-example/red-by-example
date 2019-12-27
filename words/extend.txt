@@ -1,0 +1,50 @@
+The word $$extend$$ extends an $$object!$$ or $$map!$$ value 
+with a list of key and value pairs. The first argument is modified.
+
+The first argument must be $$object!$$ or $$map!$$.
+The second argument must be $$block!$$, $$hash!$$ or $$map!$$
+
+Refinements:
+    /case - use case-sensitive comparison
+.pre
+red>> users: make map! ["John23" "safe3" "DingSnooker" "mypasswd"]
+== #(
+    "John23" "safe3"
+    "DingSnooker" "mypasswd"
+)
+%%Create a map of 2 users and their passwords.%%
+
+red>> more-users: make map! ["Jane" "pass123" "Sue" "secret"]
+== #(
+    "Jane" "pass123"
+    "Sue" "secret"
+)
+%%Create another map!%%
+
+red>> extend users more-users
+== #(
+    "John23" "safe3"
+    "DingSnooker" "mypasswd"
+    "Jane"...    ;truncated output at the console
+%%Extend the first map! with the second.%%
+
+red>> print users
+##"John23" "safe3"##
+##"DingSnooker" "mypasswd"##
+##"Jane" "pass123"##
+##"Sue" "secret"##
+%%Show all the users in the first map!%%
+
+red>> extend users make map! ["JOHN23" "newPassword"]
+== #(
+    "John23" "newPassword"
+    "DingSnooker" "mypasswd"
+    ...
+%%Modify an existing map!%%
+
+red>> print users
+##"John23" "newPassword"##
+##"DingSnooker" "mypasswd"##
+##"Jane" "pass123"##
+##"Sue" "secret"##
+%%Note: new password for John23 (case-insensitive)%%

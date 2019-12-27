@@ -1,0 +1,15 @@
+The word $$continue$$ transfers control back to the begin of a loop.
+.pre
+repeat n 5 [
+  print ["Before" n]
+  if n < 3 [continue]
+  print ["After" n]
+]
+##Before 1##
+##Before 2##
+##Before 3##
+##After 3##
+##Before 4##
+##After 4##
+##Before 5##
+##After 5##

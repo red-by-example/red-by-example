@@ -1,0 +1,13 @@
+The word $$off$$ has the logical value "false" 
+and its $$datatype!$$ is $$logic!$$
+
+Logical values are produced from various comparisons.
+
+The $$logic!$$ type also provides:  
+    $$false$$, $$no$$, $$on$$, $$true$$, $$yes$$
+.pre
+red>> ? off
+off is a logic! of value: false
+
+red>> either off [print "t is true"] [print "t is NOT true"]
+##t is NOT true##

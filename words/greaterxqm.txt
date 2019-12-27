@@ -1,0 +1,4 @@
+The word $$greater?$$ is the functional form of the $$>$$ infix word.
+.pre
+red>> greater? 44 33
+== true

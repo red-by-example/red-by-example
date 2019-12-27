@@ -1,0 +1,53 @@
+The infix word $$*$$ multiplies its two operands.
+It is the equivalent of the $$multiply$$ function.
+
+It operates on these types:
+   $$number!$$ $$char!$$ $$pair!$$ $$tuple!$$ $$vector!$$
+
+In Red, infix operators are evaluated from left to right, with no precedence.
+You may use parentheses ( ) to change the order of evaluation.
+
+The word $$*$$ is a Red word and thus needs to be separated by whitespace.
+
+In general, the type of the result is the same type as the first operand,
+where this is sensible. Errors will result when the types are incompatible.
+
+Note the result when vectors of different lengths are multiplied.
+
+When we multiply two $$vector!$$s, the result is a freshly allocated $$vector!$$.
+
+When we multiply a $$vector!$$ with a $$number!$$, the original $$vector!$$ 
+will be modified.
+.pre
+red>> 2 * 3.7
+== 7.4
+
+red>> 3 * 1.4.8
+== 1.12.8
+
+red>> 4 * 10x20
+== 40x80
+
+red>> v1: make vector![2 3 4 5]
+== make vector! [2 3 4 5]
+
+red>> v2: make vector! [22 55]
+== make vector! [22 55]
+
+red>> v1 * v2
+== make vector! [44 165]
+
+red>> v1
+== make vector! [2 3 4 5]
+%%v1 unchanged%%
+
+red>> v1 * 9
+== make vector! [18 27 36 45]
+
+red>> v1
+== make vector! [18 27 36 45]
+%%v1 changed%%
+
+red>> 3 * v1
+*** Script error: vector type is not allowed here
+*** Where: *

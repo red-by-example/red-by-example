@@ -1,0 +1,16 @@
+The VID dialect word $$return$$ is used to position the next GUI
+elements from the left side of the window.
+.pre
+Red [
+    needs: 'view
+]
+
+view [
+    across
+    text "Line 1"
+    text "Line 2"
+    return
+    text "Line 3"
+]
+
+||vid-return.png||

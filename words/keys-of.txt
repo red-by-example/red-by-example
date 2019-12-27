@@ -1,0 +1,28 @@
+Theword $$keys-of$$ returns the list of words of a value that supports reflection. 
+
+Arguments
+    One argument, which should support reflection, e.g. $$map!$$, $$object!$$.
+.pre
+.box Extract the keys of an object
+red>> a-point: make object! [
+[       xval: 10
+[       yval: 20
+[    ]
+== make object! [
+    xval: 10
+    yval: 20
+]
+
+red>> keys-of a-point
+== [xval yval]
+
+.box Extract the keys of a map
+red>> a-map: make map![height 6.1 weight 250 age 45]
+== #(
+    height: 6.1
+    weight: 250
+    age: 45
+)
+
+red>> keys-of a-map
+== [height weight age]

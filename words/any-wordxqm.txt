@@ -1,0 +1,26 @@
+The word $$any-word?$$ returns $$true$$ if its argument can be $$any-word!$$.
+
+It has no refinements.
+.pre
+red>> any-word? 123
+== false
+%%123 is a number, not a symbol%%
+
+red>> any-word? find
+*** Script error: find is missing its series argument
+*** Where: find
+%%Red tries to invoke the function find but fails on missing arguments%%
+
+red>> any-word? 'find
+== true
+%%Red takes quoted symbols literally%%
+
+red>> any-word? :find
+== false
+%%A function definition is not a word%%
+
+red>> a: 'find
+== find
+
+red>> any-word? a
+== true

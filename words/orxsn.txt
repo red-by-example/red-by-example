@@ -1,0 +1,42 @@
+The $$or~$$ word performs a logical "or" of its 2 arguments.
+The values are restricted to these types:
+    $$logic!$$ $$integer!$$ $$char!$$ $$bitset!$$ $$typeset!$$ $$pair!$$ $$tuple!$$ $$vector!$$
+
+It is the functional version of the infix word $$or$$.
+
+In the case of $$or~$$ing two $$integer!$$s (or types closely related to integers,
+such as $$char!$$, $$pair!$$), a bitwise (bit-by-bit) process is performed.
+
+In general, types can be mixed, but $$logic!$$ types cannot be mixed with other types.
+
+The type of the result is the same type as the first value for a bitwise $$or~$$.
+For a logic $$or~$$, $$true$$ or $$false$$ are returned.
+.pre
+red>> or~ (3 > 2) false
+== true
+
+red>> or~ 8 16
+== 24
+
+red>> or~ 16 false
+*** Script error: logic type is not allowed here
+*** Where: or~
+
+red>> my-pair: 3x4
+== 3x4
+
+red>> or~ my-pair 1
+== 3x5
+
+red>> or~ 1 my-pair
+*** Script error: or~ does not allow pair for its value2 argument
+*** Where: or~
+
+red>> v1: make vector![ 1 2 3]
+== make vector! [1 2 3]
+
+red>> v2: make vector![1 1 1]
+== make vector! [1 1 1]
+
+red>> or~ v1 v2
+== make vector! [1 3 3]

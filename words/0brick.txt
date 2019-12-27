@@ -1,0 +1,9 @@
+The VID dialect word $$0brick$$ is a color that can be used for GUI elements.
+
+It is a $$tuple!$$ of value 178.34.34
+.pre
+view [
+    text 100x50 brick " "
+]
+
+||vid-brick.png||

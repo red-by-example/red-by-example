@@ -1,0 +1,2 @@
+See the official View documents:
+<a href="https://doc.red-lang.org/en/view.html">https://doc.red-lang.org/en/view.html</a>

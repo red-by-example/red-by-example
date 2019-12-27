@@ -1,0 +1,11 @@
+Returns the size of a file content. 
+
+Arguments
+A $$file!$$
+
+Examples
+.box  www.red exists, bad.red does not
+>> size? %www.red
+== 31
+>> size? %bad.red
+== none

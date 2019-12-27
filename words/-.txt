@@ -1,0 +1,63 @@
+The infix word $$-$$ subtracts its second operand from its first operand.
+It is the equivalent of the $$subtract$$ function.
+
+It operates on these types:
+   $$number!$$ $$char!$$ $$pair!$$ $$tuple!$$ $$vector!$$ $$time!$$ $$date!$$
+
+In Red, infix operators are evaluated from left to right, with no precedence.
+You may use parentheses ( ) to change the order of evaluation.
+
+The operator $$-$$ is a Red word and thus needs to be separated by whitespace.
+
+In general, the type of the result is the same type as the first operand,
+where this is sensible. Errors will result when the types are incompatible.
+
+Note the result when vectors of different lengths are subtracted.
+
+When we subtract 2 vectors, the result is a freshly allocated vector.
+When we subtract a number from a vector, the original vector will be modified.
+.pre
+.box Subtract $$float!$$ from $$integer!$$
+
+red>> 3 - 1.4
+1.6
+
+.box Subtract $$pair!$$ from $$integer!$$ not possible
+
+red>> 3 - 100x100
+*** Script error: - does not allow pair for its value2 argument
+*** Where: -
+
+.box Subtract $$integer!$$ from $$pair!$$ is possible
+
+red>> 100x200 - 3
+== 97x197
+
+.box Subtract $$vector!$$s
+
+red>> v1: make vector! [3 2 1 4]
+== make vector! [3 2 1 4]
+
+red>> v2: make vector! [100 200]
+== make vector! [100 200]
+
+red>> v1 - v2
+== make vector! [-97 -198]
+
+red>> v2 - v1
+== make vector! [97 198]
+
+red>> v2
+== make vector! [100 200]
+%%v2 is unchanged%%
+
+red>> v1 - 22
+== make vector! [-19 -20 -21 -18]
+
+red>> v1
+== make vector! [-19 -20 -21 -18]
+%%v1 is altered!%%
+
+red>> 22 - v1
+*** Script error: vector type is not allowed here
+*** Where: -

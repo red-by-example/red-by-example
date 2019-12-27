@@ -1,0 +1,105 @@
+The word $$do$$ evaluates the code in its argument.
+
+Single argument:
+    1.  can be a script to execute;
+        in that case the /args refinement can be used to specify arguments 
+        for that script (a $$string!$$ or a $$block!$$)
+    2.  can be a $$string!$$ or a $$block!$$ containing Red code to be
+        evaluated
+        
+Refinements:
+    /args   -   arguments for script to be invoked 
+.pre
+.box Evaluate a script
+
+%%Given a separate script %tst.red:%%
+
+%%Red []%%
+%%print "Hi there from %tst.red!"%%
+%%args: system/script/args%%
+%%print ["My arguments are:" system/script/args]%%
+%%if not none? system/script/args [%%
+%%    foreach arg system/script/args [%%
+%%        print ["Arg:" arg]%%
+%%    ]%%
+%%]%%
+
+%%You can evaluate the script without arguments like so:%%
+red>> do %tst.red
+##Hi there from %tst.red!##
+##My arguments are: none##
+== none
+
+%%You can evaluate the script with $$string!$$ argument like so:%%
+red>> do/args %tst.red "my args"
+##Hi there from %tst.red!##
+##My arguments are: my args##
+##Arg: m##
+##Arg: y##
+##Arg:  ##
+##Arg: a##
+##Arg: r##
+##Arg: g##
+##Arg: s##
+
+%%If you need multiple arguments, use a $$block!$$%%
+red>> do/args %tst.red ["my" "individual" "args"]
+##Hi there from %tst.red!##
+##My arguments are: my individual args##
+##Arg: my##
+##Arg: individual##
+##Arg: args##
+
+.box Evaluate a block
+
+red>> blk: [x: 10 y: 20 z: x + y print z]
+== [x: 10 y: 20 z: x + y print z]
+red>> do blk
+30
+red>> x
+== 10
+red>> y
+== 20
+red>> z
+== 30
+
+.box Evaluate a string
+
+%%Here we show how to do complex things using do%%
+
+%%Use variables to contain the name and value for a variable%%
+%%to be embedded in the object%%
+red>> var: "vname"
+== "vname"
+red>> val: 11
+== 11
+
+%%Prepare the string with the code%%
+red>> str: copy {obj: make object! [}
+== "obj: make object! ["
+red>> append str var
+== "obj: make object! [vname"
+red>> append str copy {: }
+== "obj: make object! [vname: "
+red>> append str val
+== "obj: make object! [vname: 11"
+red>> append str copy {]}
+== "obj: make object! [vname: 11]"
+
+%%String is now complete%%
+red>> str
+== "obj: make object! [vname: 11]"
+
+%%Evaluate the string%%
+red>> do str
+== make object! [
+    vname: 11
+]
+
+%%Show that the object now exists:%%
+red>> obj
+== make object! [
+    vname: 11
+]
+red>> obj/vname
+== 11

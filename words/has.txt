@@ -1,0 +1,11 @@
+The word $$has$$ is a way to define a function that does have local variables 
+but has no arguments.  
+
+It is followed by a $$block!$$ of local variable names, and a $$block!$$ of code. 
+.pre
+calc-hours: has  [number] [
+  number:  365 * 24        %%number is local%%
+  print number
+]
+calc-hours
+##8760##

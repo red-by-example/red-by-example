@@ -1,0 +1,24 @@
+docstart
+USAGE:
+     FETCH-HELP 'word
+
+DESCRIPTION: 
+     Returns information about functions, values, objects, and datatypes. 
+     FETCH-HELP is a function! value.
+
+ARGUMENTS:
+     'word        [any-type!] 
+.docend
+
+Fetch-help is similar to $$help$$ (or ?), but it allows the capturing of the information.  
+A string is returned.
+
+If the word is not found, a "No matching..." string is returned.
+
+.pre
+;-- Example:  ask the user for a word, display its information
+;-- note the   to word!   use.
+
+the-word: ask "Type the word: "
+word-info: fetch-help (to word! the-word )
+print word-info

@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     TO-TYPESET value
+
+DESCRIPTION: 
+     Convert to typeset! value. 
+     TO-TYPESET is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to typeset!
+See $$typeset!$$
+.box to-typeset
+>> num-type!: to-typeset [integer! percent! float!]
+== make typeset! [integer! float! percent!]
+>> type? num-type!
+== typeset!

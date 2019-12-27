@@ -1,0 +1,14 @@
+Throws control to a $$catch$$. Note that $$catch$$ and throw are mainly 
+intended for creating new control structures, and are not the main 
+exception-handling functions.  For this, look at $$attempt$$, $$try$$, 
+$$cause-error$$ $$error?$$, and $$error!$$.
+
+For $$throw$$ examples, look at the entry for $$catch$$.
+  
+Arguments
+
+The single argument value, can be any type, and will be the value returned 
+from the matching $$catch$$.
+
+Refinements
+     /name - Throws to a named catch.  We supply a $$word$$.

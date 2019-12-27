@@ -1,0 +1,4 @@
+A word! type is a symbolic value that can be used like a variable, an 
+identifier that refers to a value in a given context.
+
+See $$word?$$"

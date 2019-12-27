@@ -1,0 +1,17 @@
+Returns true if its argument is a $$paren!$$ type, otherwise false.
+
+The single argument can be of any type.
+
+.pre
+.box Exercise paren?
+; The paren! is evaluated first.  Paren? 3 is false
+red>> paren? (1 + 2)
+== false
+
+; the paren! is evaluated first
+red>> paren? [(1 + 2)]
+== false
+
+;'first fetches a paren!
+red>> paren? first [(1 + 2)]
+== true

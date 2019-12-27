@@ -1,0 +1,23 @@
+The $$datatype!$$ $$float!$$ represents a $$number!$$ type containing 
+IEEE-754 64-bit floating point numbers.
+
+In literals the e-notation can be used.
+
+Floats that cannot be represented are NaN (Not a Number).
+.pre
+.box Some examples
+red>> 3e2
+== 300.0
+
+red>> 3.5 / 2.1
+== 1.666666666666667
+
+red>> 4 / 2.0
+== 2.0
+
+red>> 3e2 + 1
+== 301.0
+
+red>> 1.0 / 0
+*** Math error: attempt to divide by zero
+*** Where: /

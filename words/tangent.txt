@@ -1,0 +1,17 @@
+The word $$tangent$$ returns the trigonometric tangent of a $$number!$$
+of degrees.
+
+It has one numeric parameter.
+
+Refinements:
+   /radians : expects the input value in radians;
+              without refinement expects the input value in degrees.
+.pre
+tangent 45
+== 1.0
+
+tangent 60 * 1.1
+== 2.246036773904216
+
+tangent/radians 1.05
+== 1.74331530998317

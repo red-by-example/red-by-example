@@ -1,0 +1,23 @@
+The word $$attempt$$ tries to evaluate a $$block!$$ 
+and returns the result or $$none$$ if an error occurs.
+
+The effect of $$attempt$$ is similar to that of error? try[block]. 
+If you need more details about specific errors, look at $$try$$, 
+$$cause-error$$ $$error?$$, and the $$error!$$ type.
+
+.pre
+red>> s: "abcd"
+== "abcd"
+red>> calc: 3 * s
+*** Script error: * does not allow string for its value2 argument
+*** Where: *
+
+red>> calc: attempt [3 * s]
+== none
+red>> calc
+== none
+
+red>> calc: attempt [3 * 2.2]
+== 6.6
+red>> calc
+== 6.6

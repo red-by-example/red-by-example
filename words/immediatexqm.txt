@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     IMMEDIATE? value
+
+DESCRIPTION: 
+     Returns true if the value is any type of immediate. 
+     IMMEDIATE? is a function! value.
+
+ARGUMENTS:
+     value        [any-type!] 
+.dce
+
+.box immediate?
+>> immediate? 234
+== true
+>> immediate? [123]
+== false
+>> immediate? "23"
+== false
+>> immediate? #"2"
+== true

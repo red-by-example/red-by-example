@@ -1,0 +1,23 @@
+docstart
+USAGE:
+     HELP-STRING 'word
+
+DESCRIPTION: 
+     Returns information about functions, values, objects, and datatypes. 
+     HELP-STRING is a function! value.
+
+ARGUMENTS:
+     'word        [any-type!] 
+.docend
+
+Returns a string containing the spec.  See also $$help$$, $$fetch-help$$.
+
+If the word is not found, a "No matching..." string is returned.
+
+.pre
+;-- Example:  ask the user for a word, display its information
+;-- note the   to word!   use.
+
+the-word: ask "Type the word: "
+word-info: help-string (to word! the-word )
+print word-info

@@ -1,0 +1,80 @@
+word $$trim$$ removes white space (tabs and spaces) from a $$string!$$ or $$none$$ 
+from a $$block!$$ or $$object!$$. The value of the argument is altered.
+ 
+The argument can be one of:  $$series!$$  $$object!$$  $$error!$$  $$map!$$
+
+Refinements
+    /head   -   Removes only from the head.
+    /tail   -   Removes only from the tail.
+    /auto   -   Auto indents lines relative to first line.
+    /lines  -   Removes all line breaks and extra spaces.
+    /all    -   Removes all whitespace (but not line breaks).
+    /with   -   Same as /all, but removes characters in a 'with' argument we supply.  
+                It must be one of: $$char!$$  $$string!$$  $$integer!$$
+.pre
+.box Basic trim.
+red>> str: "   some   text   "
+== "   some   text   "
+
+red>> trim str               %%Both head and tail are trimmed%%
+== "some   text"
+
+red>> str
+== "some   text"             %%str was altered by trim%%
+
+.box Multiple lines of text - enclosed in {  }
+red>> str: {Four lines
+{               of varying levels
+{           of
+{             indentation.}
+== {Four lines^/           of varying levels^/       of^/         indentation.}
+
+red>> trim str               %%^/ means a newline%%
+== {Four lines^/of varying levels^/of^/indentation.}
+
+.box Trim a $$block!$$ - NB $$reduce$$ evaluates every element in a block
+red>> blk: [none none 3 none]
+== [none none 3 none]
+
+red>> trim blk
+== [none none 3 none]    %%Because elements are not yet evaluated%%
+
+red>> blk
+== [none none 3 none]    %%Trim did not alter the block%%
+
+red>> trim reduce blk  
+== [3]                   %%Now trim worked succesfully!%%
+
+.box /head - trim head only
+red>> trim/head "   AAA   "
+== "AAA   "
+
+.box /tail - trim tail only
+red>> trim/tail "   AAA   "
+== "   AAA"
+
+.box /lines - NB last line has line break at end
+red>> str: {    Two lines   
+{           of    text
+{        }
+== "    Two lines   ^/       of    text^/    "
+
+red>> trim/lines str
+== "Two lines of text"       %%Multiple spaces and line breaks are gone%%
+
+.box /all  - remove all space
+red>> trim/all "  some      text    "
+== "sometext"
+
+.box /with - Note that spaces are not removed automatically
+red>> str: "some    extra-characters,, to use"
+== "some    extra-characters,, to use"
+
+red>> trim/with str ",-"
+== "some    extracharacters to use"  %%, and - removed%%
+
+red>> str: "some    extra-characters,, to use"
+== "some    extra-characters,, to use"
+
+red>> trim/with str ",- "
+== "someextracharacterstouse"        %%Now also spaces removed%%

@@ -1,0 +1,27 @@
+The word $$subtract$$ subtracts the second value from the first.
+It is equivalent of the infix operator $$-$$.
+
+It has 2 arguments, which can be of these types:
+   $$number!$$ $$char!$$ $$pair!$$ $$tuple!$$ $$vector!$$
+.pre
+red>> subtract 3.4 2
+== 1.4
+
+red>> v: make vector! [2 3 4]
+== make vector! [2 3 4]
+
+red>> v2: make vector! [10 100 200]
+== make vector! [10 100 200]
+
+red>> subtract v v2
+== make vector! [-8 -97 -196]
+
+red>> subtract 20x10 3x3
+== 17x7
+
+red>> subtract 10 3x3
+*** Script error: subtract does not allow pair for its value2 argument
+*** Where: subtract
+
+red>> subtract 3x3 10
+== -7x-7

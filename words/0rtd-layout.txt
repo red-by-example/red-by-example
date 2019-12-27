@@ -1,0 +1,20 @@
+.dcs
+USAGE:
+     RTD-LAYOUT spec
+
+DESCRIPTION: 
+     Returns a rich-text face from a RTD source code. 
+     RTD-LAYOUT is a function! value.
+
+ARGUMENTS:
+     spec         [block!] "RTD source code."
+
+REFINEMENTS:
+     /only        => Returns only [text data] facets.
+     /with        => Populate an existing face object.
+        face         [object!] "Face object to populate."
+
+RETURNS:
+     [object! block!]
+.dce
+.aad

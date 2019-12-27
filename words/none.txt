@@ -1,0 +1,53 @@
+The word $$none$$ is a special value, and its datatype is $$none!$$
+
+$$none$$ is not the same as an empty $$block!$$, empty $$string!$$, 
+zero $$number!$$ or null $$char!$$.
+
+It is an actual value that represents non-existence.
+
+$$none$$ is returned in certain circumstances from several functions,
+primarily those involving $$series!$$.
+.pre
+pick [11 22 33] 2
+== 22
+%%Elements in a block are numbered 1 thru n%%
+
+pick [11 22 33] 4
+== none
+%%Out of range results in a none value%%
+
+pick [true false true] 2
+== false
+
+pick [true false true] 4
+== none
+%%Out of range results in a none value%%
+
+a: 123
+== 123
+
+type? a
+== integer!
+
+a: none
+== none
+%%none is just a value, like 123 before%%
+
+type? a
+== none!
+
+either pick [11 22 33] 4 [print "got it"] [print "problem"]
+##problem##
+%%In a comparison none behaves the same as false%%
+
+some-function: func [arg1] [
+   %%code omitted%%
+   return none   %%no answer found%%
+]
+%%This function returns none as the return value%%
+
+answer: some-function 42
+== none
+
+print none? answer
+##true##

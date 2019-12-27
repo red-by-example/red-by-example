@@ -1,0 +1,35 @@
+The word $$as-ipv4$$ returns an IP version 4 address created from
+its 4 $$integer!$$ arguments.
+
+If an argument is not within the range 0 .. 255, Red tries to
+"guess" an appropriate value using the modulo of its (absolute) value.
+.pre
+red>> as-ipv4 1 3 12 253
+== 1.3.12.253
+
+red>> as-ipv4 1 3 12 0
+== 1.3.12.0
+
+red>> as-ipv4 1 3 12 255
+== 1.3.12.255
+
+red>> as-ipv4 1 3 12 256
+== 1.3.12.0
+
+red>> as-ipv4 1 3 12 257
+== 1.3.12.1
+
+red>> as-ipv4 1 3 12 258
+== 1.3.12.2
+
+red>> as-ipv4 0 3 12 255
+== 0.3.12.255
+
+red>> as-ipv4 -1 3 12 255
+== 255.255.255.255
+
+red>> as-ipv4 -2 3 12 255
+== 254.255.255.255
+
+red>> as-ipv4 -3 3 12 255
+== 253.255.255.255

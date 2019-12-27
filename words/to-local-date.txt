@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     TO-LOCAL-DATE date
+
+DESCRIPTION: 
+     Returns the date with local zone. 
+     TO-LOCAL-DATE is a function! value.
+
+ARGUMENTS:
+     date         [date!] 
+
+RETURNS:
+     [date!]
+.dce
+
+See $$date!$$
+.box to-local-date - note added zone time-difference
+>> to-local-date 3-June-2020
+== 3-Jun-2020/1:00:00+01:00

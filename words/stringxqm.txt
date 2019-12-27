@@ -1,0 +1,16 @@
+The word $$string?$$ returns $$true$$ if its argument is
+a $$string!$$, otherwise $$false$$.
+
+Its argument can be of any type.
+.pre
+.box Test a $$string!$$
+red>> string? "abc"
+true
+
+.box Test a $$char!$$
+red>> string? #"A"
+false
+
+.box Test a $$number!$$
+red>> string? 12.34
+false

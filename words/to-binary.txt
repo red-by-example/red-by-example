@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-BINARY value
+
+DESCRIPTION: 
+     Convert to binary! value. 
+     TO-BINARY is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to binary!
+See $$binary!$$
+.box to-binary with various types
+>> to-binary 15
+== #{0000000F}
+>> to-binary 2.3
+== #{4002666666666666}
+>> to-binary "ABCDE"
+== #{4142434445}

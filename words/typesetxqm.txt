@@ -1,0 +1,22 @@
+The word $$typeset?$$ returns $$true$$ if its argument is a $$typeset!$$, 
+otherwise $$false$$.
+
+The argument can be of any type
+.pre
+.box $$integer!$$ is a type, not a typeset!
+red>> typeset? integer!
+== false
+
+.box $$number!$$ is a $$typeset!$$
+red>> typeset? number!
+== true
+
+red>> ? number!
+number! is a typeset! of value: make typeset! [integer! float! percent!]
+
+.box Test a self made $$typeset!$$
+red>> my-type!: make typeset! [pair! tuple! integer!]
+== make typeset! [integer! pair! tuple!]
+
+red>> typeset? my-type!
+== true

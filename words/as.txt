@@ -1,0 +1,23 @@
+.dcs
+USAGE:
+     AS type spec
+
+DESCRIPTION: 
+     Coerce a series into a compatible datatype without copying it. 
+     AS is a native! value.
+
+ARGUMENTS:
+     type         [datatype! block! paren! any-path! any-string!] "The datatype
+                  or example value."
+     spec         [block! paren! any-path! any-string!] "The series to coerce."
+
+
+.dce
+.box as examples
+>> b: [1 2 3]
+== [1 2 3]
+>> p: as paren! b
+== (1 2 3)
+>> b
+== [1 2 3]     ;-- nb unchanged
+

@@ -1,0 +1,15 @@
+The word $$not-equal?$$ returns $$true$$ if two values (of any type)
+are not equal.
+
+When comparing $$string!$$s lowercase is considered equal to uppercase.
+
+There is also an infix $$<>$$ operator, doing the same.
+.pre
+red>> not-equal? 12 12.0
+== false
+
+red>> not-equal? "abc" "abc"
+== false
+
+red>> not-equal? "abC" "ABC"
+== false

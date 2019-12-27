@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     TO-SET-WORD value
+
+DESCRIPTION: 
+     Convert to set-word! value. 
+     TO-SET-WORD is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to set-word!
+See $$set-word!$$
+.box to-set-word
+>> to-set-word 'abc
+== abc:

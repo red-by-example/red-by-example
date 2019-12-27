@@ -1,0 +1,31 @@
+Causes a dialog to appear asking the user to select a file, and 
+returns the full file path as a $$file!$$ type, or block of paths.
+It returns $$none$$ if no selection is made.  'Open' is displayed 
+as the default title.  It works in  a Red GUI app, and also in a
+ non-GUI console app.
+ 
+There are no arguments
+
+Refinements
+     /title - window title.  We supply a $$string!$$
+
+     /file - Default file name or directory.  We supply a name as
+             a $$string!$$ or $$file!$$.
+
+     /filter - supply a block of filters consisting of pairs of filter
+               names, and the actual filters.
+
+     /save - File save mode.
+
+     /multi - Allows multiple file selection, returned as a block.
+
+.pre
+.box request-file examples
+;display an 'open' dialog, on Windows
+red>> choice: request-file
+;note the file! type result
+red>> choice
+== %/C/red/try-demos.red
+
+.box /filter refinement .jpg, .red
+red>> print request-file/filter ["jpegs" "*.jpg" "Red files" "*.red"]

@@ -1,0 +1,9 @@
+The VID dialect word $$0cyan$$ is a color that can be used for GUI elements.
+
+It is a $$tuple!$$ of value 0.255.255
+.pre
+view [
+    text 100x50 cyan " "
+]
+
+||vid-cyan.png||

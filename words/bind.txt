@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     BIND word context
+
+DESCRIPTION: 
+     Bind words to a context; returns rebound words. 
+     BIND is a native! value.
+
+ARGUMENTS:
+     word         [block! any-word!] 
+     context      [any-word! any-object! function!] 
+
+REFINEMENTS:
+     /copy        => Deep copy blocks before binding.
+
+RETURNS:
+     [block! any-word!]
+.dce
+.aad

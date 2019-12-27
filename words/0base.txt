@@ -1,0 +1,22 @@
+The most basic face type, but also the most versatile one. By default, it 
+will only display a background of $$color!$$ 128.128.128. (Grey).  It 
+provides transparency, and can be used for drawing.  
+
+The default event is $$0on-down$$
+
+VID Example:
+
+   base 140x140  %country.png  ;-- supply image file name
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-misc-faces-red.html">
+http://www.red-by-example.org/vid-misc-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_base"> 
+https://doc.red-lang.org/en/view.html#_base</a>
+

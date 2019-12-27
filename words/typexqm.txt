@@ -1,0 +1,19 @@
+The word $$type?$$ returns the $$datatype!$$ of a value.
+
+The argument can be of any type.
+
+Refinements
+    /word   -   returns a word value, rather than a datatype value.
+.pre
+.box Get the type of several items
+red>> type? 123
+== integer!
+
+red>> type? [1 2 3]
+== block!
+
+red>> x: 22x33
+== 22x33
+
+red>> type? x
+== pair!

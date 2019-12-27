@@ -1,0 +1,73 @@
+The word $$index?$$ returns the current index of a $$series!$$ relative to the head, 
+or of a word in a context. 
+     
+The argument can be:
+    $$series!$$ $$word!$$
+
+In Red, the name referring to a $$series!$$ need not indicate the first item. 
+It can be moved to index any part of a series.  
+It is not like an array name in traditional languages.
+
+NOTE: when you assign a variable to a series, that variable points to the same
+      series! as the one it is assigned to. This can cause big trouble!!!!
+      Normally always use $$copy$$ to avoid that.
+.pre
+%%Create a series%%
+red>> numbers: [2 4 8 3 9 27]
+== [2 4 8 3 9 27]
+
+%%Are we at the start of "numbers"? (index starts at 1, not zero)%%
+red>> index? numbers
+== 1
+
+%%Find returns the part of the series! from the found item's position%%
+%%     or none if not found%%
+red>> n: find numbers 9
+== [9 27]
+
+%%"n" is also a series!%%
+red>> n
+== [9 27]
+
+%%But "n" still refers to the series! called "numbers"%%
+red>> index? n
+== 5
+
+%%We could write this more concisely%%
+red>> index? find numbers 9
+== 5
+
+%%Show that "n" is just a "pointer" into "numbers"%%
+%%The "head"of "n" is the same as the "head" of "numbers"%%
+%%    because the underlaying series! is exactly the same!%%
+red>> n: head n
+== [2 4 8 3 9 27]
+
+%%NOTE: beware that directly assigning to a series! can wreak havoc!%%
+red>> s1: [1 2 3 4]
+== [1 2 3 4]
+red>> s2: next s1
+== [2 3 4]
+red>> append s2 5
+== [1 2 3 4 5]
+%%Append always returns the whole series! and does not consider the index%%
+red>> s2
+== [2 3 4 5]
+%%"s2" is modified%%
+red>> s1
+= [1 2 3 4 5]
+%%"s1" also modified!%%
+
+%%NOTE: avoid this "problem" by using copy%%
+red>> s1: [1 2 3 4]
+== [1 2 3 4]
+red>> s2: copy next s1
+== [2 3 4]
+red>> append s2 5
+== [2 3 4 5]
+red>> s2
+== [2 3 4 5]
+%%"s2"is modified%%
+red>> s1
+== [1 2 3 4]
+%%But "s1" is left intact!%%

@@ -1,0 +1,28 @@
+The word $$probe$$ returns its argument, after $$print$$ing it in its $$mold$$ed form.
+
+Its argument can be any type.  Blocks are not evaluated.  This is useful for debugging.
+
+Have a look at $$mold$$ for specifics on the formatting.
+.pre
+%%Behaviour of print%%
+red>> print [1 + 2 44]
+##3 44##
+
+%%Behaviour of probe and evaluation%%
+red>> probe [1 + 2 44]
+##[1 + 2 44]##
+
+%%Behaviour of mold%%
+red>> probe [1 2 3]
+##[1 2 3]##
+== [1 2 3]
+
+%%Note the molded form%%
+red>> probe #"A"
+###"A"##
+== #"A"
+
+%%Same but now printed%%
+red>> print probe #"A"
+###"A"##
+##A##

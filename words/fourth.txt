@@ -1,0 +1,19 @@
+The word $$fourth$$ returns the fourth value in a $$series!$$. 
+
+The argument can be one of: 
+    $$series!$$ $$tuple!$$
+
+If there is no fourth item, $$none$$ is returned.
+.pre
+red>> fourth [1 2 3 4 5 6 7]
+== 4
+
+red>> fourth "ABCDEFG"
+== #"D"
+
+red>> fourth [1 2 3]
+== none
+%%No fourth value found!%%
+
+red>> fourth 22.33.1.255
+== 255

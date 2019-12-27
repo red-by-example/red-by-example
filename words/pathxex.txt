@@ -1,0 +1,105 @@
+A $$path!$$ is used to access items, often those contained in larger 
+structures.  The path! syntax is basically a series of items (including 
+$$paren!$$) separated by '/', and is applicable to  a range of data types. 
+It might help your understanding if you look at the lower-level 
+$$get-word!$$, $$set-word!$$ and $$lit-word!$$ types first.   Here are some 
+introductory examples of path!.
+.cmt neeeds more work re lit-path, and formatting: 
+.pre
+.box with series - string and block
+
+red>> str: "ABCDE"
+
+;get element 3
+red>> str/3
+== #"C"
+
+;get element 2.  NB b/2, not  b / 2, which divides.
+red>> b: [11 22 33 44]
+red>> b/2
+== 22
+ 
+;with a paren! in a path
+red>> b/(1 + 2)
+== 33
+
+red>> n: 1
+red>> b/(n + 1)
+== 22
+
+;here, b has a nested block at position 4
+red>> b: [11 22 33 [444 555] 66]
+;get element 4, position 1
+red>> b/4/1
+== 444
+
+;now with words, not literal numbers
+red>> x: 4
+red>> y: 1
+
+;get element with a get-path! Note preceding : (more on this below)
+red>> b/:x/:y
+== 444
+
+;set elementwith a set-path! Note following : (more on this below)
+red>> b/:x/:y: 1111
+== 1111
+;note the changed value
+red>> b
+== [11 22 33 [1111 555] 66]
+
+;with symbols - here, the value AFTER the symbol is returned
+red>> sales: [UK 10000 USA 15000 China 33000]
+red>> sales/USA
+== 15000
+
+.box Path Examples With Refinement 
+
+Many function words use 'refinements' to modify their action.  Here is 
+$$sort$$ with its reverse refinement:
+red>> ages: [55  33 73 73 19]
+red>> sort/reverse ages
+== [73 73 55 33 19]
+
+Using Paths - set/get/lit Paths  
+-------------------------------
+
+When we use colons or ticks in a path, the type of the path becomes a 
+$$set-path!$$, a $$get-path!$$, or a $$lit-path$$. This is similar in 
+concept to $$get-word!$$, $$set-word!$$ and $$lit-word!$$.
+
+If we have a block such as:
+
+b: [11 22 33 44]
+
+then we can use numbers in a straightforward way, as in:
+
+b/2        ; get element at position 2
+b/2: 2222  ; set element at position 2
+
+With words used as variables, we must use $$set-path!$$ and $$get-path!$$ 
+types, as in:
+
+red>> b/:x/:y           ;get-path! type
+
+red>> b/:x/:y: 1111     'set-path! type
+
+
+We can also use a $$lit-path!$$ type, as in:
+
+'b/x
+
+which evaluates to 
+
+b/x
+
+
+Paths As Series
+---------------
+
+A path is a series, and its elements can be accessed with the $$series!$$ functions.  
+
+Here, the first [block] is used to prevent evaluation
+
+red>> second first [the/white/cat]
+== white

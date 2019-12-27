@@ -1,0 +1,135 @@
+The word $$find$$ returns the $$series!$$ from the position where a value 
+is found, or $$none$$. 
+
+Arguments:
+    1. the item to be searched can be:
+           $$series!$$ $$bitset!$$ $$typeset!$$ $$any-object!$$ $$map!$$ $$none!$$
+    2. the value to be found can be $$any-type!$$
+
+Refinements
+     /part      -   limit length of search to a length or to a position in the series.  
+                    The argument must be $$number!$$ or $$series!$$
+     /only      -   Treat a series search value as a single value
+     /case      -   Perform a case-sensitive search.
+     /same      -   Use "same?" as comparator.
+     /any       -   Use * and ? wildcards in string searches.  (Not available yet)
+     /with      -   Use custom wildcards in place of * and ?.  (Not available yet)
+     /skip      -   Treat the series as fixed size records. Supply a size $$integer!$$
+     /last      -   Find the last occurrence of value, from the tail.
+     /reverse   -   Find the last occurrence of value, from the current index.
+     /tail      -   Return the tail of the match found, rather than the head.
+     /match     -   Match at current index only and return tail of match.
+.pre
+.box  Simple finds - string, block, series, returns the series from the found point
+red>> find "The catfish" "cat"
+== "catfish"
+
+red>> find "The catfish" "CAT"          %%find is case-insensitive by default%%
+== "catfish"
+
+red>> find "The catfish" "dog"          %%returns none if not found%%
+== none
+
+red>> find [11 22 33 44 55 66] [ 33 44]
+== [33 44 55 66]
+ 
+.box The /part refinement with a length = limit on the region where the search takes place
+red>> find/part "The dog" "The" 2       %%search region restricted to "Th"%%
+== none
+
+red>> find/part "The dog" "he" 3        %%search region restricted to "The"%%
+== "he dog"
+
+red>> s: [1 2 3 4 5 6 7 ]
+== [1 2 3 4 5 6 7]
+
+red>> place: find s 3                   %%find "3" in series "s"%%
+== [3 4 5 6 7]
+
+red>> index? place
+== 3
+
+red>> find/part s 2 place               %%search restriced to pos 1 up to index? place%%
+== [2 3 4 5 6 7]
+
+red>> find/part s 4 place               %%4 is beyond the index of place%%
+== none
+
+.box The /only refinement  (not valid for strings)
+red>> s: [11 22 [33 44] 55 66]
+== [11 22 [33 44] 55 66]
+
+red>> find/only s [33 44]               %%treat the nested block as one item%%
+== [[33 44] 55 66]
+
+red>> find s [33 44]                    %%without /only we cannot find it%%
+== none
+
+.box The /skip refinement
+; In this cas FIND treats the series as a set of records, where each record
+; has a fixed size. FIND will only try to match against each first item of such a record.
+
+red>> s: [11 22 33 44 55 66]
+== [11 22 33 44 55 66]
+
+; Next examples have a record size of 2
+
+red>> find/skip s 22 2                  %%22 is the second item of a record. So, no match%%
+== none
+
+red>> find/skip s 33 2                  %%33 is the first item of a record. So, a match%%
+== [33 44 55 66]
+
+; Next examples have a record size of 3
+
+red>> find/skip s 22 3                  %%22 is the second item of a record. So, no match%%
+== none
+
+red>> find/skip s 33 3                  %%33 is the third item of a record. So, no match%%
+== none
+
+red>> find/skip s 44 3                  %%33 is the first item of a record. So, a match%%
+== [44 55 66]
+
+.box The /last refinement - search from the end, backwards
+red>> s: [11 22 33 44 33 22 11]
+== [11 22 33 44 33 22 11]
+
+red>> find/last s 22
+== [22 11]
+
+.box The /reverse refinement
+red>> s: "A1A2A3A4"
+== "A1A2A3A4"
+
+red>> s: at s 5                         %%position the index halfway the string%%
+== "A3A4"
+
+red>> find/reverse s "A"                %%searh backwards from current index%%
+== "A2A3A4"
+
+.box The /tail refinement
+; Normally FIND returns the result INCLUDING the matched item.
+; With /TAIL the result returned is the part AFTER the matching search argument.
+
+red>> find/tail "ABCDEF" "BC"
+== "DEF"                                %%result does NOT include the search argument%%
+
+red>> find "ABCDEF" "BC"
+== "BCDEF"                              %%result DOES include the search argument%%
+
+.box The /match refinement
+; Match always tries to match against the beginning of the series.
+; Also the result is EXCLUSIVE the search argument.
+
+red>> find/match "ABCDE" "A"            %%mact, because "A" found at begin of string%%
+== "BCDE"
+
+red>> find/match "ABCDE" "D"            %%no match - "D" not at beginning of string%%
+== none
+
+red>> find/match "ABCDE" "AB"           %%match - search argument is at start of string%%   
+== "CDE"
+
+red>> find/match "ABCDE" "DE"           %%no match - search argument is beyond start of string%%
+== none

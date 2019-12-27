@@ -1,0 +1,17 @@
+This $$datatype!$$ provides a literal way of expressing items enclosed
+in '&lt;' and '&gt;'.  It is a type of series.  There are also the related 
+$$to-tag$$ and $$tag?$$ functions.
+
+.pre
+.box Create a tag! type, explore it.
+>> t: &lt;picture 100 200&gt;
+== &lt;picture 100 200&gt;
+; Examine its type
+>> type? t
+== tag!
+
+; Tag as series:
+>> first t
+== #"p"
+>> append t " square"
+== &lt;picture 100 200 square&gt;

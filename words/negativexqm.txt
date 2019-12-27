@@ -1,0 +1,15 @@
+The word $$negative?$$ returns $$true$$ if the numeric parameter 
+is less than zero, otherwise $$false$$.
+
+NOTE that zero returns $$false$$.
+
+Has one numeric parameter.
+.pre
+negative? -2
+== true
+
+negative? 0
+== false
+
+negative? 0.1
+== false

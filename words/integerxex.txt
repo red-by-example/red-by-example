@@ -1,0 +1,15 @@
+The $$datatype!$$ $$integer!$$ represents a $$number!$$ type containing 
+32 bit whole signed numbers.
+.pre
+.box Some examples
+red>> 33 + 55
+== 88
+
+red>> 6 / 7
+== 0             %%Dividing 2 integers gives rounded result%%
+
+red>> 6.0 / 7
+== 0.8571428571428571
+
+red>> add 6 7
+== 13

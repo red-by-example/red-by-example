@@ -1,0 +1,24 @@
+The word $$get-current-dir$$ returns the current directory the program is using.  
+
+When a program begins executing, its current directory is set to the one it is 
+stored in, but the current directory can be changed during run time.
+.cmt bug - the run results shown as html links
+.pre
+%%The example program is filefolders.exe, stored in this file structure:%%
+%%    C:\red\file-dir-tests\%%
+%%                          filefolders.exe%%
+%%                          folder1A\%%
+%%                          folder1B\%%
+%%                          folder1C\%%
+
+print ["Current-dir:" get-current-dir]
+$$Current-dir: C:\red\file-dir-tests$$
+
+cd %folder1A
+print ["Current-dir:" get-current-dir]
+$$Current-dir: C:\red\file-dir-tests\folder1A$$
+
+cd %..
+print "Current-dir:  "print get-current-dir
+$$Current-dir: C:\red\file-dir-tests$$
+

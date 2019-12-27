@@ -1,0 +1,15 @@
+The word $$what$$ displays brief information about every Red function,
+one per line.
+
+Has no arguments or refinements.
+.pre
+red>> what
+##to             : Converts to a specified datatype##
+##not            : Returns the negation (logical complement) of a value##
+##remove         : Returns the series at the same index after removing a value##
+##while          : Evaluates body as long as condition is true##
+##any            : Evaluates, returning at the first that is true##
+##copy           : Returns a copy of a non-scalar value##
+##insert         : Inserts value(s) at series index; returns series head##
+##if             : If condition is true, evaluate block; else return NONE##
+##... a lot more lines are displayed ... omitted here##

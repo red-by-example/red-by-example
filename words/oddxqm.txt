@@ -1,0 +1,10 @@
+The word $$odd?$$ returns $$true$$ if its numeric parameter is odd,
+else returns $$false$$.
+
+Has 1 numeric parameter, which should be an $$integer!$$.
+.pre
+odd? -3
+== true
+
+odd? 10
+== false

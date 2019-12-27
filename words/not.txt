@@ -1,0 +1,27 @@
+The word $$not$$ returns the logical complement of a value.
+
+NOTE that only the $$logic!$$ values $$false$$ and $$none$$
+     return $$true$$.
+
+For other types such as $$integer!$$, $$float!$$,  $$bitset!$$,
+$$false$$ is returned, irrespective of the data value.
+
+Use $$complement$$ to perform a bitwise $$not$$.
+.pre
+red>> not (3 > 2)
+== false
+
+red>> not (10 > 20)
+== true
+
+red>> not 1
+== false
+
+red>> not 0
+== false
+
+red>> not -1
+== false
+
+red>> not none
+== true

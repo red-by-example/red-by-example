@@ -1,0 +1,18 @@
+.dcs
+USAGE:
+     SUM values
+
+DESCRIPTION: 
+     Returns the sum of all values in a block. 
+     SUM is a function! value.
+
+ARGUMENTS:
+     values       [block! vector! paren! hash!] 
+.dce
+.box sum - note diffent types used
+>> sum [1 2 3 4 5]
+== 15
+>> sum [1.2 3.4]
+== 4.6
+>> sum [3 4 5x5]
+== 12x12

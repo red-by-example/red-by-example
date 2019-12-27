@@ -1,0 +1,56 @@
+The $$datatype!$$ $$logic!$$ consists of two states representing 
+$$true$$ and $$false$$. 
+
+They are returned from comparisons using $$>$$ $$<=$$ etc.
+
+The provided boolean words and their values are:   
+
+    - the pair:
+        $$true$$    =   $$true$$
+        $$false$$   =   $$false$$
+
+    - the pair:
+        $$on$$      =   $$true$$
+        $$off$$     =   $$false$$
+
+    - the pair:
+        $$yes$$     =   $$true$$
+        $$no$$      =   $$false$$
+
+Note that $$on$$ and $$off$$ and $$yes$$ and $$no$$ have no built-in logic.    
+They are preset words which can be more meaningful in certain situations.
+.pre 
+red>> 3 > 2
+== true
+
+red>> a: 3
+== 3
+
+red>> answer: a > 2
+== true
+
+red>> answer
+== true
+
+red>> not answer
+== false
+
+red>> if a > 2 [print "bigger"]
+bigger
+
+red>> yes
+== true
+
+%%Note: we get $$false$$, not $$no$$%%
+red>> not yes
+== false
+
+red>> power-switch: off
+== false
+ 
+red>> if power-switch = off [power-switch: on]
+== true
+
+%%Note, not $$on$$ but $$true$$.%%
+red>> power-switch
+== true

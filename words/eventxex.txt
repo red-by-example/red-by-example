@@ -1,0 +1,5 @@
+Event! values are object-like values that represent external activity.
+
+Look in the official View documents:
+<a href="https://doc.red-lang.org/en/view.html">https://doc.red-lang.org/en/vid.html</a>
+.aad

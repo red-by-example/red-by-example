@@ -1,0 +1,22 @@
+Returns true if its argument is a $$get-word!$$ type, otherwise false.
+
+Its single argument can be of any type.
+
+.pre
+.box  A few types of argument
+red>> a-word: 123
+
+;just a normal word
+red>> get-word? a-word
+== false
+: :a-word syntax is correct, but word is evaluated
+red>> get-word? :a-word
+== false
+
+;prevent evaluation, with first and a [block] 
+red>> get-word? first[:a-word]
+== true
+
+;this is a set-word!
+red>> get-word? first[a-word:]
+== false

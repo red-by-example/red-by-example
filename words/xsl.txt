@@ -1,0 +1,68 @@
+The infix word $$/$$ divides its operands giving a quotient.
+It is the equivalent of the $$divide$$ function.
+
+It operates on these types:
+   $$number!$$ $$char!$$ $$pair!$$ $$tuple!$$ $$vector!$$
+
+In Red, infix operators are evaluated from left to right, with no precedence.
+You may use parentheses ( ) to change the order of evaluation.
+
+$$/$$ is a Red word and thus needs to be separated by whitespace.
+
+When one of the operands is a $$float!$$, the result is a $$float!$$.
+
+When both operands are $$integer!$$, the result is $$integer!$$,
+truncated towards zero.
+
+Otherwise, the type of the result is the same type as the first operand,
+where this is sensible. Errors will result when the types are incompatible.
+
+Note the result when $$vector!$$s of different lengths are divided.
+
+When we divide two $$vector!$$s, the result is a freshly allocated $$vector!$$.
+When we divide a $$vector!$$ by a $$number!$$, the original $$vector!$$ will be modified.
+.pre
+red>> 9 / 3
+== 3
+
+red>> 9.0 / 3
+== 3.0
+
+red>> 10 / 11
+== 0
+
+red>> -11 / 4
+== -2
+
+red>> 100x30 / 5
+== 20x6
+
+red>> 100x40 / 2x4
+== 50x10
+
+red>> 3.9.19 / 3
+== 1.3.6
+
+red>> v1: make vector![100 200 300 400]
+== make vector! [100 200 300 400]
+
+red>> v2: make vector![5 5 10]
+== make vector! [5 5 10]
+
+red>> v1 / v2
+== make vector! [20 40 30]
+
+red>> v1
+== make vector! [100 200 300 400]
+%%v1 unchanged%%
+
+red>> v1 / 5
+== make vector! [20 40 60 80]
+
+red>> v1
+== make vector! [20 40 60 80]
+%%v1 changed%%
+
+red>> 5 / v1
+*** Script error: vector type is not allowed here
+*** Where: /

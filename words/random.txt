@@ -1,0 +1,30 @@
+The word $$random$$ returns a random value of the same type as its single argument.
+For certain types and refinements, it can shuffle or pick from a $$series!$$.
+
+For an $$integer!$$ argument of value n, the random value is between 1 and n inclusive.
+
+Refinements
+   /seed   - Restart or randomize
+   /secure - Returns a cryptographically secure random $$number!$$
+   /only   - Pick a random value from a $$series!$$
+.pre
+red>> random 2
+== 1
+
+red>> random 2
+== 2
+
+red>> random 1.0
+== 0.4107365828988778
+
+red>> random "fish"
+== "ifhs"
+
+red>> random/only "abcde"
+== #"a"
+
+red>> random [1 2 3 4]
+== [2 1 4 3]
+
+red>> random/only ["stone" "paper" "scissors"]
+== "scissors"

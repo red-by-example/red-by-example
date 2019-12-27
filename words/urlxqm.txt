@@ -1,0 +1,19 @@
+Returns $$true$$ if its argument is a $$url!$$ type, otherwise $$false$$.
+It does not do a complete check of the URL for current protocols.
+
+Arguments
+Its single argument can be of any type. 
+
+.pre
+.box Try url? on various types
+;string type, not a url
+red>> url? "http://www.google.com/"
+== false
+
+;a url
+red>> url? http://www.google.com/
+== true
+
+;a non-existent protocol, still  a url
+red>> url? xxx://a.b.c
+== true

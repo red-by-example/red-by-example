@@ -1,0 +1,36 @@
+The word $$divide$$ returns the first value divided by the second.
+This is equivalent to the infix operator $$/$$.
+
+Has 2 arguments, which must be of the type:
+    $$number!$$ $$char!$$ $$pair!$$ $$tuple!$$ $$vector!$$
+
+When a combination of $$integer!$$ and $$float!$$ values are divided, the result 
+is a $$float!$$.
+
+When $$integer!$$s are divided, the result is an $$integer!$$, truncated toward zero.
+
+Division by zero produces a run-time error.
+.pre
+red>> divide 8 3.0
+== 2.666666666666667
+
+red>> divide 8 3
+== 2
+
+red>> divide -8 3
+== -2
+
+red>> divide 4.5.6 2
+== 2.2.3
+
+red>> v: make vector![4 2 8]
+== make vector! [4 2 8]
+
+red>> divide v make vector![1 2 3 4]
+== make vector! [4 1 2]
+
+red>> v2: make vector![ 2 2 3]
+== make vector! [2 2 3]
+
+red>> divide v v2
+== make vector! [2 1 2]

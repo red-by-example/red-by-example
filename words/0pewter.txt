@@ -1,0 +1,9 @@
+The VID dialect word $$0pewter$$ is a color that can be used for GUI elements.
+
+It is a $$tuple!$$ of value 170.170.170
+.pre
+view [
+    text 100x50 pewter " "
+]
+
+||vid-pewter.png||

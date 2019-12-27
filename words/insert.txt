@@ -1,0 +1,81 @@
+The word $$insert$$ inserts (a) value(s) at a $$series!$$ index.  
+
+The original $$series!$$ is modified and insert returns the part of the $$series!$$ 
+from the position following the $$insert$$.
+
+The 2 arguments are:
+    1. a $$series!$$ i.e $$series! bitset! map!$$  
+    2. a value, which can be of any type
+
+Refinements:
+    /part - Limit the number of values inserted. 
+            We provide a length of type:  $$number!$$
+            or a "pointer" of type $$series!$$
+    /only - $$insert$$ $$block!$$ types as single values (overrides /part).
+            Normally each value in a $$block!$$ would be separately inserted.                
+    /dup  - Duplicate the inserted values. Must provide a count of type $$number!$$
+    
+NOTE: $$insert$$ is a destructive operation! It alters its argument.
+      Most of the time you need to $$copy$$ before using $$insert$$!
+.pre
+red>> s: "this is a string"
+== "this is a string"
+
+%%Insert at current index - which is 1.%%
+red>> insert s "I think "
+== "this is a string"
+red>> s
+== "I think this is a string"
+
+%%Insert at other positions (e.g. after "d")%%
+red>> letters: "abcdefg"
+== "abcdefg"
+red>> insert find letters "d" "XX"
+== "defg"
+%%This result is the result of "find", not of "insert"!%%
+red>> letters
+== "abcXXdefg"
+%%Now you see the result of "insert".%%
+
+%%Insert at the tail%%
+red>> insert tail letters "-END-"
+== ""
+%%Again: this is the result of "find".%%
+red>> letters
+== "abcXXdefg-END-"
+%%And this of "insert".%%
+
+%%Insert a duplicate, 5 times%%
+red>> insert/dup s "-" 5
+== "I think this is a string"
+red>> s
+== "-----I think this is a string"
+
+%%Make a string for /part%%
+red>> s2: "YES it is"
+== "YES it is"
+%%Only insert the first 6 characters of "s2" into "s".%%
+red>> insert/part s s2 6
+== "-----I think this is a string"
+red>> s
+== "YES it-----I think this is a string"
+
+%%We need a block type to illustrate /only.%%
+red>> a-block: [3 4 5]
+== [3 4 5]
+%%Normal insert, without /only.%%
+red>> insert a-block [33 44 55]
+== [3 4 5]
+%%Note the separate items.%%
+red>> a-block
+== [33 44 55 3 4 5]
+
+%%Reset the block.%%
+red>> a-block: [3 4 5]
+== [3 4 5]
+%%Now use /only%%
+red>> insert/only a-block [33 44 55]
+== [3 4 5]
+%%Now the block is inserted, instead of its elements.%%
+red>> a-block
+== [[33 44 55] 3 4 5]

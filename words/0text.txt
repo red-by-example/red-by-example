@@ -1,0 +1,33 @@
+This face is used to display text data on-screen.  The data can be 
+changed later, e.g. by:
+
+    text-my-name/text:  "Jimi"
+
+There are also $$h1$$ $$0h2$$ $$0h3$$ $$0h4$$ $$0h5$$, which provide a 
+slightly shorter way of creating text with common font-sizes, as in:
+
+    h1: "Very big heading"
+    h5: "Small heading"
+    
+We cannot key-in data to a text - use the $$0field$$ for this.
+
+Here is a VID example with a yellow text and a $$0button$$.  When we 
+click it, the text displays  "Goodbye!":
+
+view [
+    message: text yellow "Hello!"   ;-- yellow, with initial string
+    button "Press Me" [message/text: "Goodbye!"]  ;-- change it
+]
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-text-faces-red.html">
+http://www.red-by-example.org/vid-text-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_text"> 
+https://doc.red-lang.org/en/view.html#_text</a>
+

@@ -1,0 +1,23 @@
+The word $$multiply$$ multiplies 2 $$number!$$s.
+This is equivalent to the infix operator $$*$$.
+
+Has 2 arguments, which must be of type:
+      $$number!$$ $$char!$$ $$pair!$$ $$tuple!$$ $$vector!$$
+.pre
+red>> multiply 3 4.2
+== 12.6
+
+red>> multiply 11x20 4
+== 44x80
+
+red>> multiply 1.4.5 2
+== 2.8.10
+
+red>> v: make vector![2 3 4]
+== make vector! [2 3 4]
+
+red>> v2: make vector![20 20 3]
+== make vector! [20 20 3]
+
+red>> multiply v v2
+== make vector! [40 60 12]

@@ -1,0 +1,25 @@
+The word $$difference$$ returns the elements of two series 
+that are not present in both. 
+
+Both series arguments must be of the same datatype, which 
+can be:
+    $$block!$$ $$hash!$$ $$string!$$ $$bitset!$$ $$typeset!$$.
+
+$$difference$$ in one of several set-style functions.
+
+Refinements:
+    /case - use case-sensitive comparison.
+    /skip - treat the $$series!$$ as fixed size records. 
+            Specify the size as an $$integer!$$.
+.pre
+red>> difference [1 2 99 4] [1 2 3 4]
+== [99 3]
+
+red>> difference ["cat" "dog"] ["dog" "mouse" "fish"]
+== ["cat" "mouse" "fish"]
+
+red>> difference "abcd" "Ab"
+== "cd"
+
+red>> difference/case "abcd" "Ab"
+== "acdA"

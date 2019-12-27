@@ -1,0 +1,27 @@
+docstart
+USAGE:
+     NUMBER? value
+
+DESCRIPTION: 
+     Returns true if the value is any type of number. 
+     NUMBER? is a function! value.
+
+ARGUMENTS:
+     value        [any-type!] 
+.docend
+
+Checks for a $$number!$$ type.  This is type-checking, not input validation.
+
+.pre
+>> number? "123"  ;-- a string
+== false
+>> number? 123    ;-- integer!
+== true
+
+>> f: 12.34
+>> number? f      ;-- float!
+== true
+
+>> number? 33%    ;-- percent
+== true
+

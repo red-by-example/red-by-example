@@ -1,0 +1,49 @@
+The word $$next$$ moves the index of a $$series!$$ 1 position towards
+the $$tail$$ (= the end) of the $$series!$$.
+
+When a $$series!$$ index is already at $$tail$$ position, $$next$$ won't
+change the index; it stays at $$tail$$.
+
+The opposite of $$next$$ is $$back$$.
+.pre
+red>> ser: [1 2 3]
+== [1 2 3]
+
+red>> ser: [1 2 3]
+== [1 2 3]
+
+red>> next ser
+== [2 3]
+
+red>> ser                %%$$next$$ is not destructive%%
+== [1 2 3]
+
+red>> ser: next ser
+== [2 3]
+
+red>> ser
+== [2 3]
+
+red>> ser: next ser
+== [3]
+
+red>> ser
+== [3]
+
+red>> ser: next ser
+== []                    %%We are at $$tail$$ postion%%
+
+red>> tail? ser
+== true
+
+red>> ser
+== []
+
+red>> ser: next ser      %%Already at $$tail$$ - do nothing%%
+== []
+
+red>> tail? ser
+== true
+
+red>> ser
+== []

@@ -1,0 +1,32 @@
+The infix word $$<>$$ compares 2 values, and returns $$true$$ if they are
+NOT equal, otherwise $$false$$.
+
+The 2 values need not be of the same $$datatype!$$.
+It is equivalent to the $$not-equal?$$ function.
+
+Note that $$string!$$ values which only differ in case are considered equal.
+
+Red also has a $$strict-equal?$$ function, where the types must be the same,
+and $$string!$$ case is checked.
+.pre
+red>> a: 33
+== 33
+
+red>> a &lt;&gt; 35
+== true
+
+red>> b: [1 2 3]
+== [1 2 3]
+
+red>> b &lt;&gt; [1 2 3]
+== false
+
+red>> 12 &lt;&gt; 12.0
+== false
+
+red>> "abc" &lt;&gt; "abc"
+== false
+
+red>> "abC" &lt;&gt; "ABC"
+== false
+%%Note uppercase considered equal to lowercase!%%

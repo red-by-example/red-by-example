@@ -1,0 +1,25 @@
+The word $$print$$ outputs its evaluated argument to the Red console, 
+followed by a new-line: "^(line)".
+
+The single argument can be any type (also a $$block!$$).  In this case
+every block element is is evaluated.  If you don't want evaluation, 
+investigate $$probe$$.
+
+The twin word $$prin$$ does the same but without outputting new-line.
+.pre
+red>> area: 3 * 2
+== 6
+
+red>> print area
+6
+
+red>> print area * 10
+60
+
+red>> print "Hello"
+Hello
+
+%%Block is useful for printing several items%%
+%%Note: print will insert a space between the items in the block!%%
+red>> print ["Area is" area "square units"]
+##Area is 6 square units##

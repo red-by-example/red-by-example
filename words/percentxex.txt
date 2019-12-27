@@ -1,0 +1,12 @@
+The $$datatype!$$ $$percent!$$ represents a $$number!$$ type containing 
+32 bit whole signed numbers.
+.pre
+.box Some examples
+red>> 35 * 10%
+== 3.5
+
+red>> 35 * (10.0 / 100)   %%Exactly the same%%
+== 3.5
+
+red>> 100% / 40%          %%Not so useful?%%
+== 250%

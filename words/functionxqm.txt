@@ -1,0 +1,36 @@
+The word $$function?$$ returns $$true$$ if its argument is a function, 
+otherwise $$false$$.
+
+The single argument can be of any type.
+.pre
+.box Make a function, try it, use function?
+red>> f: function [] [print "in function"]
+== func [][print "in function"]
+
+red>> f
+in function             %%The function works%%
+
+red>> function? :f      %%The colon is needed to prevent execution%%
+== true                 %%Definitely a function%%
+
+red>> function? f       %%Is the return value of the function call a function?%%
+##in function##
+== false
+
+red>> f2: func [] [func [] [print "Hi!"]]
+== func [][func [] [print "Hi!"]]
+
+red>> function? :f2     %%F2 itself is a function%%
+== true
+
+red>> function? f2      %%Executing F2 also returns a function%%
+== true
+
+red>> function? :first  %%Is FIRST a function?%%
+== true
+
+red>> a: 3
+== 3
+
+red>> function? a       %%Is A a function?%%
+== false

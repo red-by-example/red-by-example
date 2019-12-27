@@ -1,0 +1,15 @@
+The word $$none?$$ returns $$true$$ if its argument has a $$none$$ value,
+otherwise $$false$$.
+
+Its single argument can be of any type.
+.pre
+red>> none? 3 / 4
+== false
+
+%%Find searches and returns $$none$$ if not found%%
+red>> none? find "ABCD" "Z"
+== true
+
+%%If found, returns the $$series!$$ from the found item ("BCD").%%
+red>> none? find "ABCD" "B"
+== false

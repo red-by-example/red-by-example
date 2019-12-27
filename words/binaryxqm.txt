@@ -1,0 +1,11 @@
+The word $$binary?$$ returns $$true$$ if its argument is of $$binary!$$ type.
+A literal binary $$series!$$ is surrounded by  #{...}
+.pre
+red>> binary? #{22}
+== true
+
+red>> binary? #{ 22 FF AA }
+== true
+
+red>> binary? 16
+== false

@@ -1,0 +1,25 @@
+The word $$make$$ returns a new value, based on a type and a specification for the type.
+
+It has 2 arguments:
+    1. the $$datatype!$$, an example or a prototype value
+    2. the specification of the new value or the number of items (for $$vector!$$).
+
+The actual detail of these arguments depends on the $$datatype!$$.
+
+For $$series!$$ types, the specification is often a value for the initial size
+of the $$series!$$.
+.pre
+red>> make block! 10   ;; size 10 initially
+== []
+
+red>> make [] 3
+== []
+
+red>> make vector! [1 5 3]
+== make vector! [1 5 3]
+
+red>> make vector! 6
+== make vector! [0 0 0 0 0 0]
+
+v: make vector! 0
+== make vector! []

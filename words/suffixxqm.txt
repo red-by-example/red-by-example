@@ -1,0 +1,27 @@
+The word $$suffix?$$ returns the extension of a $$file!$$, 
+the suffix of a $$url!$$, otherwise returns $$none$$.  
+
+Note that when a suffix is found, a $$file!$$ type is returned.
+
+Its single argument can be:
+    $$file!$$ $$url!$$ $$string!$$
+.pre
+.box File with extension (The % is used in literal files)
+red>> suffix? %myfile.txt
+%.txt
+
+.box File without extension
+red>> suffix? %myfile
+none
+
+.box URL with suffix
+red>> suffix? http://www.place.org/info.html
+%.html
+
+.box URL without suffix
+red>> suffix? http://www.google.com/
+none
+
+.box File with extension as a $$string!$$
+red>> suffix? "data.txt"
+%.txt

@@ -1,0 +1,23 @@
+This word returns true if its argument is a $$set-path!$$ type, otherwise false.
+
+Its single argument can be any type.
+
+.pre
+.box use set-path? on various types
+;create a block and position to work with
+red>> b: [11 22 33]
+red>> n: 2
+
+;get-path? with an evaluated path
+red>> set-path? b/2:
+*** Script Error: b/2: needs a value
+*** Where: set-path?
+
+;now use first [ block ] to prevent evaluation
+red>> set-path? first [b/2:]
+== true
+red>> set-path? first [b/:n:]
+== true
+;this is a path!
+red>> set-path? first [b/n]
+== false

@@ -1,0 +1,9 @@
+The word $$log-10$$ returns the logarithm (base 10) of its argument.
+
+The argument can be a $$number!$$ (a $$float!$$ or an $$integer!$$ )
+.pre
+red>> log-10 9.9
+== 0.99563519459755
+
+red>> log-10 1000
+== 3.0 

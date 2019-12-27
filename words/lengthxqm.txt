@@ -1,0 +1,31 @@
+The word $$length?$$ returns the number of values in a $$series!$$, 
+from the current index to the tail. 
+
+The length of an empty $$series!$$ is 0.
+
+The length of none is none.
+
+Its single argument can be one of these types:  
+    $$series!$$ $$bitset!$$ $$map!$$ $$tuple!$$ $$none$$
+.pre
+red>> length? [10 20 30]
+== 3
+
+red>> length? []
+== 0
+
+%%Tuple%%
+red>> length? 22.33.44.100
+== 4
+
+%%Find returns the series from the found item (30) onwards,%%
+%%     which is [30 40 50]%%
+red>> length? find [10 20 30 40 50] 30
+== 3
+
+red>> length? none
+== none
+
+%%Find returns none; then length is none.%%
+red>> length? find [10 20 30 40 50] 123
+== none

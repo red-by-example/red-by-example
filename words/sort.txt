@@ -1,0 +1,140 @@
+The word $$sort$$ sorts a $$series!$$, modifying the original $$series!$$.  
+
+The default order is ascending and the sort is by default case-insensitive.
+
+The argument must be a $$series!$$ type:
+    - $$block!$$ 
+    - $$string!$$ 
+    - $$vector!$$
+    etc.
+
+Refinements
+    /case       -   perform a case-sensitive sort.
+    /reverse    -   reverse the sort order (descending instead of ascending)
+    /skip       -   treat the $$series!$$ as fixed size records (groups of items).  
+                    Sorting is performed based on the value of the first item in 
+                    a group of items. The group size is specified as an $$integer!$$.  
+    /part       -   sort only part of a $$series!$$. 
+                    We provide a length (a $$number!$$) or a position in the $$series!$$
+    /compare    -   we specify a comparator, which can be an offset $$integer!$$, 
+                    a $$block!$$ or a $$function!$$.
+    /all        -   will force a group of items to be passed as a $$series!$$ to 
+                    the compare function. You also will need /skip to specify the 
+                    size of such a group.
+    /stable     -   sort uses Quicksort as its default sorting algorithm. 
+                    Quicksort is very fast, but it is an unstable algorithm. 
+                    If you need stable sorting, add the /stable refinement, and it 
+                    will then use the Merge algorithm instead.  
+                    This issue is not significant for sorting simple $$series!$$.
+                    
+Read more about sort algorithms here:                    
+    <a href="https://en.wikipedia.org/wiki/Sorting_algorithm">Wikipedia on sort algorithm</a>
+.pre
+.box Sort some numbers ascending (changing the $$series!$$ involved)
+red>> ages: [55  33 73 73 19]
+== [55 33 73 73 19]
+
+red>> sort ages
+== [19 33 55 73 73]
+
+red>> ages
+== [19 33 55 73 73]
+
+.box Sort some numbers descending
+red>> ages: [55  33 73 73 19]
+== [55 33 73 73 19]
+
+red>> sort/reverse ages
+== [73 73 55 33 19]
+
+red>> ages
+== [73 73 55 33 19]
+
+.box Sort strings (case-insensitive sort)
+red>> names: ["dog" "Ape" "Cat" "ant" "aardvark"]
+== ["dog" "Ape" "Cat" "ant" "aardvark"]
+
+red>> sort names
+== ["aardvark" "ant" "Ape" "Cat" "dog"]
+
+red>> names
+== ["aardvark" "ant" "Ape" "Cat" "dog"]
+
+.box Sort strings (case-insensitive sort)
+red>> names: ["dog" "Ape" "Cat" "ant" "aardvark"]
+== ["dog" "Ape" "Cat" "ant" "aardvark"]
+
+red>> sort/case names
+== ["Ape" "Cat" "aardvark" "ant" "dog"]
+
+red>> names
+== ["Ape" "Cat" "aardvark" "ant" "dog"]
+
+.box Sort on the first item of each group of 2 items (the name)
+red>> name-ages: ["Larry" 45 "Curly" 50 "Mo" 42]
+== ["Larry" 45 "Curly" 50 "Mo" 42]
+
+red>> sort/skip name-ages 2
+== ["Curly" 50 "Larry" 45 "Mo" 42]
+
+red>> name-ages
+== ["Curly" 50 "Larry" 45 "Mo" 42]
+
+.box Sort on a specific item (not the first which is default) of each group
+red>> name-ages: ["Larry" 45 "Curly" 50 "Mo" 42]
+== ["Larry" 45 "Curly" 50 "Mo" 42]
+
+red>> sort/skip/compare name-ages 2 2
+== ["Mo" 42 "Larry" 45 "Curly" 50]
+
+red>> name-ages
+== ["Mo" 42 "Larry" 45 "Curly" 50]
+
+.box Sort only a subset of the $$series!$$ using a number
+red>> s: [8 7 6 5 4 3 2]
+== [8 7 6 5 4 3 2]
+
+red>> sort/part s 3
+== [6 7 8 5 4 3 2]     %%Only the first 3 items were sorted%%
+
+red>> s
+== [6 7 8 5 4 3 2]
+
+.box Sort only a subset of the $$series!$$ using a position
+red>> n: [9 8 7 6 5 4 3 2 1]
+== [9 8 7 6 5 4 3 2 1]
+
+red>> pos: skip n 4
+== [5 4 3 2 1]
+
+red>> sort/part n pos
+== [6 7 8 9 5 4 3 2 1]     %%Only the first 4 items were sorted%%
+
+red>> n
+== [6 7 8 9 5 4 3 2 1]
+ 
+.box Using /compare to specify a function to compare 2 items
+red>> names: ["Larry" "Curly" "Mo" ]
+== ["Larry" "Curly" "Mo"]
+
+red>> sort/compare names function [a b] [a > b]
+== ["Mo" "Larry" "Curly"]              
+
+red>> names
+== ["Mo" "Larry" "Curly"]
+
+red>> sort/compare names function [a b] [a < b]
+== ["Curly" "Larry" "Mo"]
+
+red>> names
+== ["Curly" "Larry" "Mo"]
+
+.box Specify which columns to compare using a path (e.g. /2)
+red>> names2: ["Larry" 45 "Curly" 50 "Mo" 42]
+== ["Larry" 45 "Curly" 50 "Mo" 42]
+
+red>> sort/skip/compare/all names2 2 function [a b][a/2 > b/2]
+== ["Curly" 50 "Larry" 45 "Mo" 42]    %%Sorted by descending age%%
+
+red>> name-ages
+== ["Curly" 50 "Larry" 45 "Mo" 42]

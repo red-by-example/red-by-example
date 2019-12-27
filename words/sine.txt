@@ -1,0 +1,16 @@
+The word $$sine$$ returns the trigonometric sine.
+
+Has 1 parameter, a $$number!$$ (representing an angle).
+
+Refinements:
+    /radians : expects the input angle in radians;
+               without refinement expects the input angle in degrees.
+.pre
+sine 90
+== 1.0
+
+sine/radians pi
+== 0.0
+
+sine/radians pi + 0.003
+== -0.002999995500002016

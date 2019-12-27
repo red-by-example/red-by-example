@@ -1,0 +1,55 @@
+The word $$enbase$$ encodes a string to a a binary-coded string (BASE-64 default).
+Argument:
+    string to be encoded
+Refinement:
+    /base   -   base to be used, e.g. 2, 16 or 64 (default)
+
+The word $$debase$$ decodes a binary-coded to a binary (BASE-64 default).
+Argument:
+    binary-coded string to be decoded
+Refinement:
+    /base   -   base to be used, e.g. 2, 16 or 64 (default)
+.pre
+.box Default base-64 decoding
+red>> x: enbase "Red is beautiful"
+== "UmVkIGlzIGJlYXV0aWZ1bA=="
+
+red>> y: debase x
+== #{5265642069732062656175746966756C}
+
+red>> to string! y
+== "Red is beautiful"
+
+.box The /base refinement
+red>> x: enbase/base "Red is beautiful" 2
+== {0101001001100101011001000010000001101001011100110010000001100010
+    0110010101100001011101010111010001101001011001100111010101101100}
+
+red>> y: debase/base x 2
+== #{5265642069732062656175746966756C}
+
+red>> to string! y
+== "Red is beautiful"
+
+.box Note that debase needs fixed length chunks!
+; for base  2: multiple of 8 bits
+; for base 16: multiple of 8 bits
+; for base 64: multiple of 16 bits
+
+red>> x: enbase/base "A" 2
+== "01000001"
+
+red>> y: debase/base x 2        %%works, because bitstring is a multiple of 8 (bits)%%
+== #{41}
+
+red>> to string! y
+== "A"
+
+red>> debase/base "01000001" 2  %%same as contents of y%%
+== #{41}
+
+red>> debase/base "010000011" 2 %%9 bits - won't work%%
+== none
+
+red>> debase/base "0100001" 2   %%7 bits - won't work%%
+== none

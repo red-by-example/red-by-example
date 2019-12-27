@@ -1,0 +1,18 @@
+.dcs
+USAGE:
+     CONSTRUCT block
+
+DESCRIPTION: 
+     Makes a new object from an unevaluated spec; standard logic words are 
+     evaluated. 
+     CONSTRUCT is a native! value.
+
+ARGUMENTS:
+     block        [block!] 
+
+REFINEMENTS:
+     /with        => Use a prototype object.
+        object       [object!] "Prototype object."
+     /only        => Don't evaluate standard logic words.
+.dce
+.aad

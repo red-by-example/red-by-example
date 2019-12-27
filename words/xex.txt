@@ -1,0 +1,18 @@
+(Awaiting more details).
+A $$get-path!$$ is a kind of $$path!$$ used to access (get) a value. 
+Refer to $$path!$$ and $$get-word!$$ for more details.
+
+.pre
+.box Explore a get-path!
+red>> b: [11 22 33 44]
+
+;with a variable
+red>> place: 2
+== 2
+;use a get-path!   Note preceding colon
+red>> :b/:place
+== 22
+;Find the type - first [block] is used to prevent evaluation
+red>> type? first [:b/:place]
+== get-path!
+

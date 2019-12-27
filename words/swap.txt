@@ -1,0 +1,47 @@
+The word $$swap$$ swaps elements between two $$series!$$ or the same $$series!$$.  
+It modifies both arguments.
+
+The 2 arguments must be of type $$series!$$
+.pre
+.box Create 2 series to work with (different lengths)
+red>> s1: [1 2 3 4 5 6]
+== [1 2 3 4 5 6]
+
+red>> s2: [100 200 300 400]
+== [100 200 300 400]
+
+red>> swap s1 s2           %%Swap first elements%%
+== [100 2 3 4 5 6]
+
+red>> s1
+== [100 2 3 4 5 6]         %%s1 was changed%%
+
+red>> s2
+== [1 200 300 400]         %%s2 also changed%%
+
+.box Swap within same series; arg 1 is element 1; arg 2 is element 100
+red>> ser: [ 1 2 3 4 5 100 200 300 400]
+== [1 2 3 4 5 100 200 300 400]
+
+red>> swap ser find ser 100
+== [100 2 3 4 5 1 200 300 400]
+
+.box Also $$string!$$s are $$series!$$!
+red>> swap "ABC" "xyz"     %%Swap first characters of each string%%
+== "xBC"
+
+.box Swap in the middle of some $$series!$$
+red>> sa: [22 11 33 55]
+== [22 11 33 55]
+
+red>> sb: [105 101 107 109]
+== [105 101 107 109]
+
+red>> swap find sa 33 find sb 101
+== [101 55]
+
+red>> sa
+== [22 11 101 55]
+
+red>> sb
+== [105 33 107 109]

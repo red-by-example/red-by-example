@@ -1,0 +1,27 @@
+.dcs
+USAGE:
+     REACT reaction
+
+DESCRIPTION: 
+     Defines a new reactive relation between two or more objects. 
+     REACT is a function! value.
+
+ARGUMENTS:
+     reaction     [block! function!] "Reactive relation."
+
+REFINEMENTS:
+     /link        => Link objects together using a reactive relation.
+        objects      [block!] "Objects to link together."
+     /unlink      => Removes an existing reactive relation.
+        src          [word! object! block!] "'all word, or a reactor or a
+                     list of reactors."
+     /later       => Run the reaction on next change instead of now.
+     /with        => Specifies an optional face object (internal use).
+        ctx          [object! set-word! none!] {Optional context for VID
+                     faces or target set-word.}
+
+RETURNS:
+     The reactive relation or NONE if no relation was processed.
+     [block! function! none!]
+.dce
+.aad

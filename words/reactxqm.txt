@@ -1,0 +1,20 @@
+.dcs
+USAGE:
+     REACT? reactor field
+
+DESCRIPTION: 
+     Returns a reactive relation if an object's field is a reactive source. 
+     REACT? is a function! value.
+
+ARGUMENTS:
+     reactor      [object!] "Object to check."
+     field        [word!] "Field to check."
+
+REFINEMENTS:
+     /target      => Check if it's a target instead of a source.
+
+RETURNS:
+     Returns reaction, type or NONE.
+     [block! function! word! none!]
+.dce
+.aad

@@ -1,0 +1,29 @@
+Provides a multi-line rectangle where text can be entered, selected, edited, 
+copied, pasted.  We can choose the font-size, color, font, etc.  Rich text 
+is not supported.
+
+The default event-handler is $$0on-change$$.
+
+The text in the area can be accessed via the /text refinement.    
+
+Examples: 
+
+    ;-- an area with a size, specified font, and initial text.
+    a1: area  white  font [name: "Consolas" size: 12 color: black]
+    {area with
+     some text
+    }
+    120x70 [print "a1 changed"]    ;-- on-change
+
+    
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-text-faces-red.html">
+http://www.red-by-example.org/vid-text-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_area"> 
+https://doc.red-lang.org/en/view.html#_area</a>

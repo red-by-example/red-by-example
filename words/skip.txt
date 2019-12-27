@@ -1,0 +1,51 @@
+The word $$skip$$ moves the index of a $$series!$$.
+
+Note: you can test the position of the index using $$index?$$.
+.pre
+red>> x: [1 2 3 4 5 6 7 8 9]
+== [1 2 3 4 5 6 7 8 9]
+
+red>> index? x
+== 1
+
+red>> skip x 3
+== [4 5 6 7 8 9]     %%Skip does not change the target $$series!$$%%
+
+red>> x
+== [1 2 3 4 5 6 7 8 9]
+
+red>> x: skip x 3
+== [4 5 6 7 8 9]
+
+red>> x
+== [4 5 6 7 8 9]
+
+red>> index? x
+== 4                 %%Original position (1) + skip offset (3)%%
+
+red>> x: skip x -1   %%Skipping backward is allowed%%
+== [3 4 5 6 7 8 9]
+
+red>> x
+== [3 4 5 6 7 8 9]
+
+red>> index? x
+== 3
+
+red>> x: skip x 100  %%Skip forward out of range moves to $$tail$$%%
+== []
+
+red>> index? x
+== 10
+
+red>> tail? x
+== true
+
+red>> x: skip x -100  %% Skip backward out of range moves to $$head$$%%
+== [1 2 3 4 5 6 7 8 9]
+
+red>> index? x
+== 1
+
+red>> head? x
+== true

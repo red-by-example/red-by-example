@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     TO-DATE value
+
+DESCRIPTION: 
+     Convert to date! value. 
+     TO-DATE is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to date!
+See $$date!$$
+.box to-date 
+>> to-date [3 5 2022]
+== 3-May-2022

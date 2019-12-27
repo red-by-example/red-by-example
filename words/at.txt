@@ -1,0 +1,30 @@
+The $$at$$ word returns a $$series!$$ at a given integer index.
+
+Note that it does not extract one item.  Rather, it returns a reference (pointer)
+into the original $$series!$$.
+
+The original $$series!$$ is unchanged.
+
+Note that $$series!$$ (which includes $$string!$$s) are indexed from 1.
+
+If the index is off the 'left-hand side' of the $$series!$$, the whole $$series!$$ 
+is returned.
+
+If the $$series!$$ is beyond the right-hand side, an empty $$series!$$ is returned.
+
+There are no refinements.
+.pre
+red>> at [1 2 3 4 5] 3
+== [3 4 5]
+
+red>> at "abcde" 3
+== "cde"
+
+red>> at "abcd" 6
+== ""
+
+red>> at [1 2 3 4] -2
+== [1 2 3 4]
+
+red>> at [1 2 3 4] 0
+== [1 2 3 4]

@@ -1,0 +1,15 @@
+.dcs
+USAGE:
+     UNVIEW 
+
+DESCRIPTION: 
+     Close last opened window view. 
+     UNVIEW is a function! value.
+
+REFINEMENTS:
+     /all         => Close all views.
+     /only        => Close a given view.
+        face         [object!] "Window view to close."
+        
+.dce
+.aad

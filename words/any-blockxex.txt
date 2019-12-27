@@ -1,0 +1,4 @@
+ANY-BLOCK! is a typeset! value: make typeset! [block! paren! path! lit-path!
+                                               set-path! get-path! hash!]
+
+

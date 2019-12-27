@@ -1,0 +1,42 @@
+Writes data to a $$file!$$, $$url!$$, or other port.
+
+Arguments
+    1. destination: a $$file!$$ or $$url!$$
+    2. data to write: any type.
+
+Refinements
+     /binary - preserves contents exactly. Use for images, etc.
+     /lines  - write each value in a block as a separate line.
+     /info   - no details available currently
+     /append - write data at end of file.
+     /part   - partial write a given number of units.
+               We provide a length, as a $$number!$$.
+     /seek   - write at a specific position. We provide a position,
+               as a $$number!$$.
+     /allow  - specifies protection attributes.  We provide access 
+               details in a $$block!$$.
+     /as     - write with the specified encoding, default is 'UTF-8.
+               We provide the encoding as a $$word!$$.
+
+
+.pre
+.box Use write.  Note the preceding % for literal file names.
+
+;write 1 line to local file testfile.txt
+red>> write %testfile.txt "ABCDEFG"
+;read it back
+red>> read %testfile.txt
+== "ABCDEFG"
+;/seek refinement
+red>> write/seek %testfile.txt "XXX" 2
+;read it back
+red>> read %testfile.txt
+== "ABXXXFG"
+
+; /lines refinement
+red>> write/lines %testfile.txt ["a line" "another line"]
+;read it back, use print to avoid console formatting
+red>> print read %testfile.txt
+a line
+another line
+

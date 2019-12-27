@@ -1,0 +1,21 @@
+The word $$unique$$ takes a $$series!$$ as its argument and removes 
+all duplicates.
+
+Refinements:
+    /skip   -   groups of items are made unique
+.pre
+.box Leave only the unique values
+red>> unique [1 2 3 4 2 5 4 1 3 2]
+== [1 2 3 4 5]
+
+.box Make groups of 2 items unique
+red>> unique/skip [1 2 3 4 1 2 3 4 5 6 7 8 5 6] 2
+== [1 2 3 4 5 6 7 8]
+
+.box Unique characters in a $$string!$$
+red>> unique "abcbcdcdedefefg"
+== "abcdefg"
+
+.box Unique groups of 3 characters
+red>> unique/skip "abcdefabcghijklmnoghi" 3
+== "abcdefghijklmno"

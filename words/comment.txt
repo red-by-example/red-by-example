@@ -1,0 +1,16 @@
+The word $$comment$$ introduces a comment in a Red program.
+
+It has the form:
+    comment {
+        ... multi-line comment ...
+    }
+or:
+    comment " ... single-line comment ... "
+.pre
+comment { 
+    This is a multi-line comment,
+    consisting of more than one line.
+}
+
+comment "And this is a single-line comment!"
+          

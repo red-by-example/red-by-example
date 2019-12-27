@@ -1,0 +1,9 @@
+The VID dialect word $$0oldrab$$ is a color that can be used for GUI elements.
+
+It is a $$tuple!$$ of value 72.72.16
+.pre
+view [
+    text 100x50 oldrab " "
+]
+
+||vid-oldrab.png||

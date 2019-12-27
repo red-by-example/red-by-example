@@ -1,0 +1,14 @@
+The word $$what-dir$$ returns the active directory path as a $$file!$$ value.
+
+It has no arguments.
+
+Irrespective of the operating system, it uses / in file paths.
+
+Literal file paths must start with the % sign:
+   So, e.g. c:\windows\system32 must be represented as %/c/windows/system32
+.pre
+a: what-dir
+== %/C/rebol/
+
+type? a
+== file!

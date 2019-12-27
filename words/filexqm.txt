@@ -1,0 +1,28 @@
+The word $$file?$$ returns $$true$$ if its argument is a $$file!$$.  
+
+In Red, a $$file!$$ type value is preceded by %.  
+If spaces are needed in a file name, enclose it in quotes or use hex %20, as in:
+    %"my files/"
+    %/my%20files/
+
+In Windows the drive letter is part of the $$path!$$, like so:
+    %/c/windows/system32/xyz.dll
+    
+Absolute $$path!$$s start with %/ and relative $$path!$$s just with %.
+.pre
+red>> my-data: %/top/personal/stuff.txt
+== %/top/personal/stuff.txt
+%%Absolute path%%
+
+red>> file? my-data
+== true
+
+red>> file? %work.doc
+== true
+%%Relative path%%
+
+red>> file? %/folder1/folder2/
+== true
+%%A path can also be a directory%%
+
+

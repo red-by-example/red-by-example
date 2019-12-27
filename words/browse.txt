@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     BROWSE url
+
+DESCRIPTION: 
+     Open web browser to a URL or file mananger to a local file. 
+     BROWSE is a native! value.
+
+ARGUMENTS:
+     url          [url! file!] The word $$browse$$ opens a web browser
+                  with the specified URL.
+
+The single argument is a $$url!$$.
+.dce
+.box Open a web browser pointing to Google. Execution continues
+red>> browse http://www.google.com
+red>> %%execution continues here%%

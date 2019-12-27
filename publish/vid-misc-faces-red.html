@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional"><html>
+<head><meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+<title>Red by Example - VID - Misc Faces</title>
+<style type="text/css">
+
+html, body, p, td, li {font-family: arial, sans-serif, helvetica; font-size: 10pt;}h1 {font-size: 16pt; Font-Weight: bold;}h2 {font-size: 14pt; color: #2030a0; Font-Weight: bold; width: 100%;    border-bottom: 1px solid #c09060;}h3 {font-size: 12pt; color: #2030a0; Font-Weight: bold;}h4 {font-size: 10pt; color: #2030a0; Font-Weight: bold;}h5 {font-size: 10pt; Font-Weight: bold;}tt {font-family: "courier new", monospace, courier; color: darkgreen;}pre {font: bold 10pt "courier new", monospace, console;    background-color: #f4f6f6; padding: 16px; border: solid #a0a0a0 1px;}.toc1 {margin-left: 1cm; font-size: 12pt; font-weight: bold;}.toc2 {margin-left: 2cm; font-size: 10pt; font-weight: bold; text-decoration: none;}.toc3 {margin-left: 3cm; font-size: 10pt; text-decoration: none;}.toc4 {margin-left: 4cm; font-size: 10pt; color: grey; text-decoration: none;}.output {color: #000080; font-weight: normal;}.note {background-color: #f0e090; width: 100%; padding: 16px; border: solid #a0a0a0 1px;}.tail {color: gray; font-size: 8pt;}.mike-large{color:blue; font-size: 13pt; font-weight:bold; }  .mike-small{ font-size: 10pt; }</style>
+
+</head><body bgcolor="white"><center>
+<table width="660" cellpadding="4" cellspacing="0" border="0">
+<tr>
+<td><!----------------------------------------------------------------------------><h1 style="color:red; id=top">Red by Example - an accessible reference by example</h1>
+
+<pre><a href="index.html">index</a>     <a href="parse.html">parse</a>     <a href="vid.html">vid</a>     <a href="series.html">series</a>     <a href="help.html">help</a>     <a href="about.html">about</a>     <a href="links.html">links</a>     <a href="contact.html">contact</a>     </pre><br>
+<pre>
+<!--        HERE  vvvvvvvvvvvvvv   here vvvvvvvvvvv     ----- --!>
+<h3>Red VID Example - Miscellaneous Faces</h3> 
+
+Red [
+    needs 'view
+    file: %misc-faces.red
+    Author: "Mike Parr"
+]
+
+button1-down: function [] [          
+    mytext/text: "You clicked 1!" 
+    print "button1 clicked" 
+    progress1/data: 44%  
+]
+   
+button1-over: function [] [
+    mytext/text: "You hovered 1!"
+]
+
+button2-down: function [] [
+    mytext/text: "You clicked 2!" print "hello"
+]
+
+button2-over: function [] [
+    mytext/text: "You hovered 2!"
+    button2/text: "Changed"   
+]
+ 
+view [
+    size 500x600      ;-- window
+    h4 "    Red Vid Examples    "  
+    return
+    
+    mytext: text 300x25 bold orange font-size 12 "Messages"     ;for output
+    return
+
+    h4 "Buttons:  "
+    button1: button   "Try My Hover"  font [name: "Consolas" size: 15 color: blue]
+    on-down [button1-down]
+    on-over [button1-over]
+
+    button2: button "Try Me 2"
+    on-down [button2-down]
+    on-over [button2-over]
+    return
+   
+   
+   h4 "progress, slider:"
+   return
+   
+   progress1: progress 33%   []     ;-- initially 33%  
+  
+   slider2: slider [mytext/text:  face/data] 
+ 
+   slider1:  slider 20x100 50%  [         ;-- vertical, initially at middle
+      mytext/text: mold face/data  
+      progress1/data: face/data           ;-- set progress to slider
+   ]
+   return
+
+   h4 "base, image, box, tab-panel" 
+   return   
+   base ;--defaults only     
+   
+   hills-image: image 140x140  %country.png  ;-- supply a file name
+   
+   box blue
+   return
+   
+   tab-panel  250x120 [
+       "Tab A" [h4 "In a tab!" button "Click in A" [print "A"] ]      
+       "Tab B" [button "Click in B" [print "B"] ]
+       "Tab C" [button "Click in C" [print "C"] ]
+  ]  
+]
+ 
+
+<br><img src="vid-misc-faces-red.png" alt="vid-misc-faces-red.png"><br><br>
+
+
+</pre>
+<!---------------------------------------------------------------------------->
+</td>
+</tr>
+</table>
+
+
+</center>
+ 
+ 
+ </body></html>
+
+ 
+ 

@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     AVERAGE block
+
+DESCRIPTION: 
+     Returns the average of all values in a block. 
+     AVERAGE is a function! value.
+
+ARGUMENTS:
+     block        [block! vector! paren! hash!] 
+.dce
+
+.box avergag
+>> average [7 8]
+== 7.5
+>> type? average [6 8]   ;-- note type of result
+== float!

@@ -1,0 +1,20 @@
+.dcs
+USAGE:
+     CARET-TO-OFFSET face pos
+
+DESCRIPTION: 
+     Given a text position, returns the corresponding coordinate relative
+     to the top-left of the layout box. 
+     CARET-TO-OFFSET is a function! value.
+
+ARGUMENTS:
+     face         [object!] 
+     pos          [integer!] 
+
+REFINEMENTS:
+     /lower       => lower end offset of the caret.
+
+RETURNS:
+     [pair!]
+.dce
+.aad

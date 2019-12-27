@@ -1,0 +1,10 @@
+Rich-text is supported.  See:
+<a href="https://github.com/red/red/wiki/Rich-Text-support">https://github.com/red/red/wiki/Rich-Text-support</a>
+
+.pre
+view
+[    ;-- show a rich text face, with differing font size, colors
+    out-rich: rich-text 300x100 data [
+        i b "Hello" /b font 24 red " Red " /font blue "World!" /i
+    ]
+]

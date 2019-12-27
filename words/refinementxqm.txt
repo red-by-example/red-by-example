@@ -1,0 +1,35 @@
+The $$refinement?$$ word returns $$true$$ if the single argument is a 
+refinement, otherwise $$false$$.  
+
+Note that the argument is not checked against all existing refinements, 
+merely that it fits the syntax for a refinement.
+
+The single argument can be of any type.
+.pre
+red>> refinement? /all
+true
+
+red>> refinement? /nonsense
+true
+
+red>> refinement? /123
+true
+
+.box Invalid: string is not a refinement
+
+red>> refinement? "/abc"
+false
+
+red>> r: "/abc"
+"/abc"
+
+red>> refinement? r
+false
+
+.box Valid: a refinement can be stored in a variable
+
+red>> r: /abc
+== /abc
+
+red>> refinement? r
+== true

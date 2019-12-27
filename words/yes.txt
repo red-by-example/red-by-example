@@ -1,0 +1,7 @@
+The value $$yes$$ can be used as the boolean value $$true$$.
+.pre
+red>> yes
+== true
+
+red>> not yes
+== false

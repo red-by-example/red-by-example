@@ -1,0 +1,39 @@
+The word $$repeat$$ evaluates a given $$block!$$ a specified number of times 
+and exposes the count value to the $$block!$$ being executed.
+
+Has 3 parameters:
+   1. name of a count variable, which contains the current value of the counter
+   2. number of times the $$block!$$ should be evaluated
+   3. the $$block!$$ to be evaluated
+
+Warning:
+   1. the count variable can only be referred within the $$block!$$;
+      so, if before the repeat a variable exists with the same name,
+      that variable will be untouched after $$repeat$$
+   2. when repeat introduces a unique name for count, that name
+      cannot be referenced anymore after $$repeat$$
+.pre
+counter: 33
+== 33
+repeat counter 4 [print ["Evaluation #" counter]]
+##Evaluation # 1##
+##Evaluation # 2##
+##Evaluation # 3##
+##Evaluation # 4##
+>> counter
+== 33
+
+repeat x 3 [print ["Evaluation #" x]]
+##Evaluation # 1##
+##Evaluation # 2##
+##Evaluation # 3##
+>> x
+** Script Error: x has no value
+** Near: x
+
+repeat y 5 [y: y - 1 print ["y =" y]]
+##y = 0##
+##y = 1##
+##y = 2##
+##y = 3##
+##y = 4##

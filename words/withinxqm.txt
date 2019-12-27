@@ -1,0 +1,21 @@
+Return $$true$$ if the point is within the rectangle bounds, otherwise $$false$$.
+
+Arguments
+  point - a $$pair!$$ - XY position of point.  Origin is at upper left corner.
+  offset -a $$pair!$$ -  Offset of area, i.e. upper left corner of a rectangle.
+  size - a $$pair!$$ - Size of area, i.e. width, height of area.
+
+
+.pre
+.box Explore possibilities for within?, with 8x2 area, corner at 5x10
+;5x5 outside
+red>> within? 5x5 5x10 8x2
+== false
+
+;12x11 inside
+red>> within? 12x11 5x10 8x2
+== true
+
+;5x10 on edge, considered inside
+red>> within? 5x10 5x10 8x2
+== true

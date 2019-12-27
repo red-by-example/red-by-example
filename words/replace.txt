@@ -1,0 +1,58 @@
+The word $$replace$$ replaces the search-value with the replace value 
+in a $$series!$$.  
+
+It can be used with strings, because a $$string!$$ is a $$series!$$.
+
+It has 3 arguments:                       
+    series          - the $$series!$$ to be modified.
+    search-value    - the value to be replaced (any type)
+    replace-value   - the value to replace with (any type)
+
+The search is case-insensitive and only the first occurrence is replaced, 
+unless the refinement /all is used. 
+
+The replaced and replacing item can have a different length.
+
+Refinements
+    /all    -   replace all occurrences
+
+Note that this is a destructive operation. It alters the $$series!$$
+involved!
+.pre
+.box Replace a by W
+
+red>> s: "abcde"
+"abcde"
+
+red>> replace s "a" "W"
+"Wbcde"
+
+red>> s
+"Wbcde"
+
+.box Note the case insensitivity here
+
+red>> a-string: "The cat and the dog"
+"The cat and the dog"
+
+red>> replace a-string "the" "a"
+"a cat and the dog"
+
+.box Using the /all refinement
+
+red>> river: "Mississippi"
+"Mississippi"
+
+red>> replace/all river "is" "IS"
+"MISsISsippi"
+
+.box A series of numbers
+
+red>> nums: [21 22 23 -1 44 45 46]
+[21 22 23 -1 44 45 46]
+
+red>> replace nums -1 [33 34 35]
+[21 22 23 33 34 35 44 45 46]
+
+red>> replace nums [21 22 23] -1
+[-1 33 34 35 44 45 46]

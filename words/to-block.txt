@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-BLOCK value
+
+DESCRIPTION: 
+     Convert to block! value. 
+     TO-BLOCK is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to block!
+See $$block!$$
+.box to-block 
+ to-block 12.34
+== [12.34]
+>> to-block [12.34]
+== [12.34]
+>> to-block (1 2 3 4)
+== [4] 

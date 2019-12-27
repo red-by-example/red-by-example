@@ -1,0 +1,29 @@
+A $$0button$$ is used to confirm something, or to simply invoke some 
+action.
+
+Note that $$0on-click$$ and $$0on-down$$ do the same thing for a 
+$$0button$$.
+
+The default event is $$0on-down$$.
+
+In VID, here are 2 buttons. 
+
+    button "Click me" [print "Clicked"]   ;-- respond to down
+
+    button2: button "Try Me 2"  ;-- named button
+        on-down [button2-down]  ;-- respond to down - call a function
+        on-over [button2-over]  ;-- respond to over (hover) - call a 
+function
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-misc-faces-red.html">
+http://www.red-by-example.org/vid-misc-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_button"> 
+https://doc.red-lang.org/en/view.html#_button</a>
+ 

@@ -1,0 +1,24 @@
+An $$object$$ is a container that groups data and/or functions within 
+one variable.
+
+Red implements 'prototype-based objects'. 
+
+Creating new $$object$$s is done by cloning existing $$object$$s 
+or the base $$object!$$ value. 
+
+During the creation process, existing field values can be modified 
+and new fields can be added. 
+
+It is a very simple and efficient model to encapsulate your Red code.
+.pre
+%%$$make$$ an $$object$$ - a pretend square box%%
+box: make object! [
+  size: 10
+  show: function [] [
+    print ["Showing size =" size "from within the box!"]
+  ]
+]
+
+%%Use the encapsulated function%%
+box/show
+##Showing size = 10 from within the box!##

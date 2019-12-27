@@ -1,0 +1,17 @@
+The word $$any-object?$$ returns $$true$$ if its argument is an $$object!$$.
+
+It has no refinements.
+.pre
+red>> my-obj: make object! [ x: 10 y: 10 ]
+== make object! [
+    x: 10
+    y: 10
+]
+
+red>> any-object? my-obj
+== true
+
+red>> a: 22
+
+red>> any-object? a
+== false

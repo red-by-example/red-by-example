@@ -1,0 +1,22 @@
+The word $$return$$ returns a value from a $$function$$. 
+It needs one argument, of any type.
+
+In $$function$$s which don't have a return value, you can use the word $$exit$$.
+
+Under special conditions it is useful to $$return$$ the value $$none$$.
+
+The value of a $$block!$$ is the value of last evaluation that takes place in it,
+so this can be used to $$return$$ a value, without using the $$return$$ word.
+
+If we want to $$return$$ a value partway through a $$block!$$, or want to make it 
+more explicit for a reader of the code, we also can use $$return$$.
+.pre
+bigger: func [a b] [
+   either a > b [
+      return a
+   ][
+      return b
+   ]
+]
+print bigger 8 6
+##8##

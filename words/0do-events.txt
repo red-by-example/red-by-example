@@ -1,0 +1,16 @@
+.dcs
+USAGE:
+     DO-EVENTS 
+
+DESCRIPTION: 
+     Launch the event loop, blocks until all windows are closed. 
+     DO-EVENTS is a function! value.
+
+REFINEMENTS:
+     /no-wait     => Process an event in the queue and returns at once.
+
+RETURNS:
+     Returned value from last event.
+     [logic! word!]
+.dce
+.aad

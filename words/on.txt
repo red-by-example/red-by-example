@@ -1,0 +1,13 @@
+The word $$on$$ has the logical value "true" 
+and its $$datatype!$$ is $$logic!$$
+
+Logical values are produced from various comparisons.
+
+The $$logic!$$ type also provides:  
+    $$false$$, $$no$$, $$off$$, $$true$$, $$yes$$
+.pre
+red>> ? on
+on is a logic! of value: true
+
+red>> either on [print "It is true!"] [print ["It is NOT true!"]]
+##It is true!##

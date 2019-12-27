@@ -1,0 +1,32 @@
+The word $$file!$$ is a $$datatype!$$; it can be a: 
+    file name
+    directory name
+    directory $$path!$$. 
+    
+A file! is a type of $$series!$$, rather like a string. 
+Note that this type is concerned with file names and places, rather than the contents of a file.
+
+Here are some file! examples
+    %file.txt
+    %directory/
+    %directory/my%20stuff/file.txt
+    %"directory/my stuff/file.txt"
+    %/c/windows/softwaredistribution
+
+Notes:
+    - a $$file!$$ literal must always start with a percent sign %
+    - use forward slashes / (Unix style); back slashes will be automagically converted to /
+
+Unusual characters in file names must be encoded with a % hexadecimal number, 
+such as %20 for space.  Thus, my%20stuff refers to "my stuff"; alternatively, 
+we may enclose them in "quotes", and Red generates the hexadecimal codes for us.
+.pre
+.box The file! as a series!
+red>> find %top/work/red/demo.txt "red"
+== %red/demo.txt
+
+.box Use a file! to manipulate contents: load, save
+red>> save %demo.txt "some data for a file"
+
+red>> print load %demo.txt
+##some data for a file##

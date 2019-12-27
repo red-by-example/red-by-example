@@ -1,0 +1,12 @@
+This is a VID style. It is a $$0base$$ type, but with a default size of 
+100x100. It expects an image option.
+
+The default event is $$0on-down$$
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-misc-faces-red.html">
+http://www.red-by-example.org/vid-misc-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>

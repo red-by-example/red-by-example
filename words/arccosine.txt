@@ -1,0 +1,15 @@
+The word $$arccosine$$ returns the trigonometric arccosine (in degrees by default).
+
+Has 1 parameter, a $$number!$$.
+
+Refinements:
+/radians : returns the angle in radians;
+           without refinement returns the angle in degrees.
+
+The resulting numeric angle value of arccosine can be used in an expression.
+.pre
+arccosine 0.5
+== 60.0
+
+arccosine/radians 1
+== 0.0

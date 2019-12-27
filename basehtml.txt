@@ -1,0 +1,49 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+<title>Red by Example</title>
+<style type="text/css">
+html, body, p, td, li {font-family: arial, sans-serif, helvetica; font-size: 10pt;}
+h1 {font-size: 16pt; Font-Weight: bold;}
+h2 {font-size: 14pt; color: #2030a0; Font-Weight: bold; width: 100%;
+    border-bottom: 1px solid #c09060;}
+h3 {font-size: 12pt; color: #2030a0; Font-Weight: bold;}
+h4 {font-size: 10pt; color: #2030a0; Font-Weight: bold;}
+h5 {font-size: 10pt; Font-Weight: bold;}
+tt {font-family: "courier new", monospace, courier; color: darkgreen;}
+pre {font: bold 10pt "courier new", monospace, console;
+    background-color: #f4f6f6; padding: 16px; border: solid #a0a0a0 1px;}
+.toc1 {margin-left: 1cm; font-size: 12pt; font-weight: bold;}
+.toc2 {margin-left: 2cm; font-size: 10pt; font-weight: bold; text-decoration: none;}
+.toc3 {margin-left: 3cm; font-size: 10pt; text-decoration: none;}
+.toc4 {margin-left: 4cm; font-size: 10pt; color: grey; text-decoration: none;}
+.output {color: #000080; font-weight: normal;}
+.note {background-color: #f0e090; width: 100%; padding: 16px; border: solid #a0a0a0 1px;}
+.tail {color: gray; font-size: 8pt;}
+.mike-large{color:blue; font-size: 13pt; font-weight:bold; }  .mike-small{ font-size: 10pt; }
+
+</style>
+</head>
+
+<body bgcolor="white">
+<center>
+
+<table width="660" cellpadding="4" cellspacing="0" border="0">
+
+<tr><td>
+
+<!---------------------------------------------------------------------------->
+<h1 style="color:red; id=top">Red by Example - an accessible reference by example</h1>
+Last update on 
+.date
+.header
+.pages
+.index
+
+<!---------------------------------------------------------------------------->
+</td></tr>
+</table>
+</center>
+</body></html>

@@ -1,0 +1,21 @@
+The word $$change-dir$$ changes the current directory.
+
+The argument can be one of $$file!$$ $$word!$$ $$path!$$.
+
+The directory to change to can be:
+    - an absolute $$path!$$
+    - a relative $$path!$$
+.pre
+.box Using an absolute path
+red>> change-dir %/e/src
+== %/e/src/
+
+red>> dir
+    8th/    go/     python/     red/        spiderbasic/      
+
+.box Using a relative path    
+red>> change-dir %go
+== %/e/src/go/
+
+red>> dir
+    bin32/  bin64/  pkg/        src/              

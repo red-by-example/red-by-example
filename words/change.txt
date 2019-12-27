@@ -1,0 +1,85 @@
+The word $$change$$ changes a value in a $$series!$$ and returns the series beyond
+the change position. The original series is changed.
+
+Arguments:
+     1. $$series!$$ positioned at the point to change.
+     2. new value to insert - any type.
+
+
+Refinements
+     /part - limits the amount to change to a given length (number) or position (index)
+     /only - changes a series as a series.
+     /dup  - duplicates the change a specified number of times
+.pre
+.box Changing a $$string!$$
+red>> s: "abcdef"
+== "abcdef"
+
+red>> change s "NEW"
+== "def"
+
+red>> s
+== "NEWdef"
+
+.box Changing a $$block!$$
+red>> b: [22 33 44 55]
+== [22 33 44 55]
+
+red>> change b 11
+== [33 44 55]
+
+red>> b
+== [11 33 44 55]
+
+red>> b: next head b
+== [33 44 55]
+
+red>> change b 10
+== [44 55]
+
+red>> b
+== [10 44 55]
+
+red>> b: head b
+== [11 10 44 55]
+
+.box The /part refinement
+; ------------------------------------------------------------------------- 
+; The /part refinement, with series as the range. The important thing to
+; note here is that the series used for the range MUST refer to the same 
+; series that is being changed. If it doesn't, CHANGE will throw an error.
+; -------------------------------------------------------------------------
+red>> s: "abcdef" == "abcdef" 
+red>> change/part s "ABCD" at s 3 == "cdef"
+; the series position limits the length of the part to be replaced
+ red>> s == "ABCDcdef"
+
+.box The /only refinement
+red>> s: [11 22 33]
+== [11 22 33]
+
+red>> change/only s [1 2]
+== [22 33]
+
+red>> s
+== [[1 2] 22 33]
+
+.box The same example, but without /only
+red>> s: [11 22 33]
+== [11 22 33]
+
+red>> change s [1 2]
+== [33]
+
+red>> s
+== [1 2 33]
+
+.box The /dup  refinement
+red>> s: "abcdef"
+== "abcdef"
+
+red>> change/dup s "<>" 2
+== "ef"
+
+red>> s
+== "<><>ef"

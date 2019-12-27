@@ -1,0 +1,49 @@
+The word $$reduce$$ returns a copy of a $$block!$$, evaluating all expressions
+in the $$block!$$.
+
+Its single argument can be of any type.
+
+See also:  $$rejoin$$  - which means 'reduce and join'.
+
+Refinements
+    /into - puts results into a provided  $$block!$$, instead of creating a new one.
+ 
+.pre
+red>> reduce[1 + 2 5 * 6]
+[3 30]
+
+red>> b: reduce[1 + 5]
+[6]
+
+red>> b
+[6]
+
+.box Use the /into refinement
+
+red>> a-block: []
+[]
+
+red>> reduce/into [4 5 + 6] a-block
+[]
+
+red>> a-block
+[4 11]
+
+.box Evaluating can also mean assignment
+
+red>> var: 3
+3
+
+red>> reduce [ 3 * 3 var: 22]
+[9 22]
+
+red>> var
+22
+
+.box Single values, variables or expressions (not in a block)
+
+red>> reduce 123
+123
+
+red>> reduce 1 + 2
+3

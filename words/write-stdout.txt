@@ -1,0 +1,12 @@
+.dcs
+USAGE:
+     WRITE-STDOUT str
+
+DESCRIPTION: 
+     Write data to STDOUT. 
+     WRITE-STDOUT is a routine! value.
+
+ARGUMENTS:
+     str          [string!] 
+.dce
+.aad

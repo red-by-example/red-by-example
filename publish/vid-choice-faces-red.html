@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional"><html>
+<head><meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+<title>Red by Example - VID - Choice Faces</title>
+<style type="text/css">
+
+html, body, p, td, li {font-family: arial, sans-serif, helvetica; font-size: 10pt;}h1 {font-size: 16pt; Font-Weight: bold;}h2 {font-size: 14pt; color: #2030a0; Font-Weight: bold; width: 100%;    border-bottom: 1px solid #c09060;}h3 {font-size: 12pt; color: #2030a0; Font-Weight: bold;}h4 {font-size: 10pt; color: #2030a0; Font-Weight: bold;}h5 {font-size: 10pt; Font-Weight: bold;}tt {font-family: "courier new", monospace, courier; color: darkgreen;}pre {font: bold 10pt "courier new", monospace, console;    background-color: #f4f6f6; padding: 16px; border: solid #a0a0a0 1px;}.toc1 {margin-left: 1cm; font-size: 12pt; font-weight: bold;}.toc2 {margin-left: 2cm; font-size: 10pt; font-weight: bold; text-decoration: none;}.toc3 {margin-left: 3cm; font-size: 10pt; text-decoration: none;}.toc4 {margin-left: 4cm; font-size: 10pt; color: grey; text-decoration: none;}.output {color: #000080; font-weight: normal;}.note {background-color: #f0e090; width: 100%; padding: 16px; border: solid #a0a0a0 1px;}.tail {color: gray; font-size: 8pt;}.mike-large{color:blue; font-size: 13pt; font-weight:bold; }  .mike-small{ font-size: 10pt; }</style>
+
+</head><body bgcolor="white"><center>
+<table width="660" cellpadding="4" cellspacing="0" border="0">
+<tr>
+<td><!----------------------------------------------------------------------------><h1 style="color:red; id=top">Red by Example - an accessible reference by example</h1>
+
+<pre><a href="index.html">index</a>     <a href="parse.html">parse</a>     <a href="vid.html">vid</a>     <a href="series.html">series</a>     <a href="help.html">help</a>     <a href="about.html">about</a>     <a href="links.html">links</a>     <a href="contact.html">contact</a>     </pre><br>
+<pre>
+<!--        HERE  vvvvvvvvvvvvvv   here vvvvvvvvvvv     ----- --!>
+
+<h3>Red VID Example - Choice Faces</h3> 
+ 
+Red [
+    needs 'view
+    file: %choice-faces.red
+    Author: "Mike Parr"
+]
+
+check1-changed: function [] [
+    print ["check1-has changed.  Current state is: " check1/data]
+]
+
+
+drop1-selection: function [] [;;;;;;;;;ok
+    either drop-down1/selected = none [
+        print "drop-down1: no selection yet"
+    ] [
+        print ["Drop-down1: " mold pick drop-down1/data drop-down1/selected]
+    ]
+]
+
+
+postal-selection: function [] [
+    either postal-drop-list/selected = none [
+        print "drop-list - no selection yet"
+    ] [
+        print ["Selected position in postal-drop-list: " postal-drop-list/selected]
+        ;multiply by 2 to get corresponding integer in list
+        print ["Postal cost: " pick postal-drop-list/data postal-drop-list/selected * 2]
+    ]
+]
+
+
+days-textlist-value: function [] [           ;-- handle no selection         
+    either days-text-list/selected = -1 [
+        print "text-list: no selection yet"
+    ] [ 
+        print ["text-list: " pick days-text-list/data days-text-list/selected]
+    ]
+]
+
+
+view [
+    h3 "    Red Vid Examples: selection   "
+    return
+
+    mytext: text 300x25 bold orange font-size 12 "Output messages"
+    return
+
+    h5 "Panel"          ;not really a selection, but used in radio examples here
+    panel1: panel black [                     ;panel with 2 buttons in it
+        panel1-button1: button "panel1-b1" [mytext/text: "panel1-button1 clicked"]
+        panel1-button2: button "panel1-b2" [mytext/text: "panel1-button2 clicked"]
+    ]
+    return
+    
+    h5 "Check, radio: "
+    return
+    check1: check "Check me" [check1-changed]
+
+    panel2: panel orange [       ;could use function, but showing event code in face definition
+        panel2-radio1: radio "Big"
+        [print ["radios 1 2 3 are: " panel2-radio1/data panel2-radio2/data panel2-radio3/data]]
+        panel2-radio2: radio "Small"
+        [print ["radios 1 2 3 are: " panel2-radio1/data panel2-radio2/data panel2-radio3/data]]
+        panel2-radio3: radio "Medium"
+        [print ["radios 1 2 3 are: " panel2-radio1/data panel2-radio2/data panel2-radio3/data]]
+    ]
+    return
+
+    h5 "Drop-down"
+    return
+    drop-down1: drop-down "B" data ["A1" "A2" "B1" "B2"]
+    button-drop-down1: button "Drop-down selection is..." [drop1-selection]
+    return
+
+    h5 "Drop-list"
+    return
+    ;drop=list - NB integers are not shown on-screen, but remain is the list
+    postal-drop-list: drop-list data ["Basic" 33 "Second-class" 40 "Priority" 99]
+    postal-button: button "postal-choice is..." [postal-selection]
+    return
+
+    h5 "Text-list"
+    return
+    days-text-list: text-list pink 90x110 data [
+        "Monday" "Tuesday" "Wednesday" "Thursday"
+    ]
+    days-button: button "Days selection..." [days-textlist-value]
+    button-add-sat: button "Add Saturday in" [append days-text-list/data "Saturday"]
+
+]
+
+
+<br><img src="vid-choice-faces.png" alt="vid-choice-faces.png"><br><br>
+
+
+</pre>
+<!---------------------------------------------------------------------------->
+</td>
+</tr>
+</table>
+
+
+</center>
+ 
+ 
+ </body></html>
+
+ 
+ 

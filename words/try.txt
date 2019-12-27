@@ -1,0 +1,105 @@
+Tries to evaluate a block, similar to $$do$$. The value of the block is
+returned, but if an $$error!$$ occurs, the block is abandoned, and an 
+error value is returned. 
+
+Normally, the error is displayed, but we can intercept it with a 
+function to prevent the display. Often, the $$error?$$ function is 
+used for this.  We can also access the returned $$error!$$ object 
+to get details of the error.
+
+Note that $$try$$ is concerned with error-handling, and should not 
+be used with $$catch$$ and $$throw$$, which are intended for building 
+control structures.
+
+For other error/exception-handling words, look at the related entries 
+for  $$attempt$$, $$cause-error$$, $$error?$$, and the $$error!$$ type.
+
+
+Arguments
+Its single argument is a $$block!$$
+
+Refinements
+     /all - detects also $$break$$, $$continue$$, $$return$$, $$exit$$ 
+            and $$throw$$ exceptions.
+
+.pre
+.box try, cause-error, and error? usage examples
+
+;A toy function for the examples.  It basically does a divide, but
+;we cause a 'positive' error if the first argument is not positive
+;and we also anticipate that a zero-divide error might occur. 
+do-average: function [
+    "calc average from positive total, non-zero count"
+    total [integer!] count [integer!]] [
+    print ["In do-average with " total count]
+    if not positive? total [
+        cause-error 'math 'positive  []
+    ]
+    total / count ;might cause an error
+]
+
+print "No errors here:"
+print do-average 10 2
+print ""
+
+;the following line (commented out now)  displayed:
+; *** Math Error: positive number required
+; *** Where: do
+; and then halted.
+
+;    print do-average -10 2       ;I am commented-out now
+
+
+print "Use try and error?  - should trigger 'cause-error'"
+either error? result: try [do-average -10 2] [
+    print ["Error id: " result/id]
+] [
+    print ["No errors, result is: " result]
+]
+
+print "Use try and error?  - force a zero-divide"
+either error? result: try [do-average 10 0] [
+    print ["Error id: " result/id]
+] [
+    print ["No errors, result is: " result]
+]
+
+print "Use try and error? - no errors expected "
+either error? result: try [do-average 10 2] [
+    print ["Error id: " result/id]
+] [
+    print ["No errors, result is: " result]
+]
+print "Done."
+
+THE OUTPUT IS:
+--------------
+
+No errors here:
+In do-average with  10 2
+5
+
+Use try and error?  - should trigger 'cause-error'
+In do-average with  -10 2
+Error id:  positive
+Use try and error?  - force a zero-divide
+In do-average with  10 0
+Error id:  zero-divide
+Use try and error? - no errors expected 
+In do-average with  10 2
+No errors, result is:  5
+Done.
+
+
+
+.box /all refinement examples
+; make a 'break' error.  Try does not detect it.
+red>>  error? try [print 3 + 4 break  "done"]
+7
+*** Throw Error: no loop to break
+*** Where: break
+
+; now use /all to detect it (as well as any other errors)
+red>>  error? try/all  [print 3 + 4 break  "done"]
+7
+== true

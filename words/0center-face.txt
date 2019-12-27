@@ -1,0 +1,22 @@
+.dcs
+USAGE:
+     CENTER-FACE face
+
+DESCRIPTION: 
+     Center a face inside its parent. 
+     CENTER-FACE is a function! value.
+
+ARGUMENTS:
+     face         [object!] "Face to center."
+
+REFINEMENTS:
+     /x           => Center horizontally only.
+     /y           => Center vertically only.
+     /with        => Provide a reference face for centering instead of parent face.
+        parent       [object!] "Reference face."
+
+RETURNS:
+     Returns the centered face.
+     [object!]
+.dce
+.aad

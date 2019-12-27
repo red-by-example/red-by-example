@@ -1,0 +1,11 @@
+Gets the value that the user types at STDIN.
+INPUT is a $$function!$$ value.
+Has 0 parameters.  
+
+It is identical to $$ask$$ with no parameters.
+
+The resulting string value can be used in an expression
+.pre
+my-name: input    ;-- I type    Mike   now:
+##Mike##
+== "Mike"

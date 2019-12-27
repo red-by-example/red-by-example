@@ -1,0 +1,21 @@
+The word $$either$$ evaluates a conditional expression. 
+If the result thereof is $$true$$ the first $$block!$$ will be evaluated. 
+If $$false$$ the second $$block!$$ will be evaluated.
+
+Has 3 parameters, a conditional expression and 2 $$block!$$s
+
+$$either$$ returns the value returned from the conditionally evaluated $$block!$$.
+.pre
+either 3 > 2 [print "Indeed!"][print "Nope!"]
+##Indeed!##
+
+either "ABC" = "abc" [print "The same!"] [print "Different!"]
+##The same!##
+%%Be careful! Contrary to what is common use in most other programming%%
+%%languages, Red considers uppercase and lowercase letters to be equal.%%
+
+either 2 = 2.0 [print "Equal!"][print "Not equal!"]
+##Equal!##
+
+either 2 == 2.0 [print "Equal!"][print "Not equal!"]
+##Not equal!##

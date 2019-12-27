@@ -1,0 +1,18 @@
+Represents a window displayed on the OS desktop. 
+
+In VID the window is made large enough to hold all the faces, but  we 
+can  also choose our own fixed size.
+The View Engine provides more facilities - such as handling a 
+window-resize event, and adding a menu bar.  
+In VID we can define a window like this:
+view [
+    size 350x450           ;-- window size
+    title "Text faces"     ;-- window title
+
+    t1: text "Hello"       ;-- rest of VID code
+    ;-- etc
+]
+  
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_window"> 
+https://doc.red-lang.org/en/view.html#_window</a>

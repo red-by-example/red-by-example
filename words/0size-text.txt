@@ -1,0 +1,3 @@
+In system/words, sometimes used in rich-text programming.
+
+.aad

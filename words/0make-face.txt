@@ -1,0 +1,20 @@
+.dcs
+USAGE:
+     MAKE-FACE style
+
+DESCRIPTION: 
+     Make a face from a given style name or example face. 
+     MAKE-FACE is a function! value.
+
+ARGUMENTS:
+     style        [word!] "A face type."
+
+REFINEMENTS:
+     /spec        => 
+        blk          [block!] "Spec block of face options expressed in VID."
+     /offset      => 
+        xy           [pair!] "Offset of the face."
+     /size        => 
+        wh           [pair!] "Size of the face."
+.dce
+.aad

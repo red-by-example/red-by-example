@@ -1,0 +1,24 @@
+.dcs
+USAGE:
+     SET word value
+
+DESCRIPTION: 
+     Sets the value(s) one or more words refer to. 
+     SET is a native! value.
+
+ARGUMENTS:
+     word         [any-word! block! object! path!] "Word, object, map path 
+                  or block of words to set."
+     value        [any-type!] "Value or block of values to assign to words."
+
+REFINEMENTS:
+     /any         => Allow UNSET as a value rather than causing an error.
+     /case        => Use case-sensitive comparison (path only).
+     /only        => Block or object value argument is set as a single value.
+     /some        => None values in a block or object value argument, are
+                     not set.
+
+RETURNS:
+     [any-type!]
+.dce
+.aad

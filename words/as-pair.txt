@@ -1,0 +1,11 @@
+The word $$as-pair$$ combines 2 $$integer!$$ or $$float!$$ values into a $$pair!$$.
+.pre
+.box Demonstrate mixed integers and floats, also truncation
+red>> as-pair 22 33
+22x33
+
+red>> as-pair 22 33.9
+22x33
+
+red>> as-pair 44.3 44.99
+44x44

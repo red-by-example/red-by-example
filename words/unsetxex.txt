@@ -1,0 +1,7 @@
+This type comes into existence when value slots in memory just contain random 
+garbage.  It is possible to use it when specifying function argument types, 
+but doing so reduces Red's error detection.
+
+There are no examples currently.
+
+

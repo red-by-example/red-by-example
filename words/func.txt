@@ -1,0 +1,61 @@
+The word $$func$$ is used to create functions.  
+
+Items (variables etc) referred to in the body of a $$func$$ are assumed to be global.  
+
+Se also: $$function$$.
+
+Arguments:
+    1. $$block!$$ of:
+            - function arguments
+            - refinements
+            - local variable definitions            
+    2. the function body, a $$block!$$
+.pre
+%%Using a global variable%%
+add-up: func[a b]  [
+  number: a + b
+  print number %%Global%%
+]
+number: 0 %%Global%%
+add-up 3 5
+print number %%Global%%
+##8## %%Global%%
+##8## %%Global%%
+
+%%Shadowing a global variable%%
+add-up2: func [a b /local number] [
+    number: a + b
+    print number %%Local%%
+]
+number: 20 %%Global%%
+add-up2 3 5
+print number %%Global%%
+##8## %%Local%%
+##20## %%Local%%
+
+%%Using a refinement without a value%%
+add-up3: func [a b /neg /local temp] [
+    temp: a + b
+    %%Note that a refinement is a boolean%%
+    if neg [
+        temp: temp * -1
+    ]
+    print temp
+]
+add-up3 3 5
+##8##
+add-up3/neg 3 5
+##-8##
+
+%%Using a refinement with a value%%
+add-up4: func [a b /c cval /local temp] [
+    temp: a + b
+    if c [
+        temp: temp + cval
+    ]
+    print temp
+]
+add-up4 3 5
+##8##
+add-up4/c 3 5 6
+##14##

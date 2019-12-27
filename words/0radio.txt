@@ -1,0 +1,30 @@
+A radio provides a radio-button, with an optional label.  Only one radio 
+button per panel is allowed to be on.   
+
+The default event-handler is on-change, and the boolean state exists in  
+'data'.
+
+Here is a VID example with 3 radios labelled "Big", "Small", "Medium".  
+Changing any of them results is the 3 states being printed.
+
+  panel2: panel orange [     ;-- orange panel, 3 radios
+      panel2-r1: radio "Big"
+          [print ["radios: " panel2-r1/data panel2-r2/data panel2-r3/data]]
+      panel2-r2: radio "Small"
+          [print ["radios: " panel2-r1/data panel2-r2/data panel2-r3/data]]
+      panel2-r3: radio "Medium"
+          [print ["radios: " panel2-r1/data panel2-r2/data panel2-r3/data]]
+  ]
+
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-choice-faces-red.html">
+http://www.red-by-example.org/vid-choice-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_radio"> 
+https://doc.red-lang.org/en/view.html#_radio</a>

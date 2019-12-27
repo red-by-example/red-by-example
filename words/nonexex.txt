@@ -1,0 +1,5 @@
+The none! datatype contains a single value that represents nothing or no 
+value.  See $$none$$ for more details.
+
+
+

@@ -1,0 +1,56 @@
+Returns a copy of a block, evaluating only $$paren!$$ items. Here is an 
+example of a $$paren!$$, containing 3 elements:
+
+       (2 + 4)
+     
+Normally, it does not operate on nested blocks.
+
+The single argument should be a $$block!$$
+
+Refinements
+     /deep - compose nested blocks. All paren! expressions are evaluated, 
+             however deeply they are nested inside [ ].
+     /only - compose a nested block as a single block containing its values, 
+             rather than its series of values.
+     /into - put results into  a target block, instead of creating a new 
+             block.  We supply the target block.  This is intended for 
+             very large blocks, and can result in lower memory usage.
+
+ 
+.pre
+.box compose some blocks
+red>> compose [unevaluated items 1 + 2 then (3 * 5)]
+== [unevaluated items 1 + 2 then 15]
+;nested blocks are not evaluated
+red>> compose [(1 + 2) [(4 + 5)]]
+== [3 [(4 + 5)]]
+
+.box /deep refinement
+red>> b: [cat [dog (3 * 4) [fish (6 * 7)]]]
+red>> compose/deep b
+== [cat [dog 12 [fish 42]]]
+
+;note the result without /deep
+red>> compose b
+== [cat [dog (3 * 4) [fish (6 * 7)]]]
+
+.box /only refinement
+red>> powers: [1 2 4 8 16]
+red>> compose/only [a b c (powers)]
+;note [...] round powers values
+;without /only, no [ ]
+== [a b c [1 2 4 8 16]]
+red>> compose [a b c (powers)]
+== [a b c 1 2 4 8 16]
+
+.box /into refinement a trivial example, insignificant memory use.
+red>> b: [aa bb (3 * 4)]
+
+;create an empty block
+red>> answer: copy []
+== []
+red>> compose/into b answer
+== []
+and here is the result
+red>> answer
+== [aa bb 12]

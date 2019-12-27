@@ -1,0 +1,21 @@
+The word $$list-env$$ returns a $$map!$$ of OS environment variables/values
+of the current process.   
+
+No arguments.  
+
+To get the value of a specific variable, use $$get-env$$.
+.pre
+.box Use list-env on a Windows PC
+red>> type? list-env
+== map!
+
+red>> list-env
+== #(
+    "=::" "::\"
+    "=E:" "E:\Websites\Red-by-Example\auto-v5"
+    "ALLUSERSPROFILE" "C:\ProgramData"
+    "APPDATA" "C:\Users\xapwi\AppData\Roaming"
+    "CommonP...           %%The three dots indicate that more ouput is skipped%%
+    
+red>> print list-env      %%Prints all the output%%
+...                       %%Output suppressed - too big%%

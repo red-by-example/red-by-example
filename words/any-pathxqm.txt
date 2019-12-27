@@ -1,0 +1,57 @@
+The word $$any-path?$$ returns $$true$$ if its argument is a valid $$path!$$ variant.
+Otherwise $$false$$.
+
+In Red, there are several types of $$path!$$ like:
+   $$path!$$ $$lit-path!$$ $$set-path!$$ $$get-path!$$
+
+For more details on the ways of interpreting a word (involving ' and :), 
+the reader should look at the $$lit-word!$$, $$get-word!$$ and $$set-word!$$ docs.
+.pre
+.box Standard paths. Note: we use a [block] to prevent evaluation
+red>> any-path? first [a/b/c]
+== true
+
+red>> path? first [a/b/c]
+== true
+
+red>> type? first [a/b/c]
+== path!
+
+red>> any-path? first [a / b]   %%Surprise - it is a division!%%
+== false
+
+.box Set paths.
+red>> any-path? first[a/b:]
+== true
+
+red>> set-path? first[a/b:]
+== true
+
+red>> type? first[a/b:]
+== set-path!
+
+red>> type? first[a:/b/c]       %%Surprise - because of colon in 2nd position!%%
+== url!
+
+red>> any-path? first [a:/b/c]
+== false
+
+.box Get paths.
+red>> any-path? first [:a/b/c]
+== true
+
+red>> get-path? first [:a/b/c]
+== true
+
+red>> type? first [:a/b/c]
+== get-path!
+
+.box Lit paths.
+red>> any-path? first ['a/b/c]
+== true
+
+red>> lit-path? first ['a/b/c]
+== true
+    
+red>> type? first ['a/b/c]
+== lit-path!

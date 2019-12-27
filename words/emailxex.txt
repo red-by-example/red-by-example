@@ -1,0 +1,21 @@
+This $$datatype!$$ lets us represent literal email addresses.  Note that no 
+detailed syntax-checking is performed.  It must contain an @ character.  An
+ email! is a $$series!$$, and can be manipulated character-by-character.
+
+pre.
+.box Create some email! types, explore them.
+; Create, use type?  email?
+>> e: a@bb.ccc== a@bb.ccc
+>> type? e
+== email!
+>> email? e
+== true
+; As a series
+>> third e
+== #"b"
+;limited checking
+>> em: @x
+== @x
+>> type? em
+== email!
+

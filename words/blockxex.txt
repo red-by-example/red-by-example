@@ -1,0 +1,33 @@
+The $$datatype!$$ $$block!$$ represents a $$series!$$ type.
+
+They are enclosed in square brackets [ ] and can run over many lines.
+
+The adagium ##code = data## fits very well for a $$block!$$.
+A $$block!$$ is just a block of data, but blocks can also be used
+as part of the code.
+.pre
+.box Create a $$block!$$ with a $$string!$$, an $$integer!$$ and a $$float!$$ in it.
+red>> ["Mike" 55 1.95]
+== ["Mike" 55 1.95]
+
+.box Use a $$block!$$ in program code.
+red>> if 3 > 2 [print "bigger"]
+== bigger                                      
+
+.box Code = data
+red>> a: 22
+== 22
+
+red>> my-block: [4 + a]
+== [4 + a]       %%Just a data $$block!$$%%
+
+red>> do my-block
+== 26            %%Happens to contain valid code!%%
+
+.box Beware of $$unset!$$ values in a $$block!$$
+red>> my-data: [name "Li" age 42]
+== [name "Li" age 42]
+
+red>> print my-data
+*** Script Error: name has no value
+*** Where: print

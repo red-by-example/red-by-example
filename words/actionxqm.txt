@@ -1,0 +1,5 @@
+The word $$action?$$ returns $$true$$ if its argument is an $$action!$$
+type, or $$false$$ otherwise.
+.pre
+red>> action? :take     %%Colon is mandatory to get to function definition%%
+== true

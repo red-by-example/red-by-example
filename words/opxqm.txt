@@ -1,0 +1,20 @@
+The word $$op?$$ returns $$true$$ if its argument is an $$op!$$ type.  
+
+This type includes infix operators, such as $$+$$ $$-$$ $$*$$ etc).
+
+Note the use of : to prevent evaluation of the argument!
+.pre
+red>> op? :and
+== true
+
+red>> op? :print
+== false
+
+red>> op? :+
+== true
+
+red>> op? :-
+== true
+
+red>> op? :float?
+== false

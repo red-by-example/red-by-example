@@ -1,0 +1,21 @@
+The word $$checksum$$ computes a checksum, CRC, hash, or HMAC. 
+
+Arguments
+    1. data = $$binary!$$, $$string!$$ or $$file!$$
+    2. the checksum method - a word:
+       MD5 SHA1 SHA256 SHA384 SHA512 CRC32 TCP hash.
+    
+Refinements
+     /with  -   extra value for HMAC key or hash table size; 
+                not compatible with TCP/CRC32 methods.
+                The value we supply can be:
+                    $$any-string!$$  $$binary!$$  $$integer!$$
+                    string or binary for MD5/SHA* HMAC key
+                    $$integer!$$ for hash table size.
+.pre
+.box Do a CRC and MD5 checksum
+red>> checksum "some text" 'CRC32
+== 1337638330
+ 
+red>> checksum "some text" 'MD5
+== #{552E21CD4CD9918678E3C1A0DF491BC3}

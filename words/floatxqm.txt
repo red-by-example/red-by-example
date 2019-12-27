@@ -1,0 +1,17 @@
+The word $$float?$$ returns $$true$$ if its argument is a $$float!$$ type, 
+otherwise $$false$$.
+.pre
+red>> float? 1.23
+== true
+
+red>> float? 3
+== false
+%%No decimal point%%
+
+red>> float? 3.0
+== true
+
+red>> float? "3"
+== false
+%%Is a string%%
+

@@ -1,0 +1,7 @@
+The word $$prin$$ outputs a value to the Red console in a similar manner to 
+the $$print$$ word, but without emitting an end-of-line: "^(line)".
+
+For more details, look at $$print$$.
+.pre
+red>> prin 3 + 3  prin 4 + 4 print "done"
+##68done##

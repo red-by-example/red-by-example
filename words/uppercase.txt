@@ -1,0 +1,22 @@
+The word $$uppercase$$ converts a string of characters to upper-case. 
+ 
+The single argument can be a $$string!$$ or a $$char!$$.
+
+Refinements:
+    /part   -   limits to a given length or position.
+
+NOTE: this is a destructive operation. 
+      When applying it to a variable, that variable will be changed!
+
+See also $$lowercase$$.
+.pre
+.box Try uppercase on char and string
+red>> uppercase #"a"
+#"A"
+
+red>> uppercase "ABC def"
+"ABC DEF"
+
+.box Use /part to specify first 2 chars only
+red>> uppercase/part "abcd def" 2
+ABcd def"

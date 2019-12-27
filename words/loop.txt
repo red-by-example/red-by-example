@@ -1,0 +1,17 @@
+The word $$loop$$ executes a given $$block!$$ a given number of times.
+
+Has 2 parameters:
+   1. a $$number!$$ (number of times to evaluate the $$block!$$)
+   2. a $$block!$$  (to be evaluated the specified number of times)
+
+$$loop$$ has no return value.
+.pre
+loop 3 [print "Hi!"]
+##Hi!##
+##Hi!##
+##Hi!##
+
+i: 0
+loop 10 [i: i + 1]
+print ["Value of i =" i]
+##Value of i = 10##

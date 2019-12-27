@@ -1,0 +1,19 @@
+The word $$NaN?$$ returns $$true$$ if the argument is 'not a number',
+otherwise $$false$$.
+
+'Not a number' means that it is impossible to represent it internally.
+
+The argument is of type: $$number!$$
+.pre
+%%1.5 is a valid $$number!$$%%
+red>> NaN? 3 / 2
+== false
+
+%%3 is a valid $$number!$$%%
+red>> NaN? square-root 9
+== false
+
+%%Square root of a negative number.%%
+red>> NaN? square-root -9
+== true
+

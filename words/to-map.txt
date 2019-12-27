@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-MAP value
+
+DESCRIPTION: 
+     Convert to map! value. 
+     TO-MAP is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to map!
+See $$map!$$
+.box to-map 
+>> to-map [a 1 'b 2 "c" 3]
+== #(
+    a: 1
+    b: 2
+    "c" 3
+)

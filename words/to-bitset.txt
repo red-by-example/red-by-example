@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     TO-BITSET value
+
+DESCRIPTION: 
+     Convert to bitset! value. 
+     TO-BITSET is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to bitset!
+See $$bitset!$$
+
+.box to-bitset example:
+>> to-bitset #"A"
+== make bitset! #{000000000000000040}
+

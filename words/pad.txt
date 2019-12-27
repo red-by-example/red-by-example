@@ -1,0 +1,18 @@
+The word $$pad$$ pads a $$string!$$ on the right side with spaces.
+
+The arguments are:
+    1. the $$string!$$ to pad
+    2. the total size ($$integer!$$) of the new $$string!$$.
+
+Refinements:
+    /left   -   pads the $$string!$$ at its left side.
+.pre
+%%Note the 4 (i.e. 6 - 2) spaces between B and X%%
+red>> prin "X"  prin pad "AB" 6  print "X" print "-123456-"
+##XAB    X##
+##-123456-##
+
+%%Note the 4 spaces between the X and A%%
+red>> prin "X"  prin pad/left "AB" 6  print "X" print "-123456-"
+##X    ABX##
+##-123456-##

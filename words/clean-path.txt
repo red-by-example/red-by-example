@@ -1,0 +1,31 @@
+The word $$clean-path$$ cleans-up '.' and '..' in a $$path$$ 
+and returns the cleaned path. 
+
+The argument can be:
+     $$file!$$  $$url!$$  $$string!$$
+
+Refinements
+     /only  -   do not prepend current directory.
+     /dir   -   add a trailing / if missing.
+.pre
+.box Remove some redundant parent (..) and current(.) uses.
+red>> clean-path %/folder1/folder2/folder3/../../file.txt
+== %/folder1/file.txt
+
+red>> clean-path %/folder1/folder2/././file.txt
+== %/folder1/folder2/file.txt
+
+.box The /dir refinement
+red>> clean-path/dir %/folder1/folder2
+== %/folder1/folder2/
+
+.box The /only refinement
+red>> clean-path/only %folder1/file.txt
+== %file.txt
+
+red>> clean-path %folder1/file.txt      %%without /only%%
+== %/C/red/folder1/file.txt
+
+.box Clean up a URL
+red>> clean-path http://www/./google.com
+== %/www/google.com

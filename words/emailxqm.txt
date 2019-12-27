@@ -1,0 +1,27 @@
+This function returns $$true$$ if its argument is an $$email!$$  $$datatype!$$, 
+otherwise $$false$$.
+
+Arguments
+
+Its single argument can be $$anytype!$$.
+
+.pre
+.box explore email? 
+
+;some 'true' email! values
+>> em: a@bb.ccc
+== a@bb.ccc
+>> email? em
+== true
+
+>> email? a@b
+== true
+
+>> email? a@
+== true
+
+;'false' email literal
+>> email? "a@b"   ;string
+== false
+
+

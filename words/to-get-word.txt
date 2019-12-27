@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     TO-GET-WORD value
+
+DESCRIPTION: 
+     Convert to get-word! value. 
+     TO-GET-WORD is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to get-word!
+See $$get-word!$$
+.box to-get-word 
+>> to-get-word "abc"
+== :abc

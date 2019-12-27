@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-LIT-WORD value
+
+DESCRIPTION: 
+     Convert to lit-word! value. 
+     TO-LIT-WORD is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+The equivalent of:    to lit-word!
+
+See $$lit-word!$$
+
+.box  to-lit-word
+>> to-lit-word  "abc"
+== 'abc
+>> to-lit-word  first [abc]
+== 'abc

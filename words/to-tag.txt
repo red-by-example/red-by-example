@@ -1,0 +1,24 @@
+Converts its single argument to  a $$tag!$$.
+
+Arguments
+
+A single argument, of any type.
+
+.pre
+
+.box Explore to-tag, with several types of arguments.
+; integer!
+>> to-tag 1234
+== <1234>
+>> v: 3 + 5
+== 8
+>> to-tag v
+== <8>
+
+; string!
+>> to-tag "the cat"
+== <the cat>
+>> block!
+to-tag [a b]
+== <ab>
+

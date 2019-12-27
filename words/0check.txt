@@ -1,0 +1,29 @@
+A check provides a check-box, with an optional label.  
+
+The default event is $$0on-change$$
+
+The boolean state exists in 'data'.  Note that 'change' can mean true to 
+false, or false to true.
+
+Here is a VID example which displays the current state when checked:
+ 
+check1-changed: function [] [
+    print ["check1-has changed.  Current state is: " check1/data]
+]
+
+view [
+      check1: check "Check me" [check1-changed]
+]
+
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-choice-faces-red.html">
+http://www.red-by-example.org/vid-choice-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_check"> 
+https://doc.red-lang.org/en/view.html#_check</a>
+

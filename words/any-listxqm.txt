@@ -1,0 +1,29 @@
+The word $$any-list?$$ returns $$true$$ if its argument is an $$any-list!$$ type, 
+otherwise $$false$$.    
+
+An $$any-list!$$ is a $$typeset!$$ of: 
+    $$block!$$ $$paren!$$ $$hash!$$
+
+Its argument can be of any type.
+.pre
+.box try some types with any-list?
+red>> any-list? "text"
+false
+
+red>> any-list? 127.33.63
+== false
+
+red>> any-list? [22 33]
+== true
+
+red>> any-list? (2 3)
+== false
+
+red>> any-list? (2 3)           %%invalid - Red tries to evaluate the argument%%
+== false
+
+red>> first [(2 3)]             %%valid - [ ] prevents evaluation%%
+== (2 3)
+
+red>> any-list? first [(2 3)]   %%now it works!%%
+== true

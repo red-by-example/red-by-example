@@ -1,0 +1,8 @@
+Used to incorporate modules of code into your program.
+
+You will meet this early on when using VID,as in:
+
+Red[ needs 'View]
+
+...rest of program.
+

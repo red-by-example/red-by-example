@@ -1,0 +1,16 @@
+.dcs
+USAGE:
+     ARCTANGENT2 y x
+
+DESCRIPTION: 
+     Returns the smallest angle between the X axis and the point (x,y) (-pi to pi). 
+     ARCTANGENT2 is a native! value.
+
+ARGUMENTS:
+     y            [number!] 
+     x            [number!] 
+
+RETURNS:
+     [float!]
+.dce
+.aad

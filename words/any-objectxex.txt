@@ -1,0 +1,5 @@
+A typeset!
+ make typeset! [object! error!] 
+ 
+ See $$any-object?$$
+ 

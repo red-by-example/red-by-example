@@ -1,0 +1,13 @@
+The function $$view$$ is used to:
+   - declare a GUI layout using VID
+   - invoke that GUI layout
+.pre
+Red [
+    needs: 'view
+]
+
+view [
+    below
+    text "Line 1"
+    text "Line 2"
+]

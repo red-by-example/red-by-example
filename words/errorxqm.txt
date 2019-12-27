@@ -1,0 +1,10 @@
+The word $$error?$$ returns $$true$$ if the value is of 
+type $$error!$$. Otherwise $$false$$ is returned.
+
+This can be used to check the result from $$try$$.
+.pre
+red>> error? try [2 + "3"]
+== true
+
+red>> error? try[2 + 3]
+== false    

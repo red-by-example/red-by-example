@@ -1,0 +1,14 @@
+.dcs
+USAGE:
+     TO-IMAGE value
+
+DESCRIPTION: 
+     Convert to image! value. 
+     TO-IMAGE is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+.aad
+
+See $$image!$$ datatype.

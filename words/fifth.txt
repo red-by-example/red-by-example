@@ -1,0 +1,19 @@
+The word $$fifth$$ returns the fifth value in a $$series!$$. 
+
+The argument can be one of: 
+    $$series!$$ $$tuple!$$
+
+If there is no fifth item, then $$none$$ is returned.
+.pre
+red>> fifth [1 2 3 4 5 6 7]
+== 5
+
+red>> fifth "ABCDEFG"
+== #"E"
+
+red>> fifth 12.16.13.15.22
+== 22
+
+red>> fifth [1 2 3]
+== none
+%%No fifth element found%%

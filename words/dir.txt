@@ -1,0 +1,20 @@
+The word $$dir$$ lists the contents of a directory.
+
+It is tightly related to the word $$list-dir$$.
+
+The directory to list to can be:
+    - an absolute $$path$$
+    - a relative $$path!$$
+    
+If no argument given, it lists the current directory.
+.pre
+.box Using an absolute path
+red>> dir %/e/src
+    8th/                  go/                   python/               red/
+    spiderbasic/     
+
+.box Using it without an argument lists the current directory
+red>> dir
+    basehtml.txt          colors.txt            design/               gensite.red           
+    gensite.txt           pages/                publish/              redftp.lnk            
+    rexec.red             tst.red               words/    

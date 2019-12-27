@@ -1,0 +1,13 @@
+.dcs
+USAGE:
+     READ-CLIPBOARD 
+
+DESCRIPTION: 
+     Return the contents of the system clipboard. 
+     READ-CLIPBOARD is a routine! value.
+.dce
+.box write and read clipboard
+>> write-clipboard  "Hello!!!"
+== true
+>> read-clipboard
+== "Hello!!!"

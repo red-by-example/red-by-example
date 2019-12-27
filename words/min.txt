@@ -1,0 +1,22 @@
+The word $$min$$ returns the smaller of its two arguments. 
+
+There are 2 arguments of type:  
+    $$scalar!$$ $$series!$$ 
+.pre
+red>> min  4 3
+== 3
+
+red>> min 3.1 3
+== 3
+
+red>> min #"B" #"C"
+== #"B"
+
+red>> min "ABC" "BBC"
+== "ABC"
+
+red>> min "ABC" "ABCD"
+== "ABC"
+
+red>> min [1 2 3] [3 2 1 0]
+== [1 2 3]

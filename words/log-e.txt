@@ -1,0 +1,9 @@
+The word $$log-e$$ returns the natural (base E) logarithm of its argument.
+
+The argument can be a $$number!$$ (a $$float!$$ or an $$integer!$$)
+.pre
+red>> log-e 2.7
+== 0.9932517730102835
+
+red>> log-e 3
+== 1.09861228866811

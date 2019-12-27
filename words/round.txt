@@ -1,0 +1,82 @@
+Returns the nearest integer value.  Halves round up (away from zero) by
+default. Note that refinements allow decimal places (etc) to be specified.
+
+Arguments
+The single argument can be a $$number!$$ or a $$time!$$
+
+Refinements
+     /to - Return the nearest multiple of the scale parameter.
+           We supply a non-zero $$number!$$
+     /even - Halves round toward even results.
+     /down - Round toward zero, ignoring discarded digits - i.e. truncate.
+     /half-down - Halves round toward zero, not away from zero.
+     /floor - Round in negative direction.
+     /ceiling - Round in positive direction.
+     /half-ceiling - Halves round in positive direction.
+
+
+.pre
+.box round - no refinements
+;basic use
+red>> round 2.3
+== 2.0
+
+;note -ve  -  round toward zero
+red>> round -3.3
+== -3.0
+
+;halves round away from zero
+red>> round 2.5
+== 3.0
+red>> round -3.5
+== -4.0
+
+;time argument - note rounded seconds
+red>> round 13:14:15.6
+== 13:14:16
+
+.box  /to refinement
+red>> round/to 12.36 0.1
+== 12.4
+red>> round/to 2888 100
+== 2900
+
+.box /even refinement
+;towards even: 4 not 5
+red>> round/even 4.5
+== 4.0
+;towards even: 4 not 3
+red>> round 3.5
+== 4.0
+red>> round 4.5
+== 5.0
+
+.box /down refinement
+red>> round/down 3.9
+== 3.0
+red>> round/down -3.9
+== -3.0
+
+.box /half-down refinement
+red>> round/half-down 2.5
+== 2.0
+red>> round/half-down -3.5
+== -3.0
+
+.box /floor refinement
+red>> round/floor 3.9
+== 3.0
+red>> round/floor -3.9
+== -4.0
+
+.box /ceiling refinement
+red>> round/ceiling 3.2
+== 4.0
+red>> round/ceiling -3.9
+== -3.0
+
+.box /half-ceiling refinement
+red>> round/half-ceiling 3.5
+== 4.0
+red>> round/half-ceiling -3.5
+== -3.0

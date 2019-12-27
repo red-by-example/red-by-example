@@ -1,0 +1,18 @@
+.dcs
+USAGE:
+     AS-RGBA a b c d
+
+DESCRIPTION: 
+     Combine a, b, c and d values into a tuple. 
+     AS-RGBA is a routine! value.
+
+ARGUMENTS:
+     a            [integer!] 
+     b            [integer!] 
+     c            [integer!] 
+     d            [integer!] 
+
+.dce
+.box as-rgba
+>> as-rgba 255 0 255 1
+== 255.0.255.1

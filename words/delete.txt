@@ -1,0 +1,13 @@
+Deletes the specified file or empty folder. Returns false if the item
+does not exist.
+
+Arguments
+A $$file!$$
+
+Examples
+
+.box delete:  fffff.red does not exist, ttt.red does exist
+>> delete %fffff.red
+== false
+>> delete %ttt.red
+== true

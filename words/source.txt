@@ -1,0 +1,17 @@
+The word $$source$$ shows the source code of a mezzanine word. 
+Does not return a value.
+
+A mezzanine word is a Red $$word!$$ that is defined in terms of Red itself.
+
+Has 1 parameter, the name of an existing Red word,
+.pre
+>> source rejoin
+rejoin: func [
+    "Reduces and joins a block of values." 
+    block [block!] "Values to reduce and join"
+][
+    if empty? block: reduce block [return block] 
+    append either series? first block [copy first block] [
+        form first block
+    ] next block
+]

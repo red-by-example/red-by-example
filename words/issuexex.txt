@@ -1,0 +1,21 @@
+The issue! $$datatype!$$ can be used to represent values such as product 
+codes, credit-card numbers etc.  Greater-than/less than comparisons are
+ allowed.
+
+Literal values in a program must begin with #, and end with a space. 
+Examples:
+
+    #AB-999
+    #+00-1254-776534
+    #driver:2019,May
+    #My-tag
+    
+.box Issue examples
+>> a: #AB-999
+== #AB-999
+>> b: #BB-999
+== #BB-999
+>> b > a                 ;-- compare 2 issues
+== true
+>> to issue! "My-tag"    ;-- make an issue from a string
+== #My-tag

@@ -1,0 +1,21 @@
+A panel is a container for other faces. We supply a block of faces.  
+The default event is $$0on-down$$
+
+In VID, here is a black panel containing 2 buttons:
+
+panel1: panel black [    
+    panel1-b1: button "panel1-b1" [mytext/text: "panel1-b1 clicked" ]
+    panel1-b2: button "panel1-b2" [mytext/text: "panel1-b2 clicked" ]
+]
+ 
+There is a complete VID example in:
+<a href="http://www.red-by-example.org/vid-choice-faces-red.html">
+http://www.red-by-example.org/vid-choice-faces-red.html </a>
+
+There is an introduction to VID at:
+<a href="http://www.red-by-example.org/vid.html">
+http://www.red-by-example.org/vid.html </a>
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_panel"> 
+https://doc.red-lang.org/en/view.html#_panel</a>

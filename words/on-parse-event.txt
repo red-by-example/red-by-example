@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     ON-PARSE-EVENT event match? rule input stack
+
+DESCRIPTION: 
+     Standard parse/trace callback used by PARSE-TRACE. 
+     ON-PARSE-EVENT is a function! value.
+
+ARGUMENTS:
+     event        [word!] {Trace events: push, pop, fetch, match, iterate,
+                  paren, end.}
+     match?       [logic!] "Result of last matching operation."
+     rule         [block!] "Current rule at current position."
+     input        [series!] "Input series at next position to match."
+     stack        [block!] "Internal parse rules stack."
+
+RETURNS:
+     TRUE: continue parsing, FALSE: stop and exit parsing.
+     [logic!]
+.dce
+.aad

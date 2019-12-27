@@ -1,0 +1,9 @@
+.dcs
+
+.dce
+.aad
+Values of this datatype contain a series! of RGBA values, which represent 
+pixels in a 2D image.  Consult the official Red documentation at:
+
+<a href="https://doc.red-lang.org/en/datatypes/image.html">
+https://doc.red-lang.org/en/datatypes/image.html</a>

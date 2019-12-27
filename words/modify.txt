@@ -1,0 +1,20 @@
+.dcs
+USAGE:
+     MODIFY target field value
+
+DESCRIPTION: 
+     Change mode for target aggregate value. 
+     MODIFY is an action! value.
+
+ARGUMENTS:
+     target       [object! series!] 
+     field        [word!] 
+     value        [any-type!] 
+
+REFINEMENTS:
+     /case        => Perform a case-sensitive lookup.
+
+RETURNS:
+     [map! file!]
+.dce
+.aad

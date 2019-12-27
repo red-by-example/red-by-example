@@ -1,0 +1,20 @@
+The $$datatype!$$ $$series!$$ is a $$typeset!$$ containing several $$datatype!$$s.
+.pre
+.box Show all $$series!$$ types
+red>> ? series!
+series! is a typeset! of value: 
+        make typeset! [
+             block! 
+             paren! 
+             string! 
+             file! 
+             url! 
+             path! 
+             lit-path! 
+             set-path! 
+             get-path! 
+             vector! 
+             hash! 
+             binary! 
+             image!
+        ]

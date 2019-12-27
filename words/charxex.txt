@@ -1,0 +1,59 @@
+The $$datatype!$$ $$char!$$ represents a $$scalar!$$ type containing 
+a single $$char!$$.
+
+A literal looks like:
+    #"A"
+Only a single character is valid. So e.g. #"AZ" is invalid!
+
+A $$series!$$ of $$char!$$ is a $$string!$$.
+
+Representation of the letter A as a:
+    $$char!$$   ->  #"A"
+    $$string!$$ ->  "A"
+
+The caret ^ is the escape character for special codes:
+    - a numeric value is interpreted as HEX
+    - null, line, tab, page, esc, back, delete
+To use such a code, specify:
+    #"^(code)"
+    
+There are some pre-defined characters:
+
+    null             #"^@"
+    newline          #"^/"
+    slash            #"/"
+    dbl-quote        #"^""
+    space            #" "
+    lf               #"^/"
+    tab              #"^-"
+    CR               #"^M"
+    dot              #"."
+    escape           #"^["
+    comma            #","
+    sp               #" "
+    
+.pre
+.box Some examples
+red>> #"A"
+== #"A"
+
+red>> print #"A"
+##A##
+ 
+red>> print #"^(41)"      %%Hex 41 is decimal 65 is ASCII A%%
+##A##
+ 
+red>> first "dog"         %%A char! as element of a $$string!$$ $$series!$$%%
+== #"d"
+
+red>> print #"^(line)"    %%Output a blank line%%
+
+ 
+red>> prin 3 prin #"^(tab)" print 6
+##3    6##
+
+red>> #"A" + 1
+== #"B"
+
+red>> #"B" > #"A"
+== true

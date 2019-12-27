@@ -1,0 +1,30 @@
+The $$datatype!$$ $$hash!$$ provides a block-like interface but with fast 
+lookups for most values (block series can be stored in hash! too, but they 
+will not be hashed, so no faster access). 
+
+It is a very flexible container for any kind of hashed tables (not only 
+associative arrays) while keeping the handy navigational abilities of blocks.  
+
+A hash might save time with large data sets and repeated searching.  
+
+See also0 the $$datatype!$$ $$map!$$.
+.pre
+.box Create a hash!, and use it
+red>> list: make hash! [a 123 "hello" b c 789]
+== make hash! [a 123 "hello" b c 789]
+
+red>> list/c
+== 789
+
+red>> find list 'b
+== make hash! [b c 789]
+
+red>> dict: make hash! [a 123 b 456 c 789]
+== make hash! [a 123 b 456 c 789]
+
+red>> select dict 'c
+== 789
+
+.box Regard DICT as 2 records of size 3 and find value 456
+red>> select/skip dict 456 3
+== 123

@@ -1,0 +1,2 @@
+See the official VID documents:
+<a href="https://doc.red-lang.org/en/vid.html">https://doc.red-lang.org/en/vid.html</a>

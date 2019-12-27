@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-UTC-DATE date
+
+DESCRIPTION: 
+     Returns the date with UTC zone. 
+     TO-UTC-DATE is a function! value.
+
+ARGUMENTS:
+     date         [date!] 
+
+RETURNS:
+     [date!]
+.dce
+
+See $$date!$$
+.box to-UTC-date
+;-- I'm in the UK, British Summertime, my watch says 9:32 a.m
+;-- This time is offset from UTC time by 1 hour:
+>> to-UTC-date now
+== 30-May-2019/8:32:21

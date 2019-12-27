@@ -1,0 +1,19 @@
+Returns the list of words of a value that supports reflection. 
+
+Arguments
+
+A value of a type that supports reflection.
+
+.pre
+.box words-of, with map and object
+;with map
+red>> m: make map![a 1 b 2]
+
+red>> words-of m
+== [a b]
+
+;with object
+red>> place: make object! [x-pos: 100 y-pos: 200 ]
+
+red>> words-of place
+== [x-pos y-pos]

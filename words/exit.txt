@@ -1,0 +1,23 @@
+The word $$exit$$ exits a ##function!## without returning a value.
+
+Has no parameters.
+.pre
+fun1: func [p1] [
+  fun2 p1
+  print "fun2 completed"
+]
+
+fun2: func [p2] [
+  print "Before exit check ..."
+  if p2 = "exit" [exit]
+  print "After exit check"
+]
+
+fun1 "abc"
+##Before exit check ...##
+##After exit check##
+##fun2 completed##
+
+fun1 "exit"
+##Before exit check ...##
+##fun2 completed##

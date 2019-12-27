@@ -1,0 +1,12 @@
+The word $$even?$$ returns $$true$$ if a $$number!$$ is even.
+Else returns $$false$$.
+
+Arguments
+
+Has 1 argument:  a $$number!$$, $$char!$$, or $$time!$$.
+.pre
+even? -4
+== true
+
+even? 77
+== false

@@ -1,0 +1,15 @@
+.dcs
+USAGE:
+     EXPAND-DIRECTIVES code
+
+DESCRIPTION: 
+     Invokes the preprocessor on argument list, modifying and returning it. 
+     EXPAND-DIRECTIVES is a function! value.
+
+ARGUMENTS:
+     code         [block! paren!] "List of Red values to preprocess."
+
+REFINEMENTS:
+     /clean       => Clear all previously created macros and words.
+.dce
+.aad

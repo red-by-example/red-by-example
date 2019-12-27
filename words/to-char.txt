@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-CHAR value
+
+DESCRIPTION: 
+     Convert to char! value. 
+     TO-CHAR is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to char!
+See $$char!$$
+.box to-char with various types
+>> to-char 65
+== #"A"
+>> to-char "A"     ;-- NB "A" is a string type
+== #"A"
+>> to-char "CAT"   ;-- first char from string of chars
+== #"C"

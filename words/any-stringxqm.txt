@@ -1,0 +1,16 @@
+The word $$any-string?$$ returns $$true$$ if its argument is any type of $$string!$$,
+including the types $$string!$$,  $$file!$$ and  $$url!$$.
+
+It has no refinements.
+.pre
+red>> any-string? http://www.aaa.com
+== true
+
+red>> any-string? "fred"
+== true
+
+red>> any-string? 123
+== false
+
+red>> any-string? %notes/data.txt
+== true

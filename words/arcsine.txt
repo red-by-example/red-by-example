@@ -1,0 +1,13 @@
+The word $$arcsine$$ returns the trigonometric arcsine (in degrees by default).
+
+Has 1 parameter, a $$number!$$.
+
+Refinements:
+/radians : returns the angle in radians;
+           without refinement returns the angle in degrees.
+.pre
+arcsine 0.5
+== 30.0
+
+arcsine/radians 0
+== 0.0

@@ -1,0 +1,663 @@
+.hop 1. Introduction
+
+The series datatype is a key part of Red.
+It provides a unified way of accessing ordered series of elements.
+
+For example, here are some series:
+
+    "The cat sat down"    %%a string%%
+
+    [33 "animal" 22]      %%a block%%
+
+    ["The" ["large" "grey"] "cat" "sat" "on" "the" ["cold" "damp"] "floor"]   %%a block%%
+
+Elements in blocks are enclosed in [ ] and are separated by spaces.
+
+Note that blocks can contain variables and elements of mixed types.
+
+We can refer to particular elements via a (1-based) index.
+For example, element 2 of each series above is:
+
+	#"h"                    %%a single character, not a string%%
+
+	"animal"                %%a string%%
+
+	["large" "grey"]        %%a block containing 2 strings%%
+
+A block can contain other blocks.
+
+Blocks play a key role in the Red language itself.
+For example, we can write:
+
+	either 4 > 3 [ print "bigger" ] [ print "not bigger" ]
+
+The first block contains 2 elements, being "print" and ""bigger"").
+The second block also contains 2 elements, being "print" and ""not bigger"".
+
+In fact, Red can treat the above text either as data, or as code!
+
+Links: $$block!$$ $$char!$$ $$datatype!$$ $$series!$$ $$string!$$
+
+.top
+.hoc 2. The different types in the series family
+
+Many Red datatypes belong to the series family:
+	$$block!$$ 		$$paren!$$ 		$$string!$$		$$file!$$		$$url!$$		$$path!$$
+	$$lit-path!$$	$$set-path!$$ 	$$get-path!$$ 	$$vector!$$ 	$$hash!$$ 		$$binary!$$
+	$$image!$$		$$tag!$$
+
+So, series functions equally apply to all of those, including strings.
+
+Here are some examples of series types:
+
+.broff
+<table width=100% border=1 style="font-family:courier new bold; border-color: blue;">
+<tr><th>DATATYPE</th><th>EXAMPLE</th></tr>
+<tr><td>binary!</td><td>b: #{FF AA 12}<td></tr>
+<tr><td>block!</td><td>["any" "type" "e.g."  12.23  "Yes" false  [ "nested"] ]<td></tr>
+<tr><td>file!</td><td>%important/my-stuff/programs/<td></tr>
+<tr><td>get-path!</td><td>get-path? first [:a/b/c]<td></tr>
+<tr><td>hash!</td><td>%%to do by Red team%%<td></tr>
+<tr><td>image!</td><td>%%to do by Red team%%<td></tr>
+<tr><td>lit-path!</td><td>%%to do by Red team%%<td></tr>
+<tr><td>paren!</td><td>first [(1 + 2 * 3 / 4)]  %%inserted in a block to prevent evaluation%%<td></tr>
+<tr><td>path!</td><td>UK/South-east/London/Westminster<td></tr>
+<tr><td>set-path!</td><td>set-path? first [a/b/c: 10]<td></tr>
+<tr><td>string!</td><td>"Some text"<td></tr>
+<tr><td>url!</td><td>http://www.mypages.home/names.html<td></tr>
+<tr><td>vector!</td><td>v-ages: make vector! [80 18 65]<td></tr>
+</table>
+.bron
+
+There is also a related map! (dictionary) type, which is not classified as a series.
+
+Links: $$datatype!$$ $$map!$$
+
+.top
+.hoc 3. Initializing series by using copy
+
+When working with series, it is important to understand about copy.
+
+Links: $$copy$$
+
+.top
+.hoc 3.1. Shallow copy of a series
+
+When we assign a variable to some series, the series VALUES are NOT copied;
+instead the REFERENCE to that series is copied into the variable:
+
+	red>> days: ["sun" ["mon" "tue"] "wed"]
+	== ["sun" ["mon" "tue"] "wed"]
+
+	red>> new-days: days
+	== ["sun" ["mon" "tue"] "wed"]
+
+	red>> days/1: "fri"
+	== "fri"    %%changed first element of ##days##%%
+
+	red>> new-days/1
+	== "fri"    %%also changed, because ##new-days## is a reference to same ##days## series%%
+
+When we want a shallow copy, we must use:
+
+	red>> days: ["sun" ["mon" "tue"] "wed"]
+	== ["sun" ["mon" "tue"] "wed"]
+
+	red>> new-days: copy days
+	== ["sun" ["mon" "tue"] "wed"]
+
+	red>> days/1: "fri"
+	== "fri"    %%changed first element%%
+
+	red>> new-days/1
+	== "sun"    %%not changed - it is a separate copy%%
+
+	red>> days/2/1: "thu"
+	== "thu"    %%changed "mon" in nested series to "thu"%%
+
+	red>> new-days/2/1
+	== "thu"    %%also changed!!!!!%%
+
+The last effect is exactly the result of a shallow copy.
+
+All top level elements except nested series are copied by VALUE. That is why
+the change to "fri" in the original series did not effect the copied series.
+
+However, for all nested series only the REFERENCE is copied. That is why the last
+change (to "thu") in the original series, is visible in the (shallow) copies series.
+
+Links: $$copy$$
+
+.top
+.hoc 3.2. Deep copy of a series
+
+Normal copying does not copy nested series, but we can use the ##/deep## refinement.
+Instead a shallow copy is made, meaning that for nested series only their REFERENCES
+are copied!
+
+Example:
+
+	red>> s: [11 [222 333 444] 55 66]
+	== [11 [222 333 444] 55 66]    %%contains a nested block as element 2%%
+
+	red>> shallow-copy: copy s
+	== [11 [222 333 444] 55 66]
+
+	red>> deep-copy: copy/deep s
+	== [11 [222 333 444] 55 66]    %%seems equal to shallow-copy isn't it?%%
+
+	red>> shallow-copy/2/3: 888    %%alter the value 444 to 888%%
+	== 888
+
+	red>> s
+	== [11 [222 333 888] 55 66]    %%original (shallow-copied) series is altered%%
+
+	red>> shallow-copy
+	== [11 [222 333 888] 55 66]
+
+	red>> deep-copy
+	== [11 [222 333 444] 55 66]    %%totally different series%%
+
+Links: $$copy$$
+
+.top
+.hoc 3.3. Initialising a series by using copy
+
+As a general rule you should always use copy when you want to initialize a series
+from a literal value.
+
+To create e.g. an empty series:
+
+	results: copy []             %%an empty block%%
+
+	student-name: copy ""        %%an empty string%%
+
+When you don't do this you will get in trouble. To explain the problem we create a small function:
+
+	huh: function [] [
+			list: ""
+			append list "huh"
+			print list
+		 ]
+
+Now we run this function a few times and see what happens:
+
+	red>> huh
+	huh
+
+	red>> huh
+	huhhuh
+
+	red>> huh
+	huhhuhhuh
+
+What the heck??! Here is what happens:
+
+	1. ##list## is a local variable; this is the default in a ##function##;
+	   note that in a ##func## we need to explicitly declare the variable ##list##
+	   to be local with the /local option.
+
+	2. when we say:
+	      list: ""
+	   the first time we call the function we ask Red to do the following:
+	   		- allocate some fresh storage for us
+	   		- initialize that storage with an empty string
+	   		- ASSIGN that storage PERMANENTLY to the variable ##list##
+
+	3. when we call the function again:
+	      list: ""
+	   ##list## will NOT be initialized again; it just has the same contents
+	   as when the function terminated the last time.
+
+	4. so, when we alter such series after initializing, the contents will
+	   be the same as when we left it in the previous function call
+
+So again, initialize series variables from literals ALWAYS with a copy, UNLESS
+you wish to use this as a FEATURE.
+
+As a side note:
+	The programming language C has STATIC variables (inside functions) which behave
+	exactly the same. The contents of such variable is kept and can be used in later
+	function calls.
+
+Links: $$append$$ $$copy$$ $$func$$ $$function$$
+
+.top
+.hoc 4. Positioning in a series
+
+We can walk through series in a forward and backward manner.
+
+.top
+.hoc 4.1. Positioning in a series - part 1
+
+A series has a head, a tail and a current index.
+
+When we initially create our series:
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+Effectively we have this:
+
+	- the head of the ##days## series always points to the first element
+	  if there is one. Otherwise head an tail are equal.
+
+	- variable ##days## currently is at the head of the ##days## series
+
+	- the tail always points just beyond the last element of a series
+
+The ##days## variable is kind of a 2-in-1 variable:
+
+	- it is the name of the series
+
+	- it is also an index into that same series
+
+The ##days## variable initially is set to 1 (index is at the head).
+
+With index? we can request the index where the variable ##days## currently points to.
+
+Explore the initial state of ##days##:
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+	red>> first days
+	== "sun"
+
+	red>> index? days
+	== 1               %%value 1 means we are at the head position%%
+
+	red>> head? days
+	== true            %%always in head position if index = 1%%
+
+	red>> tail? days
+	== false
+
+This is as we might expect.  The head? and tail? functions tell us if the
+index (which is held in the variable ##days##) is currently at the head or
+at the tail of the ##days## series.
+
+Now we will use the $$next$$ function to increment the index by 1 and explore the state:
+
+	red>> days: next days
+	== ["mon" "tue" "wed"]
+
+	red>> days
+	== ["mon" "tue" "wed"]
+
+	red>> first days
+	== "mon"          %%$$first$$ operates relative to where ##days## currently points to%%
+
+	red>> index? days
+	== 2              %%index now points to "mon"%%
+
+	red>> head? days
+	== false          %%index = 2 (to be in head position index should have been 1)%%
+
+	red>> tail? days
+	== false
+
+The index is now 2, but the first value is now "mon", showing that the functions:
+first, second, third etc. work relative to the current index value.
+
+If we position to the $$tail$$ (e.g. by using next several times) we see:
+
+	red>> days: next next next days
+	== []             %%days now points beyond the last element%%
+
+	red>> first days
+	== none           %%there is no $$first$$ element - ##days## points to empty series%%
+
+	red>> index? days
+	== 5              %%in the original series there are 4 elements, so we are beyond the last%%
+
+	red>> head? days
+	== false
+
+	red>> tail? days
+	== true           %%because index is just beyond the last element%%
+
+The possibility of going beyond the $$head$$ or the $$tail$$ is covered later.
+
+Links: $$head$$ $$head?$$ $$index?$$ $$next$$ $$tail$$ $$tail?$$ $$first$$ $$second$$ $$third$$ $$fourth$$ $$fifth$$
+
+.top
+.hoc 4.2. Positioning in a series - part 2
+
+We can position the index at the head or the tail:
+
+	red>> days: head days
+	== ["sun" "mon" "tue" "wed"]
+
+	red>> days: tail days
+	== []
+
+
+We can use the back function to do the opposite of next (decrement the index):
+
+	red>> days: back days
+	== ["wed"]
+
+We can use the skip function (with a positive or negative argument) to move the index
+forward or backward relative to the current index:
+
+	red>> days: skip days -2
+	== ["mon" "tue" "wed"]
+
+	red>> days: skip days 1
+	== ["tue" "wed"]
+
+NOTE:
+	When an attempt is made to move the index to before the head or beyond the tail,
+	no errors are produced. Red then sets the index to the head or the tail.
+
+Links: $$back$$ $$head$$ $$skip$$ $$tail$$
+
+.top
+.hoc 5. Selecting individual elements in a series
+
+Given the series:
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+Initially, the ##days## variable is at the head (index = 1).
+
+To access individual items, there are several possibilities.
+
+Links: $$head$$
+
+.top
+.hoc 5.1. Getting an element out of a series
+
+Example using the pick function:
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+	red>> chosen: pick days 3
+	== "tue"
+
+	red>> n: 4
+	== 4
+
+	red>> chosen: pick days n
+	== "wed"
+
+The pick function works relative to the index variable ##days##:
+
+	red>> days: next days
+	== ["mon" "tue" "wed"]
+
+	red>> index? days
+	== 2
+
+	red>> pick days 3
+	== "wed"            %%relative to the index ##days## points to%%
+
+	red>> n: 4
+	== 4
+
+	red>> pick days n
+	== none             %%we now are at tail position%%
+
+Here pick is used to access a nested series, using variables:
+
+	red>> s: [1 2 [33 99] 5]
+	== [1 2 [33 99] 5]
+
+	red>> m: 3
+	== 3
+
+	red>> n: 2
+	== 2
+
+	red>> pick pick s m n
+	== 99
+
+We can also use path notation:
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+	red>> days/2        %%2 is the number of the element we want%%
+	== "mon"
+
+A path can also be used to change an element, as in:
+
+	red>> days/2: "fri"
+	== "fri"
+
+	red>> days
+	== ["sun" "fri" "tue" "wed"]
+
+Also using a path using a variable:
+
+	red>> s: [1 2 3 4]
+	== [1 2 3 4]
+
+	red>> i: 3
+	== 3
+
+	red>> s/:i: 33     %%note that we need get-word notation here%%
+	== 33
+
+	red>> s
+	== [1 2 33 4]
+
+Path notation can also be used to access nested series, as in:
+
+	red>> s: [1 2 [33 34 35] 4]
+	== [1 2 [33 34 35] 4]     %%a nested series%%
+
+	red>> i: 3                %%used to point to element in top-level series -> [33 34 35]%%
+	== 3
+
+	red>> j: 2                %%used to point to element in second-level series -> 34%%
+	== 2
+
+	red>> s/:i/:j: 124
+	== 124
+
+	red>> s
+	== [1 2 [33 124 35] 4]    %%second-level series has changed indeed%%
+
+We can use the pre-defined functions: first, second, third, fourth and fifth
+to access an element (note that these functions operate relative to the index the series
+currently points to):
+
+	red>> s: [11 12 13 14 15 16]
+	== [11 12 13 14 15 16]
+
+	red>> first s
+	== 11
+
+	red>> second s
+	== 12
+
+	red>> third s
+	== 13
+
+	red>> fourth s
+	== 14
+
+	red>> fifth s
+	== 15
+
+Links: $$index?$$ $$path!$$ $$pick$$ $$first$$ $$second$$ $$third$$ $$fourth$$ $$fifth$$
+
+.top
+.hoc 5.3. Using the at function
+
+This function returns a reference to the rest of the series starting with the element
+its argument points to:
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+	red>> at days 3
+	== ["tue" "wed"]
+
+This function also works relative to the index of a series.
+
+Links: $$at$$
+
+.top
+.hoc 6. Changing individual elements in a series
+
+Example:
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+	red>> poke days 2 "fri"
+	== "fri"        %%note that poke returns the new element value%%
+
+	red>> days
+	== ["sun" "fri" "tue" "wed"]
+
+To change nested elements we must use path notation as shown earlier on this page
+
+Links: $$poke$$
+
+.top
+.hoc 7. Looping over a series
+
+Making use of Red's powerful series functions will minimize your use of loops,
+but should you need to do this, here is an example using $$foreach$$:
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+	red>> foreach day days [ print day ]
+	##sun##
+	##mon##
+	##tue##
+	##wed##
+
+The variable ##day## takes each value in turn.
+
+Note that $$foreach$$ does consider the index where ##days## currently points to!
+
+Links: $$foreach$$
+
+.top
+.hoc 8. Some common tasks with series: sort, find, modify etc.
+
+Here are some typical tasks that you might need to do on series.
+The details of the individual series functions are covered separately.
+
+.top
+.hoc 8.1. How to sort a series
+
+Example:
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+	red>> sort days
+	== ["mon" "sun" "tue" "wed"]
+
+Note that the original series is modified!
+
+Links: $$sort$$
+
+.top
+.hoc 8.2. How to find a value in a series
+
+The find function returns a reference to the series, at the found position
+
+	red>> days: ["sun" "mon" "tue" "wed"]
+	== ["sun" "mon" "tue" "wed"]
+
+	red>> find days "tue"
+	== ["tue" "wed"]
+
+Links: $$find$$
+
+.top
+.hoc 8.3. How to insert a substring into a string
+
+Example:
+
+	red>> letters: "abcdefg"
+	== "abcdefg"
+
+	red>> insert find letters "d" "XX"
+	== "defg"
+
+	red>> letters
+	== "abcXXdefg"
+
+Links: $$insert$$
+
+.top
+.hoc 8.4. How to replace a substring with another string
+
+Example:
+
+	red>> letters: "abcdefgabcdefgabcdefg"
+	== "abcdefgabcdefgabcdefg"
+
+	red>> replace letters "cd" "CD"
+	== "abCDefgabcdefgabcdefg"    %%only the first occurrence is changed%%
+
+	red>> letters
+	== "abCDefgabcdefgabcdefg"
+
+In order to replace all occurrences, do:
+
+	red>> letters: "abcdefgabcdefgabcdefg"
+	== "abcdefgabcdefgabcdefg"
+
+	red>> replace/all letters "cd" "CD"
+	== "abCDefgabCDefgabCDefg"
+
+	red>> letters
+	== "abCDefgabCDefgabCDefg"
+
+Links: $$replace$$
+
+.top
+.hoc 8.5. How to append an item to a series
+
+Example:
+
+	red>> s: [1 2 3]
+	== [1 2 3]
+
+	red>> append s 4
+	== [1 2 3 4]
+
+	red>> s
+	== [1 2 3 4]
+
+Links: $$append$$
+.top
+
+
+.hoc 8.6. How to get a substring from a series 
+
+Here we use a string value, but code works with any type, of course.
+ 
+    >> s: "ABCDEFGH"
+    == "ABCDEFGH"
+    >> copy/part at s 2 4    ;-- start at position 2, get 4 items
+    == "BCDE"
+
+.top
+
+.hoc 8.7. How to join strings
+
+If you want to add a string to the end of an existing string, you can use
+append, as above.  If you want to join literals, calculations etc, in a more
+flexible way, consider $$rejoin$$, as in
+
+    >> shape: " square "
+    == " square "
+    >> side: 6
+    == 6
+    >> rejoin ["The" shape "is " side * side " sq Units"]
+    == "The square is 36 sq Units"
+
+Each item is evaluated (reduced), then joined.

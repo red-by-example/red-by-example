@@ -1,0 +1,46 @@
+The word $$case$$ provides a multi-way branch structure.  
+The $$block!$$ following the first $$true$$ condition is evaluated.
+
+The result of a $$case$$ is the value of the last expression evaluated.
+
+Conditional expressions are supported, rather than the simpler form 
+in the $$switch$$ word.
+
+Refinement:
+    /all : causes the blocks for every $$true$$ condition to be evaluated.
+.pre
+.box $$case$$ without /all refinement
+
+n: 555
+case [
+  n &lt 10   [print "small"]
+  n &lt 100  [print "medium"]
+  n &lt 1000 [print "large"]
+  true     [print "none of these"]      
+]
+##large##
+
+.box $$case$$ with /all refinement (1)
+
+n: 555
+case/all [
+  n &lt 10   [print "small"]
+  n &lt 100  [print "medium"]
+  n &lt 1000 [print "large"]
+  true     [print "none of these"]      
+]
+##large##
+##none of these##
+
+.box $$case$$ with /all refinement (2)
+
+n: 555
+case/all [
+  n &gt 10   [print "small"]
+  n &gt 100  [print "medium"]
+  n &gt 1000 [print "large"]
+  true     [print "none of these"]      
+]
+##small##
+##medium##
+##none of these##

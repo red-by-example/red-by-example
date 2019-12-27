@@ -1,0 +1,14 @@
+The word $$also$$ first evaluates its first argument and then
+also evaluates its second argument.
+.pre
+red>> a: 4
+== 4
+
+red>> b: 5
+== 5
+
+red>> also c: a + b c: c * a
+== 9                 %%Returns result of first expression%%
+
+red>> c
+== 36                %%Contains result of last expression%%

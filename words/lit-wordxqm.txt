@@ -1,0 +1,19 @@
+Returns true if its argument is a $$lit-word!$$ type, otherwise false.
+
+Its single argument can be of any type.
+
+.pre
+.box  A few types of argument
+
+red>> a-word: 123
+
+red>> lit-word? a-word
+== false
+
+;correct lit-word syntax, but we should not evaluate it
+red>> lit-word? 'a-word
+== false
+
+;prevent evaluation with first [block] 
+red>> lit-word? first ['a-word]
+== true

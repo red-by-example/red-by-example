@@ -1,0 +1,70 @@
+The $$datatype!$$ $$action!$$ encompassess a specific set of $$native!$$
+$$function$$s.
+.pre
+.box List all $$functions$$s that are an $$action$$
+red>> ? action!
+     absolute           =>  Returns the non-negative value
+     add                =>  Returns the sum of the two values
+     and~               =>  Returns the first value ANDed with the second
+     append             =>  Inserts value(s) at series tail; returns series head
+     at                 =>  Returns a series at a given index
+     back               =>  Returns a series at the previous index
+     change             =>  Changes a value in a series and returns the series after 
+                            the change.
+     clear              =>  Removes series values from current index to tail; returns 
+                            new tail
+     complement         =>  Returns the opposite (complementing) value of the input `
+                            value
+     copy               =>  Returns a copy of a non-scalar value
+     divide             =>  Returns the quotient of two values
+     even?              =>  Returns true if the number is evenly divisible by 2
+     find               =>  Returns the series where a value is found, or NONE
+     form               =>  Returns a user-friendly string representation of a value
+     head               =>  Returns a series at its first index
+     head?              =>  Returns true if a series is at its first index
+     index?             =>  Returns the current index of series relative to the head, 
+                            or of word in a context
+     insert             =>  Inserts value(s) at series index; returns series past the 
+                            insertion
+     length?            =>  Returns the number of values in the series, from the current 
+                            index to the tail
+     make               =>  Returns a new value made from a spec for that value's type
+     modify             =>  Change mode for target aggregate value
+     mold               =>  Returns a source format string representation of a value
+     move               =>  Moves one or more elements from one series to another 
+                            position or series
+     multiply           =>  Returns the product of two values
+     negate             =>  Returns the opposite (additive inverse) value
+     next               =>  Returns a series at the next index
+     odd?               =>  Returns true if the number has a remainder of 1 when divided 
+                            by 2
+     or~                =>  Returns the first value ORed with the second
+     pick               =>  Returns the series value at a given index
+     poke               =>  Replaces the series value at a given index, and returns 
+                            the new value
+     power              =>  Returns a number raised to a given power (exponent)
+     put                =>  Replaces the value following a key, and returns the new value
+     random             =>  Returns a random value of the same datatype; or shuffles series
+     read               =>  Read from a file, URL, or other port
+     reflect            =>  Returns internal details about a value via reflection
+     remainder          =>  Returns what is left over when one value is divided by another
+     remove             =>  Returns the series at the same index after removing a value
+     reverse            =>  Reverses the order of elements; returns at same position
+     round              =>  Returns the nearest integer. Halves round up (away from zero) 
+                            by default
+     select             =>  Find a value in a series and return the next value, or NONE
+     skip               =>  Returns the series relative to the current index
+     sort               =>  Sorts a series (modified); default sort order is ascending
+     subtract           =>  Returns the difference between two values
+     swap               =>  Swaps elements between two series or the same series
+     tail               =>  Returns a series at the index after its last value
+     tail?              =>  Returns true if a series is past its last value
+     take               =>  Removes and returns one or more elements
+     to                 =>  Converts to a specified datatype
+     trim               =>  Removes space from a string or NONE from a block or object
+     write              =>  Writes to a file, URL, or other port
+     xor~               =>  Returns the first value exclusive ORed with the second
+
+.box Check if a word is an $$action!$$
+red>> action? :take     %%Colon is mandatory to get to function definition%%
+== true

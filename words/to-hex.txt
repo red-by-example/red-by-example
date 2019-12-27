@@ -1,0 +1,24 @@
+The word $$to-hex$$ converts an $$integer!$$ to a hexadecimal 
+value, with a leading # and leading zeroes.
+
+Its argument is an $$integer!$$.
+ 
+Refinements
+     /size  -   an $$integer!$$ specifying the number of 
+                hexadecimal digits in the result.  
+                No errors result if a small size value 
+                removes significant parts of the result.
+.pre
+.box Conversions of positive and negative $$integer!$$s
+red>> to-hex 64
+#00000040
+
+red>> to-hex -1
+#FFFFFFFF
+
+red>> to-hex 2 ** 31
+== #80000000    %%Left most bit (= sign bit) is set%%
+
+.box Limit digits with /size (from the right)
+red>> to-hex/size 64 4
+#0040

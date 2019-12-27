@@ -1,0 +1,21 @@
+The word $$integer?$$ returns $$true$$ if its argument is an $$integer!$$ type, 
+otherwise false.
+
+Its argument can be any type.
+.pre
+%%A literal integer value%%
+red>> integer? 123
+== true
+
+%%A variable holding an integer value%%
+red>> a: 456
+== 456
+
+red>> integer? a
+== true
+
+red>> integer? 22x30
+== false
+
+red>> integer? 12.3
+== false

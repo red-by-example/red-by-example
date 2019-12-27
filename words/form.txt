@@ -1,0 +1,33 @@
+The $$form$$ word converts a value to a $$string!$$, in a user-friendly format.
+
+NOTE that, depending on the type, the resulting text might not contain extra
+     type information (such as [ ] { } and "") as would be produced by $$mold$$.
+
+It has one argument, a value.
+
+Refinements:
+   /part - an $$integer!$$ value limiting the length of the result $$string!$$
+.pre
+Because the Red console has an effect on formatting, we will use print.
+
+red>> print form "ABCDEFG"
+##ABCDEFG##
+
+red>> print form/part "ABCDEFG" 2
+##AB##
+
+red>> print form #"Z"
+##Z##
+
+red>> print form {The Great
+    Wall Of
+    China}
+##The Great##
+##Wall Of##
+##China##
+
+red>> print form [1 2 3 4 5 6]
+##1 2 3 4 5 6##
+
+red>> print form/part [1 2 3 4 5 6] 4
+##1 2##

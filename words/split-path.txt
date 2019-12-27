@@ -1,0 +1,14 @@
+Splits a $$file!$$ or $$url!$$ path. Returns a block containing path and 
+target. 
+
+Arguments
+
+A $$file!$$ or a  $$url!$$
+
+.pre
+.box Use split-path on a url, and a file
+red>> split-path http://www.red-lang.org/p/about.html
+== [http://www.red-lang.org/p/ %about.html]
+
+red>> split-path %data/personal/notes.txt
+== [%data/personal/ %notes.txt]

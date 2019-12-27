@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     TO-TUPLE value
+
+DESCRIPTION: 
+     Convert to tuple! value. 
+     TO-TUPLE is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to tuple!
+See $$tuple!$$
+.box to-tuple
+>> to-tuple "12.34.88"
+== 12.34.88

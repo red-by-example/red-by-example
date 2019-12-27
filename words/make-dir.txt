@@ -1,0 +1,17 @@
+The word $$make-dir$$ creates a directory.  
+
+Returns no  error if the directory already exists; the contents of existing 
+directories will be preserved.
+
+The single argument is a $$file!$$.
+
+Refinements
+     /deep  -   create subdirectories as well
+.pre
+.box Make directory in the directory that the interpreter was run from
+red>> make-dir %make2/
+== %make2/
+
+.box The /deep refinement - new directory make3, and its sub-dir
+red>> make-dir/deep %make3/sub-dir/
+== %make3/sub-dir/

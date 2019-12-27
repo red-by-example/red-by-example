@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     TO-PAIR value
+
+DESCRIPTION: 
+     Convert to pair! value. 
+     TO-PAIR is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to pair!
+See $$pair!$$
+.box to-pair with various types
+>> to-pair 22
+== 22x22
+>> to-pair [22 33]
+== 22x33

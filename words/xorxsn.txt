@@ -1,0 +1,16 @@
+Returns the  exclusive OR of its 2 arguments.
+
+It is the functional equivalent of the $$xor$$ infix operator.
+
+.pre
+.box Explore some types
+red>> xor~ 3 3
+== 0
+red>> xor~ 1 3
+== 2
+
+red>> xor~ #"A" 1
+== #"@"
+red>> xor~ #"D" 1
+== #"E"
+

@@ -1,0 +1,2 @@
+$$all-word!$$ is a $$typeset!$$ value: 
+    make typeset! [word! set-word! lit-word! get-word! refinement! issue!]

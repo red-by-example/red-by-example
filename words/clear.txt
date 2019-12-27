@@ -1,0 +1,32 @@
+The word $$clear$$ deletes the contents of a $$series$$ starting from the current
+index.
+.pre
+.box Clear a $$string!$$
+red>> s: "abcdefghijklm"
+== "abcdefghijklm"
+
+red>> clear s
+== ""
+
+red>> s
+== ""
+
+.box Clear part of a $$series!$$
+red>> n: [1 2 3 4 5 6 7]
+== [1 2 3 4 5 6 7]
+
+red>> clear skip n 3
+== []
+
+red>> n
+== [1 2 3]
+
+.box Clear from a found position
+red>> s: "the quick brown fox jumps over the lazy dog"
+== "the quick brown fox jumps over the lazy dog"
+
+red>> clear find s "jumps"
+== ""
+
+red>> s
+== "the quick brown fox "

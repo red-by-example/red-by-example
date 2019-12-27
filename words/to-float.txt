@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-FLOAT value
+
+DESCRIPTION: 
+     Convert to float! value. 
+     TO-FLOAT is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+ 
+Equivalent to using:    to float!
+See $$float!$$
+.box to-float, various types
+>> f: "12.34"     ;-- string type
+== "12.34"
+>> to-float f
+== 12.34
+>> to-float 123   ;-- integer
+== 123.0

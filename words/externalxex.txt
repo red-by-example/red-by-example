@@ -1,0 +1,4 @@
+.dcs
+EXTERNAL! is a typeset! value: make typeset! [event!]
+.dce
+.aad

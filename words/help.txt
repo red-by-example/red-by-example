@@ -1,0 +1,59 @@
+The $$help$$ word provides an overview of Red words and datatypes.
+You may also type $$?$$ instead of $$help$$.
+
+Help has 1 argument:
+   - a Red $$word!$$:
+        in this case $$help$$ displays the help info for exactly that $$word!$$
+   - or a $$string!$$:
+        in this case $$help$$ displays every piece of help info where this
+        $$string!$$ occurs.
+.pre
+red>> help add
+USAGE:
+    add value1  value2
+
+DESCRIPTION:
+     Returns the sum of the two values.
+     add is of type: action!
+
+ARGUMENTS:
+     value1  [number! char! pair! tuple! vector!]
+     value2  [number! char! pair! tuple! vector!]
+
+REFINEMENTS:
+
+red>> help *
+USAGE:
+    value1 *  value2
+
+DESCRIPTION:
+     Returns the product of two values.
+     * is of type: op!
+
+ARGUMENTS:
+     value1  [number! char! pair! tuple! vector!]
+     value2  [number! char! pair! tuple! vector!]
+
+REFINEMENTS:
+
+red>> help native!
+    all        =>  Evaluates, returning at the first that is not true
+    any        =>  Evaluates, returning at the first that is true
+    arccosine  =>  Returns the trigonometric arccosine (in degrees by default)
+    arcsine    =>  Returns the trigonometric arcsine (in degrees by default)
+    arctangent =>  Returns the trigonometric arctangent (in degrees by default)
+    ... rest of output omitted here ...
+
+red>> help "contr"
+    continue   =>  Throws control back to top of loop
+    throw      =>  Throws control back to a previous catch
+
+red>> help "sine"
+    acos       =>  Returns the trigonometric arccosine
+    arccosine  =>  Returns the trigonometric arccosine (in degrees by default)
+    arcsine    =>  Returns the trigonometric arcsine (in degrees by default)
+    asin       =>  Returns the trigonometric arcsine
+    cos        =>  Returns the trigonometric cosine
+    cosine     =>  Returns the trigonometric cosine
+    sin        =>  Returns the trigonometric sine
+    sine       =>  Returns the trigonometric sine

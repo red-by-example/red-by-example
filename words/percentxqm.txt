@@ -1,0 +1,16 @@
+The word $$percent?$$ returns $$true$$ if its argument is a $$percent!$$ type, 
+otherwise $$false$$.
+
+The argument can be any type.
+.pre
+red>> x: 100%
+== 100%
+
+red>> percent? x
+== true
+
+red>> y: 200
+== 200
+
+red>> percent? y
+== false

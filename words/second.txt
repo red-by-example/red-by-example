@@ -1,0 +1,26 @@
+The word $$second$$ returns the second value of a $$series!$$. 
+
+The argument can be one of:
+     $$series!$$ $$tuple!$$ $$pair!$$
+
+If there is no second item in the $$series!$$, $$none$$ is returned.
+.pre
+.box Second of a $$block!$$
+red>> second [3 4 5]
+4
+
+.box Second of a $$string!$$ (a $$char!$$)
+red>> second "ABC"
+#"B"
+
+.box A $$series!$$ having no second element
+red>> second [44]
+none
+
+.box Second of a $$tuple!$$
+red>> second 66.77.88
+77
+
+.box Second of a $$pair!$$
+red>> second 22x55
+55

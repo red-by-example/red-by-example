@@ -1,0 +1,50 @@
+The binary! $$datatype!$$ is a $$series!$$.  Each element is a  0-255 
+integer value.  Literal binary values can be expressed with bases 
+2, 16, 64.  Base 16 is the default.
+
+Because of the byte-based representation, we must supply sufficient digits 
+to produce 8-bit units.  Thus for base 16, we must provide 2, 4, 6 etc 
+digits, and for base 64, we must supply 4, 8, 12 etc digits. (4 base-64 
+digits provide 24 bits, which splits into 3 bytes exactly).
+
+The arithmetic functions do not allow binary! arguments.
+
+Literals can be written with white space for readability, and upper or 
+lower-case letters can be used.
+
+Readers of Rebol documentation should note that Red is closer to Rebol3 in 
+this area.  There are major differences from Rebol2.
+
+.pre
+.box Some literals
+;base 16 - hex
+red>> #{0f}
+== #{0F}
+
+;base 2, with spaces
+>> 2#{11110000 11110000}
+== #{F0F0}
+
+;base 64
+>> 64#{ffff}
+== #{7DF7DF}
+
+;incorrect number of digits here
+red>> #{fff}
+*** Syntax Error: invalid binary! at "#{fff}"
+*** Where: do
+
+.box Use to binary!
+;convert a string
+red>> to binary! "1111ffff"
+== #{3131313166666666}
+
+.box Use pick to get an integer element (FF)
+red>> b: #{00
+    ff
+    22
+}
+== #{00FF22}
+
+red>> pick b 2
+== 255

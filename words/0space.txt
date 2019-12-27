@@ -1,0 +1,15 @@
+Changes the default spacing between faces.
+
+Argument
+
+a $$pair!$$
+
+.pre
+view [
+    size 300x200
+    title "Demo Window"
+    space 100x70   ;-- bigger horizontal/vertical spacing
+    b1: button "Hello"    
+    b2: button "Goodbye" 
+    return
+]

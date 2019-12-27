@@ -1,0 +1,15 @@
+The word $$routine?$$ returns $$true$$ if its argument is a $$routine!$$,
+otherwise $$false$$.
+
+A $$routine!$$ is a function in an external library.
+
+Its single argument can be of any type.
+.pre
+.box The word $$cos$$ is external
+red>> routine? :cos   %%Note the colon!%%
+true
+
+.box The word $$sort$$ is not in an external library
+red>> routine? :sort
+false
+

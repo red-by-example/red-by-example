@@ -1,0 +1,26 @@
+.dcs
+USAGE:
+     TO-LOGIC value
+
+DESCRIPTION: 
+     Convert to logic! value. 
+     TO-LOGIC is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Returns true for any value except for false and none.
+Equivalent to using:    to logic!
+See $$logic!$$
+
+.box to-logic
+>> find "ABCDE" "X"           ;-- normal find usage
+== none
+>> find "ABCDE" "B"
+== "BCDE"
+;-- we might only want a there/missing result
+>> to-logic find "ABCDE" "X"
+== false
+>> to-logic find "ABCDE" "B"
+== true

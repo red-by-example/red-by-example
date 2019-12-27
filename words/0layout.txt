@@ -1,0 +1,25 @@
+.dcs
+USAGE:
+     LAYOUT spec
+
+DESCRIPTION: 
+     Return a face with a pane built from a VID description. 
+     LAYOUT is a function! value.
+
+ARGUMENTS:
+     spec         [block!] "Dialect block of styles, attributes, and layouts."
+
+REFINEMENTS:
+     /tight       => Zero offset and origin.
+     /options     => 
+        user-opts    [block!] "Optional features in [name: value] format."
+     /flags       => 
+        flgs         [block! word!] "One or more window flags."
+     /only        => Returns only the pane block.
+     /parent      => 
+        panel        [object!] 
+        divides      [integer! none!] 
+     /styles      => Use an existing styles list.
+        css          [block!] "Styles list.
+.dce
+.aad

@@ -1,0 +1,88 @@
+The $$datatype!$$ $$typeset!$$ lets us create a set of types and name them.  
+
+Internally, a typeset is stored in a compact array of bits, for fast access 
+at run-time. By convention, $$typeset!$$ names should end with a ! 
+ 
+The following words are supported with $$typeset!$$s: 
+    $$make$$
+    $$form$$
+    $$mold$$
+    $$and$$
+    $$or$$
+    $$xor$$
+    $$complement$$
+    $$clear$$
+    $$find$$
+    $$insert$$
+    $$append$$
+    $$length?$$.
+    
+Comparison operators are also supported.
+
+Typesets cannot be built from existing typesets; use the low-level types instead.
+.pre
+.box Red uses $$typeset!$$s internally:
+red>> ? typeset!
+     any-block!      :  make typeset! [block! paren! path! lit-path! set-path! 
+                                       get-path! hash!]
+     any-function!   :  make typeset! [native! action! op! function! routine!]
+     any-list!       :  make typeset! [block! paren! hash!]
+     any-object!     :  make typeset! [object! error!]
+     any-path!       :  make typeset! [path! lit-path! set-path! get-path!]
+     any-string!     :  make typeset! [string! file! url!]
+     any-type!       :  make typeset! [datatype! unset! none! logic! block! 
+                                       paren! string! file! url! char! integer! 
+                                       float! word! set-word! lit-word! get-word! 
+                                       refinement! issue! native! action! op! 
+                                       function! path! lit-path! set-path! 
+                                       get-path! routine! bitset! object! typeset! 
+                                       error! vector! hash! pair! percent! tuple! 
+                                       map! binary! time! image! event!]
+     any-word!       :  make typeset! [word! set-word! lit-word! get-word! 
+                                       refinement! issue!]
+     default!        :  make typeset! [datatype! none! logic! block! paren! 
+                                       string! file! url! char! integer! float! 
+                                       word! set-word! lit-word! get-word! 
+                                       refinement! issue! native! action! op! 
+                                       function! path! lit-path! set-path! 
+                                       get-path! routine! bitset! object! 
+                                       typeset! error! vector! hash! pair! 
+                                       percent! tuple! map! binary! time! image!]
+     immediate!      :  make typeset! [datatype! none! logic! char! integer! 
+                                       float! word! set-word! lit-word! 
+                                       get-word! refinement! issue! typeset! 
+                                       pair! percent! tuple! time!]
+     internal!       :  make typeset! [unset! event!]
+     my-type!        :  make typeset! [integer! pair! tuple!]
+     number!         :  make typeset! [integer! float! percent!]
+     scalar!         :  make typeset! [char! integer! float! pair! percent! tuple! time!]
+     series!         :  make typeset! [block! paren! string! file! url! path! lit-path! 
+                                       set-path! get-path! vector! hash! binary! image!]
+
+.box Make a new type
+red>> my-type!: make typeset! [pair! tuple! integer!]
+== make typeset! [integer! pair! tuple!]
+
+.box Create a function which uses the type
+red>> show-it: function [x [my-type!] ] [ print x ]
+
+.box Try it with pair, tuple, integer
+red>> show-it 30x40     %%$$pair!$$ is part of this $$typeset!$$%%
+30x40
+
+red>> show-it 33.44.2   %%$$tuple!$$ is part of this $$typeset!$$%%
+33.44.2
+
+red>> show-it 234       %%$$integer!$$ is part of this $$typeset!$$%%
+234
+
+red>> show-it 23.45     %%$$float!$$ is NOT part of this $$typeset!$$%%
+*** Script error: show-it does not allow float! for its x argument
+*** Where: show-it
+
+.box Try to make a typeset from the existing $$typeset!$$ $$number!$$
+red>> t!: make typeset![number!]
+*** Script error: invalid argument: number!
+*** Where: make
+red>> 
+

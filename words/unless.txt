@@ -1,0 +1,18 @@
+The word $$unless$$ evaluates the $$block!$$ if the condition is NOT $$true$$,
+returning the value of the block; otherwise returns $$none$$.
+
+The arguments are a condition, and a $$block!$$.
+
+Using $$unless$$ is equivalent to using $$if$$ $$not$$.
+.pre
+age: 18
+unless (age < 18) or (age > 100) [print "Within Range"]
+##Within range##
+
+if not( (age < 18) or (age > 100)) [print "Within Range"]
+##Within range##
+%%equivalent if (for previous unless example)%%
+
+if (age >= 18) and (age <= 100) [print "Within Range"]
+##Within range##
+%%same with condition rewritten%%

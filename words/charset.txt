@@ -1,0 +1,33 @@
+The word $$charset$$ is a helper function for the $$bitset!$$ type.  
+
+In Red, the main use of bitsets is with character sets (possibly 
+across the whole Unicode range).   
+
+The charset function provides simplified creation with ranges.
+    
+In cases when it is tedious to create massive bitsets (perhaps with huge 
+numbers of Unicode characters) we can create complemented sets, using $$not$$.
+
+The single argument can be:
+     $$block!$$  $$integer!$$  $$char!$$  $$string!$$
+     We can also use the hyphen "-" to specify ranges.
+.pre
+.box Create some bitsets with charset     
+red>> vowels: charset ["AEIOU"]
+== make bitset! #{0000000000000000444104}
+
+red>> digits: charset ["0123456789"]
+== make bitset! #{000000000000FFC0}
+
+.box Use a range, with -
+red>> alpha: charset [#"A" - #"Z" #"a" - #"z"] 
+== make bitset! #{00000000000000007FFFFFE07FFFFFE0}
+red>>      
+     
+.box Mixed types
+red>> set-demo: charset [120 "hello" #"A"]
+== make bitset! #{00000000000000004000000004890080}
+     
+.box Complementing -> all unicode characters except these 10
+red>> charset [not "0123456789"] 
+== make bitset! [not #{000000000000FFC0}]

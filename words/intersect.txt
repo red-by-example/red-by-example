@@ -1,0 +1,26 @@
+The word $$intersect$$ returns the intersection (the common items) of two sets. 
+
+The arguments can be sets of:
+    $$block!$$ $$hash!$$ $$string!$$ $$bitset!$$ $$typeset!$$
+
+To create a set with no duplicate items, the $$unique$$ function can be used.
+
+Refinements:
+    /case - use case-sensitive comparison.
+    /skip - treat the $$series!$$ as fixed size records.  
+            The specified size is an $$integer!$$.
+.pre
+%%Create 2 series%%
+red>> list1: ["India" "China" "Vietnam" "Singapore"]
+== ["India" "China" "Vietnam" "Singapore"]
+
+red>> list2: ["uk" "china" "USA" "India" "France"]
+== ["uk" "china" "USA" "India" "France"]
+
+%%Common values in these sets%%
+red>> intersect list1 list2
+== ["India" "China"]
+
+%%When case sensitive%%
+red>> intersect/case list1 list2
+== ["India"]

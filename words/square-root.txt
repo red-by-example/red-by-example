@@ -1,0 +1,20 @@
+The word $$square-root$$ returns the square-root of a $$number!$$.
+
+Its argument must be a $$number!$$  type.
+.pre
+.box Square-root of $$integer!$$ gives a $$float!$$
+red>> square-root 16
+4.0
+
+.box Square-root of a $$float!$$
+red>> square-root 4.1
+2.024845673131658
+
+.box Square-root of a negative number (NaN = Not a Number)
+red>> square-root -9
+1.#NaN
+
+.box Square-root of a $$pair!$$ (invalid operation))
+red>> square-root 22x33
+*** Script error: square-root does not allow pair! for its value argument
+*** Where: square-root

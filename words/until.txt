@@ -1,0 +1,18 @@
+The word $$until$$ evaluates its $$block!$$ argument until the $$block!$$
+returns a $$true$$ value.
+
+It has one argument, a $$block!$$.
+.pre
+n: 5
+until [
+   print n
+   n: n - 1
+   n < 0
+]
+##5##
+##4##
+##3##
+##2##
+##1##
+##0##
+== true

@@ -1,0 +1,6 @@
+Represents a graphic display unit connected to the computer (usually a 
+monitor).
+
+Its official View documentation is at:
+<a href="https://doc.red-lang.org/en/view.html#_screen"> 
+https://doc.red-lang.org/en/view.html#_screen</a>

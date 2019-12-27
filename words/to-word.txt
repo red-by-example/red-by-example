@@ -1,0 +1,21 @@
+.dcs
+USAGE:
+     TO-WORD value
+
+DESCRIPTION: 
+     Convert to word! value. 
+     TO-WORD is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to word!
+See $$word!$$
+.box to-word
+>> w: to-word 'aaa
+== aaa
+>> w
+== aaa
+>> type? w
+== word!

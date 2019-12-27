@@ -1,0 +1,33 @@
+Causes a dialog to appear asking the user to select a directory, and returns
+the full directory path as a $$file!$$ type,  or a block of paths. 
+It returns $$none$$ if no selection is made.  The title bar shows:
+     'Browse For Folder' 
+It works in  a Red GUI program, and also in a non-GUI console program.
+ 
+There are no arguments.
+
+Refinements
+     /title - to be displayed under the title bar.  We provide a $$string!$$
+
+     /dir - Set starting directory. We provide a name, which can be a 
+            $$string!$$ or  $$file!$$.
+
+     /filter - To Be Developed: Block of filters (filter-name filter):
+               a $$block!$$
+
+     /keep - Keep previous directory path
+
+     /multi - To Be Developed: Allows multiple file selection, returned as
+              a block.
+
+.pre
+.box Use request-dir from the Red console, on Windows
+red>> choice: request-dir
+;user browsed to c:\mike\ALBUM\   Note the %, indicating a file!   
+red>> choice
+== %/C/ALBUM/
+
+.box /dir and /title refinements
+;add a title, and start with C:/mike selected
+red>> print request-dir/title/dir "Choose Dir"  "C:\mike"
+== %/C/Mike/data/

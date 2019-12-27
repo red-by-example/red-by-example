@@ -1,0 +1,33 @@
+The word $$complement$$ returns the complement of the argument.
+
+Has one argument, of type: 
+    $$logic!$$ $$integer!$$ $$bitset!$$ $$typeset!$$
+
+For $$logic!$$, it returns $$true$$ or $$false$$.
+
+For values with an accessible bit representation, it returns the 
+"ones complement".
+.pre
+.box With $$logic!$$
+
+red>> complement 3 > 2
+== false
+
+.box With $$integer!$$s
+
+red>> complement 2
+== -3
+
+red>> complement -1
+== 0
+
+red>> complement 63
+== -64
+
+.box With $$bitset!$$
+
+red>> b: make bitset![0 1]
+== make bitset! #{C0}
+
+red>> complement b
+== make bitset! [not #{C0}]

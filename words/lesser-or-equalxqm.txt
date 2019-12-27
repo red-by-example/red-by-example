@@ -1,0 +1,19 @@
+The word $$lesser-or-equal?$$ returns $$true$$ if the first argument
+is less than or equal to the second argument, otherwise $$false$$.  
+
+It is the functional equivalent of the infix word $$<=$$.
+.pre
+red>> lesser-or-equal? 33 44
+== true
+
+red>> "ABC" <= "abc"
+== true
+
+red>> "abc" <= "ABC"
+== true
+
+red>> [4 8 5] <= [4 2 1]
+== false
+
+red>> [4 1 1] <= [4 2 1]
+== true

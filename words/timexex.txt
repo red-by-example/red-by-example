@@ -1,0 +1,52 @@
+The  Time! $$datatype!$$ lets us express an amount of time in hours, minutes, 
+seconds, and subseconds. Both positive and negative times are permitted.  
+Colons separate items, apart from subseconds, which use a decimal point.
+
+Times are stored in a standard form, irrespective of how they are entered. 
+(Thus, 59 minutes and 63 seconds are stored as 1 hour, 0 minutes, and 3 seconds.)
+
+The refinements /hour  /minute  /second  can be used to get part of a time.
+
+Times can be compared, and used in calculations where a time result is meaningful.  
+For example, we can add two times, but not multiply them.
+
+The $$to-time$$ function can be used to convert other values into  a $$time!$$.
+
+
+.pre
+.box Create some times, work with them.
+
+; Create times 
+>> t1: 3:4:58
+== 3:04:58
+>> t2: 24:0:63
+== 24:01:03
+>> t3: 3:0.95
+== 0:03:00.950000001
+
+; Refinement 
+>> t1/second
+== 58.0
+
+; Comparison
+>> t1 > t2
+== false
+
+; Calculations
+>> t1 * 2.9
+== 8:56:24.2
+>> t1 + t2
+== 27:06:01
+
+>> t1 * t2
+*** Script Error: incompatible argument for multiply of time!
+*** Where: *
+
+; Use of to-time function
+>> to-time [11 22 33]
+== 11:22:33
+>> to-time [11 22 61]
+== 11:23:01
+>> to-time "12:24"
+== 12:24:00
+

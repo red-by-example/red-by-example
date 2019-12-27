@@ -1,0 +1,22 @@
+The word $$to-local-file$$ converts standard, system independent Red 
+file paths to the file format used by the local operating system. 
+
+The path argument must be a $$file!$$ or a $$string!$$.
+
+Refinements
+     /full  -   prepends current dir for full path (for relative paths only)
+.pre
+.box Windows - using Red $$file!$$
+red>> to-local-file %/c/data.txt
+"c:\data.txt"
+
+.box Windows - using a $$string!$$
+red>> to-local-file "/c/data.txt"
+"c:\data.txt"
+
+.box Windows - with /full refinement
+red>> what-dir
+== %/E/Websites/Red-by-Example/auto-v5/   %%Current directory%%
+
+red>> to-local-file/full %data.txt        %%Relative path%%
+== "E:\Websites\Red-by-Example\auto-v5\data.txt"

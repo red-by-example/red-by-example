@@ -1,0 +1,16 @@
+.dcs
+USAGE:
+     OFFSET-TO-CARET face pt
+
+DESCRIPTION: 
+     Given a coordinate, returns the corresponding caret position. 
+     OFFSET-TO-CARET is a function! value.
+
+ARGUMENTS:
+     face         [object!] 
+     pt           [pair!] 
+
+RETURNS:
+     [integer!]
+.dce
+.aad

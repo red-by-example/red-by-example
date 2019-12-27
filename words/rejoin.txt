@@ -1,0 +1,36 @@
+Accepts a block of items, reduces them, and joins them together.  No 
+spaces are inserted between items.  The rejoined item is returned, and the
+original block is unaltered.
+
+REBOL users please note - Red does not have 'join'.
+
+Arguments
+    A block.
+
+
+Examples
+
+.box Some simple rejoins - note the string! result
+>> b: ["sum is " 3 + 2]
+== ["sum is " 3 + 2]
+>> rejoin b
+== "sum is 5"
+>> type? rejoin b
+== string!
+
+>> b2: [3 + 4 " is result"]
+== [3 + 4 " is result"]
+>> rejoin b2
+== "7 is result"
+
+.box Join some blocks - note the appended series
+>> rejoin [b b2]
+== ["sum is " 3 + 2 [3 + 4 " is result"]]
+
+.box The $$tag!$$ type acts differently. The result is a tag! type
+>> rejoin [&lt;a href=test.html&gt; "test" &lt;/a&gt;]
+>> &lt;a href=test.htmltest&lt;/a&gt;&gt;
+
+;-- we could convert to strings to get a more useful result:
+>> rejoin ["&lt;a href=test.html&gt;" "test" &lt;/a&gt;]
+== "&lt;a href=test.html&gt;test&lt;/a&gt;"

@@ -1,0 +1,10 @@
+The $$datatype!$$ $$number!$$ is a $$typeset!$$ containing other $$datatype!$$s.
+.pre
+.box Show all subtypes of $$number!$$
+red>> ? number!
+number! is a typeset! of value: 
+        make typeset! [
+             integer! 
+             float! 
+             percent!
+        ]

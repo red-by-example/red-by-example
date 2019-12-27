@@ -1,0 +1,20 @@
+The infix word $$%$$ returns what is left over when argument 1 is divided 
+by argument 2.
+
+Arguments can have those types:
+    $$number!$$ $$char!$$ $$pair!$$ $$tuple!$$ $$vector!$$ $$time!$$
+.pre
+red>> 3 % 2
+== 1
+
+red>> 3.5 % 2
+== 1.5
+
+red>> 3.6 % 2.2
+== 1.4
+
+red>> 11x19 % 3
+== 2x1
+
+red>> 11x19 % 3x4
+== 2x3

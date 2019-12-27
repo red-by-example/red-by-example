@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     SQRT number
+
+DESCRIPTION: 
+     Returns the square root of a number. 
+     SQRT is a function! value.
+
+ARGUMENTS:
+     number       [number!] 
+
+RETURNS:
+     [float!]
+.dce
+.box sqrt
+>> sqrt 2.1
+== 1.449137674618944
+>> sqrt 16
+== 4.0

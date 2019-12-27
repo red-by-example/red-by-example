@@ -1,0 +1,10 @@
+The word $$quit$$ quits the interpreter (and thus the program) immediately.
+
+Refinement:
+     /return p - When this refinement is used value p is returned by $$quit$$.
+.pre
+quit
+%%returns immediately to the OS command prompt%%
+
+quit/return 3
+%%returns to the OS command prompt and hands the OS the value 3%%

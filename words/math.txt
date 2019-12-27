@@ -1,0 +1,18 @@
+This function evaluates a $$block!$$ using mathematical precedence rules, 
+returning the last result. 
+
+Arguments
+
+The single argument is a $$block!$$.
+
+.pre
+. box Evaluate a block with math, then without.
+>> a: 6
+== 6
+; Evaluate the  /  before the +
+>> math [a + 8 / 2]
+== 10
+
+; Now left-to right, the + first
+>> print [a + 8 / 2]
+7

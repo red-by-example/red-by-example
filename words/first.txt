@@ -1,0 +1,26 @@
+The word $$first$$ returns the first value in a $$series!$$. 
+
+The argument can be one of: 
+    $$series!$$ $$tuple!$$ $$pair!$$
+
+If there is no first item, $$none$$ is returned.
+.pre
+red>> first [3 4 5]
+== 3
+%%First of a block!.%%
+
+red>> first "ABC"
+== #"A"
+%%First of a string!.%%
+
+red>> first []
+== none
+%%There is no first value here.%%
+
+red>> first 22.33.44
+== 22
+%%First of a tuple!.%%
+
+red>> first 200x400
+== 200
+%%First of a pair!.%%

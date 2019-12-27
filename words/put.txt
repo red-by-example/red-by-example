@@ -1,0 +1,20 @@
+.dcs
+USAGE:
+     PUT series key value
+
+DESCRIPTION: 
+     Replaces the value following a key, and returns the new value. 
+     PUT is an action! value.
+
+ARGUMENTS:
+     series       [series! map! object!] 
+     key          [scalar! any-string! any-word! binary!] 
+     value        [any-type!] 
+
+REFINEMENTS:
+     /case        => Perform a case-sensitive search.
+
+RETURNS:
+     [series! map! object!]
+.dce
+.aad

@@ -1,0 +1,16 @@
+.dcs
+USAGE:
+     RECYCLE 
+
+DESCRIPTION: 
+     RECYCLE is a native! value.
+
+REFINEMENTS:
+     /on          => 
+     /off         => 
+.dce
+Triggers a manual garbage collection pass, rather than waiting for internal 
+heuristics and timing events to do so. Recycle has 2 refinements: /off and /on.
+They allow you to disable the garbage collector, and re-enable it. This 
+gives you control in scenarios where you want to manage things more directly
+yourself.

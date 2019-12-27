@@ -1,0 +1,25 @@
+A $$set-path!$$ is a kind of $$path!$$ used to change (set) a value.  Refer 
+to $$path!$$ and $$set-word!$$ for more details.
+
+.pre
+.box Use a set-path!, and check  the type.
+red>> b:[11 22 33 44]
+
+;note the trailing colon
+red>> b/2: -999
+== -999
+;note the changed value
+red>> b
+== [11 -999 33 44]
+;now with a variable
+red>> place: 3
+== 3
+;the first : gets the value of place, second makes a set-path!
+red>> b/:place: -1000
+== -1000
+red>> b
+== [11 -999 -1000 44]
+
+;Find the type - first [block] is used to prevent evaluation
+red>> type? first [b/:place:]
+== set-path!

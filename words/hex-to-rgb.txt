@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     HEX-TO-RGB hex
+
+DESCRIPTION: 
+     Converts a color in hex format to a tuple value; returns NONE if it fails. 
+     HEX-TO-RGB is a function! value.
+
+ARGUMENTS:
+     hex          [issue!] "Accepts #rgb, #rrggbb, #rrggbbaa."
+
+RETURNS:
+     [tuple! none!]
+.dce
+
+.box hex-to-rgb
+>> hex-to-rgb #ff0000
+== 255.0.0
+

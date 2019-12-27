@@ -1,0 +1,22 @@
+The word $$third$$ returns the third value in a $$series!$$ (also $$string!$$s).
+
+The argument can be one of:  
+    $$series!$$ $$tuple!$$ $$pair!$$
+
+If there is no third item, $$none$$ is returned.
+.pre
+.box Third of block 
+red>> third [2 3 4 5]
+== 4
+
+.box Third of a string is a character type
+red>> third "ABCDE"
+== #"C"
+
+.box Third of a tuple
+red>> third 22.33.44.55
+== 44
+ 
+.box No third here
+red>> third[44]
+== none

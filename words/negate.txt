@@ -1,0 +1,16 @@
+The word $$negate$$ inverses its argument (positive <-> negative).
+.pre
+red>> negate 3
+== -3
+
+red>> negate -3
+== 3
+
+red>> negate 5x4
+== -5x-4
+
+red>> negate 5x-4
+== -5x4
+
+red>> negate -5x4
+== 5x-4

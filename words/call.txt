@@ -1,0 +1,72 @@
+
+The word $$call$$ executes a shell command to run another process. 
+      
+The argument is:
+
+     A command   [$$string!$$ $$file!$$]  - A shell command or an executable file. 
+
+Refinements
+     /wait  - Runs command and waits for exit. 
+     /show  - Force the display of system's shell window (Windows only). 
+     /console  - Runs command with I/O redirected to console (CLI console only at present). 
+     /shell  - Forces command to be run from shell. 
+     /input  - we provide a [$$string!$$ $$file!$$ $$binary!$$], which will be redirected to stdin.
+     /output - we provide a [$$string!$$ $$file!$$ $$binary!$$] which will
+receive the redirected stdout from the command. Note that the
+output is appended.
+If you don't want this, clear the destination(or delete the file, for example).
+
+     /error - as /output, but redirects stderr.
+.aad    
+
+
+.pre
+.box Please note:
+; These examples were run on Windows 7.  Prints are included,
+; to provide confirmation of a call starting and ending.
+; File paths that do not begin with a / are relative paths.
+; Enclose spaces in " ", or use hex codes
+; ( '/' works on GNU/Linux, and Windows)
+
+.box Call a non-gui program in current directory.  % precedes a file name. 
+print "The program only displays a message, and is not visible-on-screen"
+call %hi-exe.exe
+Print "Done 1"
+
+.box Call notepad++ editor, with absolute path
+print "The notepad++ pops up, and this program continues"
+call %"C:/Program Files/notepadPP/notepad++.exe"
+print "Done 2"
+
+.box Call notepad++ editor, with relative path
+call %"../Program Files/notepadPP/notepad++.exe"
+print "Done 3"
+
+.box Call notepad++, with a command-line argument for it.
+call %"C:/Program Files/notepadPP/notepad++.exe myData.txt" 
+print "Done 4"
+
+
+.box /wait refinement. Call notepad++, wait till user closes it.
+print "The notepad++ pops up, and this program continues"
+call/wait %"C:/Program Files/notepadPP/notepad++.exe"
+print "Done 5"
+
+.box /output refinement - redirect output of hi-exe.exe to file hi-out.txt
+call/output  %hi-exe.exe %hi-out.txt
+print "Done 6"
+
+
+.box /output - from a .bat file containing Dos commands (A dir command here)
+call/output %bat-demo.bat  %dir-out.txt  
+print "Done 7"
+
+.box /output - with the output from a Dos command going  to a string
+a-string: ""
+call/output "dir *.txt"  a-string 
+print ["Dir listing is: " a-string]
+
+.box /show - run a command-file.  Its window flashes up, then vanishes
+call/show %bat-demo.bat 
+print "Done 8"
+

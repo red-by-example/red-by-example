@@ -1,0 +1,29 @@
+The word $$union$$ returns the union of 2 data sets.  
+Duplicate entries are only included once.
+
+A new $$series!$$ is produced, and the 2 arguments are unchanged.
+
+Both series arguments must be of the same datatype, which can be:
+    $$block!$$  $$hash!$$  $$string!$$  $$bitset!$$  $$typeset!$$
+
+The word $$union$$ is one of several set-type functions.
+
+Refinements:
+    /case - use case-sensitive comparison
+    /skip - treat the series as fixed size records. 
+            Specify the size as an $$integer!$$
+.pre
+.box Union of 2 blocks
+red>> union [1 2 99 4] [1 2 3 4]
+== [1 2 99 4 3]
+
+.box Union of 2 strings
+red>> union "abcd" "Ab"
+== "abcd"
+
+; /case makes union case-sensitive
+red>> union/case "abcd" "Ab"
+== "abcdA"
+
+red>> union/case ["a" "b"] [ "A"]
+== ["a" "b" "A"]

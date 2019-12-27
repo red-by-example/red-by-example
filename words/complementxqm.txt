@@ -1,0 +1,14 @@
+The word $$complement?$$ returns $$true$$ if the bitset is 
+complemented (that is: inverted with $$not$$).
+.pre
+red>> vowels: charset ["AEIOU"]
+== make bitset! #{0000000000000000444104}
+
+red>> complement? vowels
+== false
+
+red>> non-digits: charset [ not "0123456789"]
+== make bitset! [not #{000000000000FFC0}]
+
+red>> complement? non-digits
+== true

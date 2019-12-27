@@ -1,0 +1,31 @@
+The word $$??$$ prints a Red $$word!$$ (given as its argument)
+and the value it refers to, in a molded format. This means that
+the output includes type information (e.g. [ ], " ").
+
+It is very useful for debugging.
+
+Warning: when used with a $$function!$$ name, it displays the 
+         $$function!$$ specification, rather than evaluating 
+         that $$function!$$.
+.pre
+red>> age: 35
+== 35
+
+red>> ?? age
+age: 35
+== 35
+
+red>> older: 1 + ?? age
+age: 35
+== 36
+
+red>> ?? 44
+*** Script error: ?? does not allow integer for its value argument
+*** Where: ??
+
+red>> ?? sin 0.4
+sin: routine ["Returns the trigonometric sine" angle [float!] 
+              "Angle in radians"][natives/sine* no 1]
+== 0.4
+%%Effectively the 0.4 here is a stand-alone value; %%
+%%?? does not do anything with it!%%

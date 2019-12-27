@@ -1,0 +1,52 @@
+The $$and~$$ word performs a logical "and" of its 2 arguments.
+The arguments are restricted to these types:
+    $$logic!$$ $$integer!$$ $$char!$$ $$bitset!$$ $$typeset!$$ $$pair!$$ $$tuple!$$ $$vector!$$
+
+It is the functional version of the infix $$and$$ word.
+
+In the case of $$and~$$ing two $$integer!$$s (or types closely related to $$integer!$$s,
+such as $$char!$$, $$pair!$$), a bitwise (bit-by-bit) process is performed.
+
+In general, types can be mixed, but $$logic!$$ types cannot be mixed with other types.
+
+The type of the result is the same type as the first value for a bitwise $$and~$$.
+For a logic $$and~$$ $$true$$ or $$false$$ are returned.
+
+There are no refinements.
+.pre
+.box Using $$number!$$s
+
+red>> and~ (3 > 2 ) true
+== true
+
+red>> and~ 8 16
+== 0
+
+.box Using bad parameter
+
+red>> and~ 16 false
+*** Script error: logic type is not allowed here
+*** Where: and~
+
+.box Using $$pair!$$
+
+red>> my-pair: 3x4
+== 3x4
+
+red>> and~ my-pair 1
+== 1x0
+
+red>> and~ 1 my-pair
+*** Script error: and~ does not allow pair for its value2 argument
+*** Where: and~
+
+.box Using $$vector!$$
+
+red>> v1: make vector![1 2 3]
+== make vector! [1 2 3]
+
+red>> v2: make vector![1 1 1]
+== make vector! [1 1 1]
+
+red>> and~ v1 v2
+== make vector! [1 0 1]

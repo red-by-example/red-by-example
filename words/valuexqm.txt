@@ -1,0 +1,29 @@
+The word $$value?$$ returns $$true$$ if the argument is a Red $$word!$$
+that has been set; otherwise returns $$false$$.
+
+It has 1 argument, a $$word!$$, which is passed as a literal
+or as the result of other operations.
+.pre
+a: 33
+== 33
+
+value? 'a
+== true
+
+a: none
+== none
+
+value? 'a
+== true
+
+value? 'fish
+== false
+
+value? second [a fish]
+== false
+
+value? fish
+*** Script error: fish has no value
+*** Where: value?
+%%NOTE the error message;%%
+%%     we must prevent evaluation of the word by using ' or [ ].%%

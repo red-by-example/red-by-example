@@ -1,0 +1,24 @@
+Appends a reduced value to a series and returns the series head.   
+The original series is modified.
+
+Arguments
+ - a $$series!$$
+ - a value to be appended, of any type.
+
+Refinements
+     /only - Appends a block value as a block.
+
+.pre
+.box repend a block - note the evaluation
+;make a series to work with
+red>> s: [10 "eleven" 12]
+
+red>> repend s [7 + 7 "fifteen"]
+== [10 "eleven" 12 14 "fifteen"]
+;s has changed
+red>> s
+== [10 "eleven" 12 14 "fifteen"]
+
+.box /only refinement - note nested block
+red>> repend/only s [7 + 7 "fifteen"]
+== [10 "eleven" 12 14 "fifteen" [14 "fifteen"]]

@@ -1,0 +1,42 @@
+Moves one or more elements from one series to another position or series. 
+By default, one element is moved.  The origin series is modified and 
+returned. The target series is modified. 
+
+Arguments
+
+     origin -  a $$series!$$
+     target -  a $$series!$$
+
+Refinements
+     /part - control the number of values inserted.  We supply an 
+             $$integer!$$ length.
+
+.pre
+.box move, and its effects
+;make 2 series
+red>> s1: [a b c d]
+red>> s2: [11 12]
+
+;move first element of s1 to s2
+;note the returned value: a modified s1
+red>> move s1 s2
+== [b c d]
+
+;s1 is modified
+red>> s1
+== [b c d]
+
+;s2 is modified
+red>> s2
+== [a 11 12]
+ 
+.box /part refinement
+;make 2 series
+red>> s1: [a b c d e]
+red>> s2: [1 2 3 4]
+
+;move 2 elements, not 1
+red>> move/part s1 s2 2
+== [c d]
+red>> s2
+== [a b 1 2 3 4]

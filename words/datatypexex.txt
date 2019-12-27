@@ -1,0 +1,16 @@
+The word $$datatype!$$ is the "mother" of all Red's datatypes.
+
+Note that a $$typeset!$$ can be defined for grouping several datatypes!
+
+Note that $$datatype!$$ and $$typeset!$$ are also a $$datatype!$$!
+.pre
+red>> ? datatype!
+     action!        binary!     bitset!     block!      char!          
+     datatype!      error!      event!      file!       float!         
+     function!      get-path!   get-word!   hash!       image!         
+     integer!       issue!      lit-path!   lit-word!   logic!         
+     map!           native!     none!       object!     op!            
+     pair!          paren!      path!       percent!    point!         
+     refinement!    routine!    set-path!   set-word!   string!        
+     time!          tuple!      typeset!    unset!      url!           
+     vector!        word!

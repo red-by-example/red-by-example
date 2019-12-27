@@ -1,0 +1,16 @@
+Sets the container title.
+
+Argument
+
+A $$string!$$
+
+.pre
+view [
+    ;-- set title for window
+    backdrop green
+    size 300x200
+    title "Demo Window"   ;-- title of window
+    b1: button "Hello"    
+    b2: button "Goodbye"  
+    return   
+]

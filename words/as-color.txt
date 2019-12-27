@@ -1,0 +1,15 @@
+The word $$as-color$$ generates a $$tuple!$$ with R, G and B values
+from its 3 $$integer!$$ arguments.
+.pre
+red>> as-color 255 0 0
+== 255.0.0
+
+.box Predefined colors (e.g. $$0red$$ $$0green$$ etc.) are available also
+red>> red
+== 255.0.0
+
+red>> green
+== 0.255.0
+
+red>> yellow
+== 255.255.0

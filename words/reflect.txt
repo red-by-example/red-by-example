@@ -1,0 +1,31 @@
+Returns internal details about a value via reflection. 
+
+Arguments
+
+value -  of a type that supports reflection
+field  -  a $$word!$$  such as spec, body, words, etc. Each $$datatype!$$ 
+          defines its own reflectors.
+
+.pre
+.box reflect with a map:  'body, 'values
+red>> m: make map![a 1 b 2]
+red>> reflect m 'body
+== [a: 1 b: 2]
+
+red>> reflect m 'values
+== [1 2]
+
+.box reflect with object:  'body  'values  'words 
+red>> place: make object! [
+    x-pos: 100
+    y-pos: 200
+]
+
+red>> reflect place 'body
+== [x-pos: 100 y-pos: 200]
+
+red>> reflect place 'values
+== [100 200]
+
+red>> reflect place 'words
+== [x-pos y-pos]

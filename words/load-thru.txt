@@ -1,0 +1,17 @@
+.dcs
+USAGE:
+     LOAD-THRU url
+
+DESCRIPTION: 
+     Loads a remote file through local disk cache. 
+     LOAD-THRU is a function! value.
+
+ARGUMENTS:
+     url          [url!] "Remote file address."
+
+REFINEMENTS:
+     /update      => Force a cache update.
+     /as          => Specify the type of data; use NONE to load as code.
+        type         [word! none!] "E.g. bmp, gif, jpeg, png."
+.dce
+.aad

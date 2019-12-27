@@ -1,0 +1,30 @@
+The word poke changes an element of a $$series!$$ to a value.
+
+Arguments:
+    - name of the $$series!$$
+    - the index of the element to be replaced
+    - the new value for that element
+.pre
+.box Using a $$block!$$ of numbers
+red>> x: [1 2 3 4 5 6 7 8 9]
+== [1 2 3 4 5 6 7 8 9]
+
+red>> poke x 3 66
+== 66
+
+red>> x
+== [1 2 66 4 5 6 7 8 9]
+
+red>> poke x 11 12
+*** Script Error: value out of range: 11
+*** Where: poke
+
+.box using a $$string!$$
+red>> s: "abcdefghijklmnop"
+== "abcdefghijklmnop"
+
+red>> poke s 3 #"C"
+== #"C"
+
+red>> s
+== "abCdefghijklmnop"

@@ -1,0 +1,20 @@
+The word $$empty?$$ checks whether a $$series!$$ is empty.
+.pre
+.box A few examples
+red>> empty? []
+== true
+
+red>> empty? [1]      %%Not empty - contains a number%%
+== false
+
+red>> empty? [ [] ]   %%Not empty - contains a $$block!$$%%
+== false
+
+red>> empty? "x"      %%Not empty - contains a character%%
+== false
+
+red>> empty? ""
+== true
+
+red>> empty? { "" }   %%Not empty - contains a 4 character string%% 
+== false

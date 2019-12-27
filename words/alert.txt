@@ -1,0 +1,20 @@
+docstart
+USAGE:
+     ALERT msg
+
+DESCRIPTION: 
+     ALERT is a function! value.
+
+ARGUMENTS:
+     msg          [string! block!] 
+.docend
+
+Displays a pop-up notification box, with a message and an OK button.  
+
+The program waits, and continues when  OK is clicked, or the 'enter' key is pressed.
+
+.pre
+
+alert "Hello"
+alert ["Year is " 2022]
+

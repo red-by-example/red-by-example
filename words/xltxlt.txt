@@ -1,0 +1,34 @@
+The word $$<<$$ shifts its first argument (an $$integer!$$) to the left
+by the number of bits in its second argument (also an $$integer!$$).
+
+The sign is taken into account.
+.pre
+red>> to-hex 6
+== #00000006
+
+red>> to-hex 6 << 1
+== #0000000C
+
+red>> to-hex 6 << 2
+== #00000018
+
+red>> to-hex 6 << 3
+== #00000030
+
+red>> to-hex 6 << 4
+== #00000060
+
+red>> to-hex -6
+== #FFFFFFFA
+
+red>> to-hex -6 << 1
+== #FFFFFFF4
+
+red>> to-hex -6 << 2
+== #FFFFFFE8
+
+red>> to-hex -6 << 3
+== #FFFFFFD0
+
+red>> to-hex -6 << 4
+== #FFFFFFA0

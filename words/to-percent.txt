@@ -1,0 +1,19 @@
+.dcs
+USAGE:
+     TO-PERCENT value
+
+DESCRIPTION: 
+     Convert to percent! value. 
+     TO-PERCENT is a function! value.
+
+ARGUMENTS:
+     value         
+.dce
+
+Equivalent to using:    to percent!
+See $$percent!$$
+.box to-percent with various types
+>> to-percent 0.75
+== 75%
+>> to-percent 33
+== 3300%

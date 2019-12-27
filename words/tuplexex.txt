@@ -1,0 +1,59 @@
+The  $$datatype!$$ $$tuple!$$ is a list of 3 up to 12 bytes. 
+It offers a versatile way to represent different kind of values such as 
+version numbers, IP addresses , and colours (example: 0.255.0).
+
+The value of each item in a tuple must be in the range 0 to 255.
+
+Once a $$tuple!$$ value is created, its size cannot be changed anymore (it is
+not a series!), 
+but its elements can still be modified, using, for example, path syntax. 
+ 
+The following actions are supported by tuple! values: 
+    $$random$$, $$add$$, $$divide$$, $$multiply$$, $$remainder$$, $$subtract$$, 
+    $$and$$, $$or$$, $$xor$$, $$length?$$, $$pick$$, $$poke$$, $$reverse$$.
+ 
+Math operations are allowed with some other scalar datatypes where a result is sensible, 
+like $$integer!$$, $$float!$$ and $$percent!$$.
+
+Tuples can be used to represent RGB colors.  To get a list of the predefined 
+colors, type:
+    help tuple!
+
+.pre
+.box Create 2 tuples
+red>> t1: 6.3.2
+== 6.3.2
+
+red>> t2: 100.200.64.32
+== 100.200.64.32
+
+.box Path syntax to access and modify an element
+red>> t2/2
+== 200
+
+red>> t2/2: 250
+== 250
+
+red>> t2
+== 100.250.64.32
+
+.box Add the tuples
+red>> t1 + t2
+== 106.253.66.32
+
+.box Add an integer - note clipping at 255
+red>> t2 + 200
+== 255.255.255.232
+
+.box Get help on defined colours
+red>> help tuple!
+##     aqua            :  40.100.130##
+##     beige           :  255.228.196##
+##     black           :  0.0.0##
+##     blue            :  0.0.255##
+##     brick           :  178.34.34##
+##     ... and 100  or so lines more, not shown here##
+ 
+.box Compare pre-defined colours
+red>> red + green = yellow
+== true

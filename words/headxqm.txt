@@ -1,0 +1,23 @@
+The word $$head?$$ checks whether a $$series!$$ index is at the $$head$$
+position (= position 1) and returns $$true$$ if it is at $$head$$ or $$false$$ 
+otherwise.
+
+Note that you can use the word $$index?$$ to obtain the current index!
+.pre
+red>> x: [1 2 3]
+== [1 2 3]
+
+red>> head? x
+== true
+
+red>> index? x
+== 1
+
+red>> x: next x
+== [2 3]
+
+red>> head? x
+== false
+
+red>> index? x
+== 2

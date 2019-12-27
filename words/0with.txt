@@ -1,0 +1,12 @@
+Evaluates a block of Red code bound to the currently defined face. Allows
+directly setting the face fields, overriding other VID options.
+
+Note that the $$0with$$ is executed as the face is created.  In the following,
+if we reversed the order of b1 and b2, creating b2 first, an error would 
+result, because b1 does not exist (yet).
+
+
+view [   
+    b1: button "Hello"       ;-- actually shows "HI!"
+    b2: button "Goodbye"  with [b1/text: "HI!"]
+]

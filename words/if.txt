@@ -1,0 +1,30 @@
+The word $$if$$ evaluates a conditional expression. 
+If the result thereof is $$true$$, the $$block!$$ will be evaluated. 
+If $$false$$ nothing happens.
+
+Has 2 parameters:
+    1. a conditional expression
+    2. a $$block!$$.
+
+If returns the resulting value of the $$block!$$ if the condition is $$true$$ and 
+else returns $$none$$.
+
+Warning:
+   The $$if$$ word is a pitfall for Red n00bs, because it doesn't have an $$else$$ $$block!$$.
+   The $$either$$ word provides what programmers would expect.
+.pre
+if 3 > 2 [print "3 > 2"]
+##3 > 2##
+
+if 3 > 2 [print "3 > 2"] [print "2 > 3"]
+##3 > 2##
+== [print "2 > 3"]
+%%This is a n00b error.%%
+%%The last block is not a part of the if, so the block is evaluated%%
+%%as a stand-alone block, which returns the block itself!%%
+
+if 2 = 2.0 [print "Different datatypes, but still equal!"]
+##Different datatypes, but still equal!##
+
+if 2 == 2.0 [print "Different datatypes NOT equal!"]
+##none##
