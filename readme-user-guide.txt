@@ -12,7 +12,7 @@ Arie's idea of the RBE website - is to provide additional help about Red words, 
 
 The main page provides a big index containing every Red word, including dialect words.  Clicking on a word takes you to examples.  The main page also has words listed by category (e.g. input/output, maths, series etc).
 
-The gensite(4).red  program builds the index and links it to information and examples about that word.  Thanks to Arie for writing this powerful program.
+The gensite.red  program builds the index and links it to information and examples about that word.  Thanks to Arie for writing this powerful program.
 
 Gensite.txt contains tables of words and their categories (a word can be in several categories).  A word might be in a dialect, and, within the program  a digit prefix indicates a dialect. (Thus the same word can exist in several dialects, e.g. group, 3group, 4group.  The group word is in the main language, and 2 dialects.)
 
@@ -255,13 +255,3 @@ TOOL-update-spec.red
  
 
 -----------------------end---------------------
-
- 
- 
-
-
-
-
-6
-
-
