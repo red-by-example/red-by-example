@@ -10,8 +10,8 @@ Refinements
                 not compatible with TCP/CRC32 methods.
                 The value we supply can be:
                     $$any-string!$$  $$binary!$$  $$integer!$$
-                    string or binary for MD5/SHA* HMAC key
-                    $$integer!$$ for hash table size.
+                    string or binary for MD5/SHA* HMAC key,
+                    integer for hash table size.
 .pre
 .box Do a CRC and MD5 checksum
 red>> checksum "some text" 'CRC32
