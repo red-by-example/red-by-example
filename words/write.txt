@@ -23,20 +23,34 @@ Refinements
 .box Use write.  Note the preceding % for literal file names.
 
 ;write 1 line to local file testfile.txt
-red>> write %testfile.txt "ABCDEFG"
+>> write %testfile.txt "ABCDEFG"
 ;read it back
-red>> read %testfile.txt
-== "ABCDEFG"
+>> read %testfile.txt
+##== "ABCDEFG"##
 ;/seek refinement
-red>> write/seek %testfile.txt "XXX" 2
+>> write/seek %testfile.txt "XXX" 2
 ;read it back
-red>> read %testfile.txt
-== "ABXXXFG"
+>> read %testfile.txt
+##== "ABXXXFG"##
 
 ; /lines refinement
-red>> write/lines %testfile.txt ["a line" "another line"]
+>> write/lines %testfile.txt ["a line" "another line"]
 ;read it back, use print to avoid console formatting
-red>> print read %testfile.txt
-a line
-another line
+>> print read %testfile.txt
+##a line##
+##another line##
+
+; making http/https requests
+>> set [status headers body] write/info https://httpbin.org/get [GET]
+##== [200 #(##
+##    Date: "Mon, 28 Sep 2020 11:20:18 GMT"##
+##    Content-Type: "application/json"##
+##    Content-Length:...##
+>> load-json body
+##== #(##
+##    args: #()##
+##    headers: #(##
+##        Accept: "*/*"##
+##        Accept-Charset: "UTF-8"##
+##        Host: "http...##
 
