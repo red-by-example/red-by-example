@@ -31,7 +31,7 @@ number: 20 %%Global%%
 add-up2 3 5
 print number %%Global%%
 ##8## %%Local%%
-##20## %%Local%%
+##20## %%Global%%
 
 %%Using a refinement without a value%%
 add-up3: func [a b /neg /local temp] [
