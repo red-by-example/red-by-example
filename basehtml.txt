@@ -38,6 +38,7 @@ pre {font: bold 10pt "courier new", monospace, console;
 <h1 style="color:red; id=top">Red by Example - an accessible reference by example</h1>
 Last update on 
 .date
+<br />This is now a community project, you can collaborate <a href="https://github.com/red-by-example/red-by-example">on GitHub</a>.
 .header
 .pages
 .index
